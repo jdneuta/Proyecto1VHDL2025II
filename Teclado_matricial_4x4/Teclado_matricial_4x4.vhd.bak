@@ -1,0 +1,121 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;  -- Para contadores y aritmética
+
+-- Entidad para el escáner de teclado matricial 4x4
+-- Asume un teclado 4x4 estándar con pines para filas (rows) y columnas (cols)
+-- Salida: key_code (4 bits) que representa la tecla presionada (0-15, 0 si no hay tecla)
+-- clk: reloj del sistema (ej. 50 MHz)
+-- reset: reset asíncrono
+
+entity Teclado_matricial_4x4 is
+    Port ( 
+        clk : in STD_LOGIC;                      -- Reloj del sistema
+        reset : in STD_LOGIC;                    -- Reset activo alto
+        row_in : in STD_LOGIC_VECTOR(3 downto 0); -- Entradas de las columnas (leídas)
+        col_out : out STD_LOGIC_VECTOR(3 downto 0); -- Salidas para las filas (escaneadas)
+        key_pressed : out STD_LOGIC;             -- Flag: '1' si hay tecla presionada
+        key_code : out STD_LOGIC_VECTOR(3 downto 0) -- Código de la tecla (0-15)
+    );
+end Teclado_matricial_4x4;
+
+architecture Behavioral of Teclado_matricial_4x4 is
+    signal row_counter : STD_LOGIC_VECTOR(1 downto 0) := "00";  -- Contador para escanear 4 filas (2 bits)
+    signal current_row : STD_LOGIC_VECTOR(3 downto 0);         -- Fila actual activa (una hot)
+    signal key_detected : STD_LOGIC_VECTOR(3 downto 0);        -- Columna detectada
+    signal key_valid : STD_LOGIC;                              -- Tecla válida detectada
+    signal debounce_cnt : INTEGER range 0 to 1000000 := 0;     -- Contador para debounce (ajustar según clk)
+    signal key_stable : STD_LOGIC := '0';                      -- Tecla estable después de debounce
+    constant DEBOUNCE_TIME : INTEGER := 50000;                 -- Tiempo de debounce (ej. 1ms @ 50MHz)
+    
+    -- Matriz de códigos de teclas (estándar 4x4: 1,2,3,A / 4,5,6,B / 7,8,9,C / *,0,#,D)
+    -- Aquí usamos 0-15 para simplicidad: fila0 col0=0, fila0 col1=1, ..., fila3 col3=15
+    type key_matrix_t is array(0 to 3, 0 to 3) of STD_LOGIC_VECTOR(3 downto 0);
+    constant key_matrix : key_matrix_t := (
+        ("0000", "0001", "0010", "0011"),  -- Fila 0: 0,1,2,3
+        ("0100", "0101", "0110", "0111"),  -- Fila 1: 4,5,6,7
+        ("1000", "1001", "1010", "1011"),  -- Fila 2: 8,9,A,B
+        ("1100", "1101", "1110", "1111")   -- Fila 3: C,D,E,F
+    );
+    
+begin
+    -- Proceso para escanear filas (multiplexación)
+    scan_process: process(clk, reset)
+    begin
+        if reset = '1' then
+            row_counter <= "00";
+            current_row <= "0000";
+        elsif rising_edge(clk) then
+            row_counter <= row_counter + 1;
+            case row_counter is
+                when "00" => current_row <= "1110";  -- Activar fila 0 (bajar fila 0 a '0', otras '1')
+                when "01" => current_row <= "1101";  -- Fila 1
+                when "10" => current_row <= "1011";  -- Fila 2
+                when "11" => current_row <= "0111";  -- Fila 3
+                when others => current_row <= "1111"; -- Todas altas (no activa)
+            end case;
+        end if;
+    end process;
+    
+    col_out <= current_row;  -- Conectar fila activa a salidas
+    
+    -- Proceso para detectar tecla (lectura de columnas)
+    detect_process: process(clk, reset)
+        variable col_index : STD_LOGIC_VECTOR(1 downto 0);
+    begin
+        if reset = '1' then
+            key_detected <= "0000";
+            key_valid <= '0';
+            col_index := "00";
+        elsif rising_edge(clk) then
+            -- Leer columnas: si alguna columna es '0', hay tecla en esa posición
+            -- Asumimos pull-ups en columnas, tecla cierra a GND
+            if current_row /= "1111" then  -- Solo cuando una fila está activa
+                case row_in is  -- row_in son las columnas leídas (inversas lógicas si pull-up)
+                    when "1110" => key_detected <= "0001"; col_index := "00";  -- Col 0 presionada
+                    when "1101" => key_detected <= "0010"; col_index := "01";  -- Col 1
+                    when "1011" => key_detected <= "0100"; col_index := "10";  -- Col 2
+                    when "0111" => key_detected <= "1000"; col_index := "11";  -- Col 3
+                    when others => key_detected <= "0000"; key_valid <= '0';   -- Ninguna
+                end case;
+                
+                -- Obtener código de tecla de la matriz
+                if key_detected /= "0000" then
+                    key_valid <= '1';
+                    -- row_counter es el índice de fila (0-3)
+                    -- col_index es el índice de columna (0-3)
+                    key_code <= key_matrix(conv_integer(row_counter))(conv_integer(col_index));
+                else
+                    key_valid <= '0';
+                end if;
+            else
+                key_valid <= '0';
+            end if;
+        end if;
+    end process;
+    
+    -- Proceso de debounce para estabilizar la lectura de tecla
+    debounce_process: process(clk, reset)
+    begin
+        if reset = '1' then
+            debounce_cnt <= 0;
+            key_stable <= '0';
+        elsif rising_edge(clk) then
+            if key_valid = '1' then
+                if debounce_cnt < DEBOUNCE_TIME then
+                    debounce_cnt <= debounce_cnt + 1;
+                else
+                    key_stable <= '1';
+                end if;
+            else
+                debounce_cnt <= 0;
+                key_stable <= '0';
+            end if;
+        end if;
+    end process;
+    
+    -- Salidas finales
+    key_pressed <= key_stable;
+    -- key_code ya se asigna en detect_process, pero se mantiene hasta reset
+
+end Behavioral;
