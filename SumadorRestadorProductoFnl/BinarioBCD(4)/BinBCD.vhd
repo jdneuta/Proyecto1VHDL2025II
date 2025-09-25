@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity BinBCD is
+    port (
+        bin_in     : in  std_logic_vector(9 downto 0); -- Entrada binaria (hasta 1023)
+        bcd_miles  : out std_logic_vector(3 downto 0); -- Dígito de mil
+        bcd_cent   : out std_logic_vector(3 downto 0); -- Dígito de centena
+        bcd_dec    : out std_logic_vector(3 downto 0); -- Dígito de decena
+        bcd_uni    : out std_logic_vector(3 downto 0)  -- Dígito de unidad
+    );
+end BinBCD;
+
+architecture arch_BinBCD of BinBCD is
+begin
+    process(bin_in)
+        variable temp_int : integer range 0 to 1023;
+    begin
+        -- Convertimos binario a entero para hacer divisiones
+        temp_int := to_integer(unsigned(bin_in));
+
+        -- Extraemos dígitos BCD
+        bcd_miles <= std_logic_vector(to_unsigned((temp_int / 1000) mod 10, 4));
+        bcd_cent  <= std_logic_vector(to_unsigned((temp_int / 100) mod 10, 4));
+        bcd_dec   <= std_logic_vector(to_unsigned((temp_int / 10) mod 10, 4));
+        bcd_uni   <= std_logic_vector(to_unsigned(temp_int mod 10, 4));
+    end process;
+end arch_BinBCD;
