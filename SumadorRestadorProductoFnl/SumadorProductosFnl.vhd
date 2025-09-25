@@ -12,8 +12,10 @@ entity SumadorProductosFnl is
         activar       : in  std_logic;
 
         -- Displays: dinero (D3-D0), cambio (C3-C0)
-        seg_d0, seg_d1, seg_d2, seg_d3 : out std_logic_vector(6 downto 0);
-        seg_c0, seg_c1, seg_c2, seg_c3 : out std_logic_vector(6 downto 0);
+
+	
+	SW0      : in  std_logic;  -- <<<<< Switch selector: dinero / cambio
+        SEG0, SEG1, SEG2, SEG3 : out std_logic_vector(6 downto 0);
 
         LED_ENTREGADO     : out std_logic;
         DINERO_INSUF      : out std_logic
@@ -31,6 +33,8 @@ architecture arch_SumadorProductosFnl of SumadorProductosFnl is
 
     -- BCD conversion
     signal dinero_bcd, cambio_bcd : std_logic_vector(15 downto 0);  -- 4 dígitos c/u
+    
+    signal bcd_mux : std_logic_vector(15 downto 0);
 
 begin
 
@@ -43,13 +47,13 @@ begin
 
     -- Detector de Monedas
     Monedas: entity work.DetectorMonedas 
-        port map (
-            clk         => clk_1Hz,
-            reset       => reset,
-            moneda_500  => moneda_500,
-            moneda_1000 => moneda_1000,
-            dinero      => dinero
-        );
+    port map (
+        clk         => clk_1Hz,
+        reset       => reset,
+        moneda_500  => moneda_500,
+        moneda_1000 => moneda_1000,
+        dinero      => dinero
+    );
 
     -- Selector de Producto
     Selector: entity work.SelectorProducto 
@@ -100,17 +104,20 @@ begin
 			  bcd_dec   => cambio_bcd(7 downto 4),
 			  bcd_uni   => cambio_bcd(3 downto 0)
         );
-
-    -- Displays de dinero
-    DisplayD0: entity work.SieteSegmentos port map (A => dinero_bcd(3 downto 0),   S0 => seg_d0);
-    DisplayD1: entity work.SieteSegmentos port map (A => dinero_bcd(7 downto 4),   S0 => seg_d1);
-    DisplayD2: entity work.SieteSegmentos port map (A => dinero_bcd(11 downto 8),  S0 => seg_d2);
-    DisplayD3: entity work.SieteSegmentos port map (A => dinero_bcd(15 downto 12), S0 => seg_d3);
-
-    -- Displays de cambio
-    DisplayC0: entity work.SieteSegmentos port map (A => cambio_bcd(3 downto 0),   S0 => seg_c0);
-    DisplayC1: entity work.SieteSegmentos port map (A => cambio_bcd(7 downto 4),   S0 => seg_c1);
-    DisplayC2: entity work.SieteSegmentos port map (A => cambio_bcd(11 downto 8),  S0 => seg_c2);
-    DisplayC3: entity work.SieteSegmentos port map (A => cambio_bcd(15 downto 12), S0 => seg_c3);
+	
+	process(dinero_bcd, cambio_bcd, SW0)
+		begin
+			if SW0 = '0' then
+				bcd_mux <= dinero_bcd;  -- Mostrar dinero
+			else
+				bcd_mux <= cambio_bcd;  -- Mostrar cambio
+			end if;
+	end process;
+	
+-- Decodificadores 7 segmentos para los 4 dígitos
+    Display0: entity work.SieteSegmentos port map (A => bcd_mux(3 downto 0),   S0 => SEG0);
+    Display1: entity work.SieteSegmentos port map (A => bcd_mux(7 downto 4),   S0 => SEG1);
+    Display2: entity work.SieteSegmentos port map (A => bcd_mux(11 downto 8),  S0 => SEG2);
+    Display3: entity work.SieteSegmentos port map (A => bcd_mux(15 downto 12), S0 => SEG3);
 
 end arch_SumadorProductosFnl;
