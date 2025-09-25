@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity sumador_saldo is
     port(
-        clk      : in  std_logic;
+        clk      : in  std_logic;  -- viene del divisor de 50M
         reset    : in  std_logic;  
         sw500    : in  std_logic;  -- switch moneda 500
         sw1000   : in  std_logic;  -- switch moneda 1000
@@ -14,37 +14,27 @@ end sumador_saldo;
 
 architecture arch_sumador_saldo of sumador_saldo is
     signal saldo_reg : integer range 0 to 9500 := 0;
-    signal prev500, prev1000 : std_logic := '0';  -- para detectar flancos
 begin
     process(clk, reset)
     begin
         if reset = '1' then
             saldo_reg <= 0;
-            prev500   <= '0';
-            prev1000  <= '0';
 
         elsif rising_edge(clk) then
-            -- Detectar flanco de subida en sw500
-            if (sw500 = '1' and prev500 = '0') then
+            -- sumar de acuerdo al switch activado
+            if sw500 = '1' then
                 if (saldo_reg + 500) <= 9500 then
                     saldo_reg <= saldo_reg + 500;
                 else
                     saldo_reg <= 9500;
                 end if;
-            end if;
-
-            -- Detectar flanco de subida en sw1000
-            if (sw1000 = '1' and prev1000 = '0') then
+            elsif sw1000 = '1' then
                 if (saldo_reg + 1000) <= 9500 then
                     saldo_reg <= saldo_reg + 1000;
                 else
                     saldo_reg <= 9500;
                 end if;
             end if;
-
-            -- Actualizar estados previos
-            prev500  <= sw500;
-            prev1000 <= sw1000;
         end if;
     end process;
 
