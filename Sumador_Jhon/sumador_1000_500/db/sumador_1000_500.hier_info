@@ -1,4 +1,5 @@
 |sumador_1000_500
+clk => div_50millones:Udiv.clk
 clk => saldo_reg[0].CLK
 clk => saldo_reg[1].CLK
 clk => saldo_reg[2].CLK
@@ -55,19 +56,50 @@ coin1000 => saldo_reg.OUTPUTSELECT
 coin1000 => saldo_reg.OUTPUTSELECT
 coin1000 => saldo_reg.OUTPUTSELECT
 coin1000 => saldo_reg.OUTPUTSELECT
-saldo[0] <= saldo_reg[0].DB_MAX_OUTPUT_PORT_TYPE
-saldo[1] <= saldo_reg[1].DB_MAX_OUTPUT_PORT_TYPE
-saldo[2] <= saldo_reg[2].DB_MAX_OUTPUT_PORT_TYPE
-saldo[3] <= saldo_reg[3].DB_MAX_OUTPUT_PORT_TYPE
-saldo[4] <= saldo_reg[4].DB_MAX_OUTPUT_PORT_TYPE
-saldo[5] <= saldo_reg[5].DB_MAX_OUTPUT_PORT_TYPE
-saldo[6] <= saldo_reg[6].DB_MAX_OUTPUT_PORT_TYPE
-saldo[7] <= saldo_reg[7].DB_MAX_OUTPUT_PORT_TYPE
-saldo[8] <= saldo_reg[8].DB_MAX_OUTPUT_PORT_TYPE
-saldo[9] <= saldo_reg[9].DB_MAX_OUTPUT_PORT_TYPE
-saldo[10] <= saldo_reg[10].DB_MAX_OUTPUT_PORT_TYPE
-saldo[11] <= saldo_reg[11].DB_MAX_OUTPUT_PORT_TYPE
-saldo[12] <= saldo_reg[12].DB_MAX_OUTPUT_PORT_TYPE
-saldo[13] <= saldo_reg[13].DB_MAX_OUTPUT_PORT_TYPE
+saldo[0] << saldo_reg[0].DB_MAX_OUTPUT_PORT_TYPE
+saldo[1] << saldo_reg[1].DB_MAX_OUTPUT_PORT_TYPE
+saldo[2] << saldo_reg[2].DB_MAX_OUTPUT_PORT_TYPE
+saldo[3] << saldo_reg[3].DB_MAX_OUTPUT_PORT_TYPE
+saldo[4] << saldo_reg[4].DB_MAX_OUTPUT_PORT_TYPE
+saldo[5] << saldo_reg[5].DB_MAX_OUTPUT_PORT_TYPE
+saldo[6] << saldo_reg[6].DB_MAX_OUTPUT_PORT_TYPE
+saldo[7] << saldo_reg[7].DB_MAX_OUTPUT_PORT_TYPE
+saldo[8] << saldo_reg[8].DB_MAX_OUTPUT_PORT_TYPE
+saldo[9] << saldo_reg[9].DB_MAX_OUTPUT_PORT_TYPE
+saldo[10] << saldo_reg[10].DB_MAX_OUTPUT_PORT_TYPE
+saldo[11] << saldo_reg[11].DB_MAX_OUTPUT_PORT_TYPE
+saldo[12] << saldo_reg[12].DB_MAX_OUTPUT_PORT_TYPE
+saldo[13] << saldo_reg[13].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sumador_1000_500|div_50millones:Udiv
+clk => out1~reg0.CLK
+clk => count1[0].CLK
+clk => count1[1].CLK
+clk => count1[2].CLK
+clk => count1[3].CLK
+clk => count1[4].CLK
+clk => count1[5].CLK
+clk => count1[6].CLK
+clk => count1[7].CLK
+clk => count1[8].CLK
+clk => count1[9].CLK
+clk => count1[10].CLK
+clk => count1[11].CLK
+clk => count1[12].CLK
+clk => count1[13].CLK
+clk => count1[14].CLK
+clk => count1[15].CLK
+clk => count1[16].CLK
+clk => count1[17].CLK
+clk => count1[18].CLK
+clk => count1[19].CLK
+clk => count1[20].CLK
+clk => count1[21].CLK
+clk => count1[22].CLK
+clk => count1[23].CLK
+clk => count1[24].CLK
+clk => count1[25].CLK
+out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
