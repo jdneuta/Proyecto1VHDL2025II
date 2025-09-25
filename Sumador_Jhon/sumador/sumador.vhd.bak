@@ -1,0 +1,74 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sumador is
+    port(
+        clk      : in  std_logic;
+        reset    : in  std_logic;
+        coin500  : in  std_logic;
+        coin1000 : in  std_logic;
+        seg_un   : out std_logic_vector(6 downto 0);  -- display unidades
+        seg_de   : out std_logic_vector(6 downto 0);  -- display decenas
+        seg_ce   : out std_logic_vector(6 downto 0);  -- display centenas
+        seg_mi   : out std_logic_vector(6 downto 0)   -- display millares
+    );
+end sumador;
+
+architecture arch_sumador of sumador is
+
+    -- COMPONENTES
+    component sumador_1000_500 is
+        port(
+            clk      : in  std_logic;
+            reset    : in  std_logic;
+            coin500  : in  std_logic;
+            coin1000 : in  std_logic;
+            saldo    : out integer range 0 to 9999
+        );
+    end component;
+
+    component bin_bcd is
+        port(
+            bin : in  integer range 0 to 9999;
+            bcd : out std_logic_vector(15 downto 0)  -- 4 dígitos BCD
+        );
+    end component;
+
+    component dec7seg is
+        port(
+            bcd : in  std_logic_vector(3 downto 0);
+            seg : out std_logic_vector(6 downto 0)
+        );
+    end component;
+
+    -- SEÑALES INTERNAS
+    signal saldo_int : integer range 0 to 9999;
+    signal bcd_int   : std_logic_vector(15 downto 0);
+
+begin
+
+    -- Instancia del sumador
+    U1: sumador_1000_500
+        port map(
+            clk      => clk,
+            reset    => reset,
+            coin500  => coin500,
+            coin1000 => coin1000,
+            saldo    => saldo_int
+        );
+
+    -- Instancia del conversor binario a BCD
+    U2: bin_bcd
+        port map(
+            bin => saldo_int,
+            bcd => bcd_int
+        );
+
+    -- Instancias de decodificadores a 7 segmentos
+    U3: dec7seg port map(bcd_int(3 downto 0),   seg_un);
+    U4: dec7seg port map(bcd_int(7 downto 4),   seg_de);
+    U5: dec7seg port map(bcd_int(11 downto 8),  seg_ce);
+    U6: dec7seg port map(bcd_int(15 downto 12), seg_mi);
+
+end arch_sumador;
