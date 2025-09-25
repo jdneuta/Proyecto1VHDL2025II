@@ -1,5 +1,5 @@
 Analysis & Synthesis report for sumador_1000_500
-Thu Sep 25 07:43:56 2025
+Thu Sep 25 07:59:48 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -16,8 +16,9 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   8. Registers Removed During Synthesis
   9. General Register Statistics
  10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+ 11. Port Connectivity Checks: "div_50millones:Udiv"
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -43,7 +44,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Sep 25 07:43:56 2025      ;
+; Analysis & Synthesis Status        ; Successful - Thu Sep 25 07:59:47 2025      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; sumador_1000_500                           ;
 ; Top-level Entity Name              ; sumador_1000_500                           ;
@@ -164,13 +165,14 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                       ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+---------+
-; sumador_1000_500.vhd             ; yes             ; User VHDL File  ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/sumador_1000_500/sumador_1000_500.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                        ;
++--------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path     ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                             ; Library ;
++--------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
+; ../div_50millones/div_50millones.vhd ; yes             ; User VHDL File  ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Sumador_Jhon/div_50millones/div_50millones.vhd     ;         ;
+; sumador_1000_500.vhd                 ; yes             ; User VHDL File  ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Sumador_Jhon/sumador_1000_500/sumador_1000_500.vhd ;         ;
++--------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------+
@@ -247,6 +249,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
 
 
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "div_50millones:Udiv"                                                                ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; out1 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -262,13 +273,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Sep 25 07:43:54 2025
+    Info: Processing started: Thu Sep 25 07:59:46 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off sumador_1000_500 -c sumador_1000_500
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/sumador_jhon/div_50millones/div_50millones.vhd
+    Info (12022): Found design unit 1: div_50millones-arch_div_50millones
+    Info (12023): Found entity 1: div_50millones
 Info (12021): Found 2 design units, including 1 entities, in source file sumador_1000_500.vhd
     Info (12022): Found design unit 1: sumador_1000_500-arch_sumador_1000_500
     Info (12023): Found entity 1: sumador_1000_500
 Info (12127): Elaborating entity "sumador_1000_500" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at sumador_1000_500.vhd(17): object "clk_div" assigned a value but never read
+Info (12128): Elaborating entity "div_50millones" for hierarchy "div_50millones:Udiv"
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -276,9 +292,9 @@ Info (21057): Implemented 70 device resources after synthesis - the final resour
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 14 output pins
     Info (21061): Implemented 52 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4696 megabytes
-    Info: Processing ended: Thu Sep 25 07:43:56 2025
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4684 megabytes
+    Info: Processing ended: Thu Sep 25 07:59:48 2025
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 

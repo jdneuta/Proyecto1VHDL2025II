@@ -16,7 +16,7 @@
 -- PROGRAM "Quartus II 64-Bit"
 -- VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
--- DATE "09/25/2025 07:44:08"
+-- DATE "09/25/2025 08:00:00"
 
 -- 
 -- Device: Altera EP3C16F484C6 Package FBGA484
@@ -29,12 +29,9 @@
 LIBRARY ALTERA;
 LIBRARY CYCLONEIII;
 LIBRARY IEEE;
-LIBRARY STD;
 USE ALTERA.ALTERA_PRIMITIVES_COMPONENTS.ALL;
 USE CYCLONEIII.CYCLONEIII_COMPONENTS.ALL;
 USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.STD_LOGIC_ARITH.ALL;
-USE STD.STANDARD.ALL;
 
 ENTITY 	sumador_1000_500 IS
     PORT (
@@ -42,7 +39,7 @@ ENTITY 	sumador_1000_500 IS
 	reset : IN std_logic;
 	coin500 : IN std_logic;
 	coin1000 : IN std_logic;
-	saldo : OUT STD.STANDARD.integer range 0 TO 9999
+	saldo : BUFFER std_logic_vector(13 DOWNTO 0)
 	);
 END sumador_1000_500;
 
@@ -186,7 +183,7 @@ ww_clk <= clk;
 ww_reset <= reset;
 ww_coin500 <= coin500;
 ww_coin1000 <= coin1000;
-saldo <= IEEE.STD_LOGIC_ARITH.CONV_INTEGER(UNSIGNED(ww_saldo));
+saldo <= ww_saldo;
 ww_devoe <= devoe;
 ww_devclrn <= devclrn;
 ww_devpor <= devpor;

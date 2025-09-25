@@ -14,7 +14,22 @@ end sumador_1000_500;
 
 architecture arch_sumador_1000_500 of sumador_1000_500 is
     signal saldo_reg : integer range 0 to 9999 := 0;
+    signal clk_div   : std_logic := '0';
+    
+    component div_50millones is
+        port(
+            clk  : in std_logic;
+            out1 : buffer std_logic
+        );
+    end component;
 begin
+
+	Udiv: div_50millones
+        port map(
+            clk  => clk,       -- el reloj rápido de la FPGA
+            out1 => clk_div    -- el reloj lento para el acumulador
+        );
+	
     process(clk, reset)
     begin
         if reset = '1' then
