@@ -1,0 +1,67 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity top_productos is
+    port(
+        clk      : in  std_logic;                    -- reloj principal FPGA
+        reset    : in  std_logic;                    -- reset general
+        sw_sel   : in  std_logic_vector(3 downto 0); -- switches para seleccionar producto (0-14)
+        buy      : in  std_logic;                    -- botón de compra
+        disp2    : out std_logic_vector(6 downto 0); -- display decenas producto
+        disp3    : out std_logic_vector(6 downto 0)  -- display unidades producto
+    );
+end top_productos;
+
+architecture arch_top_productos of top_productos is
+
+    -- Stock de productos: 15 productos, cada uno inicia con 3 unidades
+    type product_array is array (0 to 14) of integer range 0 to 3;
+    signal stock : product_array := (others => 3);
+
+    -- Variables internas para la selección
+    signal sel_prod_int : integer range 0 to 14;
+    signal dig0, dig1 : std_logic_vector(3 downto 0); -- dígitos BCD del producto
+    signal prev_buy : std_logic := '0';               -- para detectar flanco de subida del botón buy
+
+begin
+
+    -- Convertir la selección de switches a entero
+    sel_prod_int <= to_integer(unsigned(sw_sel));
+
+    -- Proceso principal: manejar stock y flanco de compra
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            stock <= (others => 3);   -- reiniciar stock
+            prev_buy <= '0';
+        elsif rising_edge(clk) then
+            -- Detectar flanco de subida del botón buy
+            if (buy = '1' and prev_buy = '0') then
+                if stock(sel_prod_int) > 0 then
+                    stock(sel_prod_int) <= stock(sel_prod_int) - 1;
+                end if;
+            end if;
+
+            -- Actualizar estado previo del botón
+            prev_buy <= buy;
+        end if;
+    end process;
+
+    -- Convertir número de producto a BCD (para displays)
+    U_bcd_prod: entity work.bin_bcd
+        port map(
+            bin => sel_prod_int,
+            d0  => dig0, -- unidades
+            d1  => dig1, -- decenas
+            d2  => open,
+            d3  => open
+        );
+
+    -- Decodificar BCD a 7 segmentos
+    U_disp2: entity work.systemd
+        port map(A => dig0, D0 => disp2); -- unidades
+    U_disp3: entity work.systemd
+        port map(A => dig1, D0 => disp3); -- decenas
+
+end arch_top_productos;
