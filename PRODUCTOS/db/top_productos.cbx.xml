@@ -1,9 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="top_productos">
-		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|bin_bcd:U_bcd_prod|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|bin_bcd:U_bcd_prod|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|bin_bcd:U_bcd_prod|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|bin_bcd:U_bcd_prod|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_6gm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_productos|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_98m.tdf"/>
 	</PROJECT>
 </LOG_ROOT>
