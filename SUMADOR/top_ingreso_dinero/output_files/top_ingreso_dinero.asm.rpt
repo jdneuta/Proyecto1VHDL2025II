@@ -1,5 +1,5 @@
 Assembler report for top_ingreso_dinero
-Thu Sep 25 16:12:20 2025
+Mon Sep 29 21:15:34 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof
+  5. Assembler Device Options: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Sep 25 16:12:20 2025 ;
+; Assembler Status      ; Successful - Mon Sep 29 21:15:34 2025 ;
 ; Revision Name         ; top_ingreso_dinero                    ;
 ; Top-level Entity Name ; top_ingreso_dinero                    ;
 ; Family                ; Cyclone III                           ;
@@ -77,24 +77,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                            ;
-+----------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                            ;
-+----------------------------------------------------------------------------------------------------------------------+
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof ;
-+----------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                                ;
++------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                ;
++------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof ;
++------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                                       ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------+
-; Device         ; EP3C16F484C6                                                                                                                  ;
-; JTAG usercode  ; 0x0015E3D8                                                                                                                    ;
-; Checksum       ; 0x0015E3D8                                                                                                                    ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/SUMADOR/top_ingreso_dinero/output_files/top_ingreso_dinero.sof ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                                           ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Device         ; EP3C16F484C6                                                                                                                                      ;
+; JTAG usercode  ; 0x0015E3D8                                                                                                                                        ;
+; Checksum       ; 0x0015E3D8                                                                                                                                        ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Sep 25 16:12:18 2025
+    Info: Processing started: Mon Sep 29 21:15:32 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off top_ingreso_dinero -c top_ingreso_dinero
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4615 megabytes
-    Info: Processing ended: Thu Sep 25 16:12:20 2025
+    Info: Peak virtual memory: 4614 megabytes
+    Info: Processing ended: Mon Sep 29 21:15:34 2025
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

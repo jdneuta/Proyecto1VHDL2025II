@@ -16,7 +16,7 @@
 -- PROGRAM "Quartus II 64-Bit"
 -- VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
--- DATE "09/26/2025 15:36:41"
+-- DATE "09/29/2025 21:18:16"
 
 -- 
 -- Device: Altera EP3C16F484C6 Package FBGA484
@@ -39,10 +39,10 @@ ENTITY 	top_productos IS
 	reset : IN std_logic;
 	confirmar : IN std_logic;
 	sel_prod : IN std_logic_vector(3 DOWNTO 0);
-	led_compra : OUT std_logic;
-	stock_leds : OUT std_logic_vector(2 DOWNTO 0);
-	disp2 : OUT std_logic_vector(6 DOWNTO 0);
-	disp3 : OUT std_logic_vector(6 DOWNTO 0)
+	led_compra : BUFFER std_logic;
+	stock_leds : BUFFER std_logic_vector(2 DOWNTO 0);
+	disp2 : BUFFER std_logic_vector(6 DOWNTO 0);
+	disp3 : BUFFER std_logic_vector(6 DOWNTO 0)
 	);
 END top_productos;
 

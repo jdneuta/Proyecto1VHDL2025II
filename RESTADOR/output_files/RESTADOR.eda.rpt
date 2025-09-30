@@ -1,5 +1,5 @@
 EDA Netlist Writer report for RESTADOR
-Fri Sep 26 23:45:51 2025
+Mon Sep 29 21:17:21 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Fri Sep 26 23:45:51 2025 ;
+; EDA Netlist Writer Status ; Successful - Mon Sep 29 21:17:21 2025 ;
 ; Revision Name             ; RESTADOR                              ;
 ; Top-level Entity Name     ; RESTADOR                              ;
 ; Family                    ; Cyclone III                           ;
@@ -66,20 +66,20 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                             ;
-+------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                        ;
-+------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_85c_slow.vho      ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_0c_slow.vho       ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_min_1200mv_0c_fast.vho     ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR.vho                        ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_85c_vhd_slow.sdo  ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_0c_vhd_slow.sdo   ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_min_1200mv_0c_vhd_fast.sdo ;
-; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/RESTADOR_vhd.sdo                    ;
-+------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                                 ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                                            ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_85c_slow.vho      ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_0c_slow.vho       ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_min_1200mv_0c_fast.vho     ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR.vho                        ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_85c_vhd_slow.sdo  ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_6_1200mv_0c_vhd_slow.sdo   ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_min_1200mv_0c_vhd_fast.sdo ;
+; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/RESTADOR_vhd.sdo                    ;
++--------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -88,19 +88,19 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Fri Sep 26 23:45:50 2025
+    Info: Processing started: Mon Sep 29 21:17:20 2025
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off RESTADOR -c RESTADOR
-Info (204019): Generated file RESTADOR_6_1200mv_85c_slow.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_6_1200mv_0c_slow.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_min_1200mv_0c_fast.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_6_1200mv_85c_vhd_slow.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_6_1200mv_0c_vhd_slow.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_min_1200mv_0c_vhd_fast.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file RESTADOR_vhd.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_6_1200mv_85c_slow.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_6_1200mv_0c_slow.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_min_1200mv_0c_fast.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR.vho in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_6_1200mv_85c_vhd_slow.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_6_1200mv_0c_vhd_slow.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_min_1200mv_0c_vhd_fast.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file RESTADOR_vhd.sdo in folder "C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/RESTADOR/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4575 megabytes
-    Info: Processing ended: Fri Sep 26 23:45:51 2025
+    Info: Peak virtual memory: 4559 megabytes
+    Info: Processing ended: Mon Sep 29 21:17:21 2025
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
