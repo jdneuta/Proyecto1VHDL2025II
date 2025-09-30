@@ -19,7 +19,7 @@ entity maquina_expendedora is
         led_compra : out std_logic;
         stock_leds : out std_logic_vector(2 downto 0);
         alerta_led : out std_logic;
-        door_led   : out std_logic      -- NUEVO: LED de la puerta
+        door_led   : buffer std_logic
     );
 end maquina_expendedora;
 
@@ -80,7 +80,6 @@ architecture arch of maquina_expendedora is
         );
     end component;
 
-    -- NUEVO: divisor a 1Hz
     component div_50millones
         port(
             clk  : in std_logic;
@@ -88,7 +87,6 @@ architecture arch of maquina_expendedora is
         );
     end component;
 
-    -- NUEVO: contador de 30s para puerta
     component cont30
         port(
             clk   : in std_logic;
@@ -99,15 +97,38 @@ architecture arch of maquina_expendedora is
     end component;
 
     --------------------------------------------------------------------
+    -- Tabla de precios
+    --------------------------------------------------------------------
+    type arr_precios is array (0 to 15) of integer range 0 to 9500;
+    constant precios : arr_precios := (
+        500,   -- producto 0
+        1000,  -- producto 1
+        1500,  -- producto 2
+        2000,  -- producto 3
+        2500,  -- producto 4
+        3000,  -- producto 5
+        4000,  -- producto 6
+        4500,  -- producto 7
+        5000,  -- producto 8
+        6000,  -- producto 9
+        6500,  -- producto 10
+        7000,  -- producto 11
+        7500,  -- producto 12
+        8000,  -- producto 13
+        9000,  -- producto 14
+        9500   -- producto 15
+    );
+
+    --------------------------------------------------------------------
     -- Señales internas
     --------------------------------------------------------------------
     signal saldo_bin     : integer range 0 to 9999 := 0;
     signal precio_int    : integer range 0 to 9999 := 0;
     signal cambio_int    : integer range -9999 to 9999 := 0;
 
-    -- control de qué mostrar
     signal mostrar_cambio    : std_logic := '0';
     signal valor_a_mostrar   : integer range 0 to 9999 := 0;
+    signal saldo_dos_dig     : integer range 0 to 99 := 0;
 
     -- BCD
     signal d0, d1, d2, d3 : std_logic_vector(3 downto 0);
@@ -118,7 +139,7 @@ architecture arch of maquina_expendedora is
     signal disp2_bcd_s  : std_logic_vector(6 downto 0);
     signal disp3_bcd_s  : std_logic_vector(6 downto 0);
 
-    -- NUEVO
+    -- reloj lento
     signal clk_1Hz : std_logic;
 
 begin
@@ -167,14 +188,22 @@ begin
             d3  => d3
         );
 
-    -- Decodificadores a señales internas
+    -- Decodificadores a 7seg
     U_d0: systemd port map(A => d0, D0 => disp0);
     U_d1: systemd port map(A => d1, D0 => disp1);
     U_d2: systemd port map(A => d2, D0 => disp2_bcd_s);
     U_d3: systemd port map(A => d3, D0 => disp3_bcd_s);
 
     --------------------------------------------------------------------
-    -- Lógica de control: decidir qué mostrar
+    -- Selección de precio según producto
+    --------------------------------------------------------------------
+    process(sel_prod)
+    begin
+        precio_int <= precios(to_integer(unsigned(sel_prod)));
+    end process;
+
+    --------------------------------------------------------------------
+    -- Lógica de control
     --------------------------------------------------------------------
     process(clk, reset)
     begin
@@ -183,6 +212,8 @@ begin
         elsif rising_edge(clk) then
             if confirmar = '1' then
                 mostrar_cambio <= '1';
+            elsif door_led = '0' then
+                mostrar_cambio <= '0';
             end if;
         end if;
     end process;
@@ -192,7 +223,8 @@ begin
         if mostrar_cambio = '1' then
             valor_a_mostrar <= abs(cambio_int);
         else
-            valor_a_mostrar <= saldo_bin;
+            saldo_dos_dig   <= saldo_bin / 100;
+            valor_a_mostrar <= saldo_dos_dig;
         end if;
     end process;
 
@@ -208,7 +240,7 @@ begin
                  disp3_top_s when others;
 
     --------------------------------------------------------------------
-    -- NUEVO: divisor + contador 30s
+    -- divisor + contador 30s
     --------------------------------------------------------------------
     U_div: div_50millones
         port map(

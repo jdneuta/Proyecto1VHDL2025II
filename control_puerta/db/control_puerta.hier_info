@@ -1,0 +1,31 @@
+|control_puerta
+clk => anomaly_reg.CLK
+clk => puerta_int.CLK
+clk => activo.CLK
+clk => contador[0].CLK
+clk => contador[1].CLK
+clk => contador[2].CLK
+clk => contador[3].CLK
+clk => contador[4].CLK
+reset => anomaly_reg.ACLR
+reset => puerta_int.ACLR
+reset => activo.ACLR
+reset => contador[0].ACLR
+reset => contador[1].ACLR
+reset => contador[2].ACLR
+reset => contador[3].ACLR
+reset => contador[4].ACLR
+confirmar => process_0.IN1
+anomaly_sw => puerta_int.OUTPUTSELECT
+anomaly_sw => anomaly_reg.OUTPUTSELECT
+anomaly_sw => activo.OUTPUTSELECT
+anomaly_sw => contador.OUTPUTSELECT
+anomaly_sw => contador.OUTPUTSELECT
+anomaly_sw => contador.OUTPUTSELECT
+anomaly_sw => contador.OUTPUTSELECT
+anomaly_sw => contador.OUTPUTSELECT
+door_led <= puerta_int.DB_MAX_OUTPUT_PORT_TYPE
+anomaly_led <= anomaly_reg.DB_MAX_OUTPUT_PORT_TYPE
+permitir_compra <= anomaly_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+
