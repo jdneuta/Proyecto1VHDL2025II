@@ -3,35 +3,35 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'mostrar_cambio'
-Slack : -17.160
-TNS   : -79.448
-
-Type  : Slow 1200mV 85C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : -3.913
-TNS   : -3.913
+Slack : -17.323
+TNS   : -77.822
 
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -3.863
-TNS   : -346.204
+Slack : -4.870
+TNS   : -444.086
+
+Type  : Slow 1200mV 85C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -3.672
+TNS   : -3.672
 
 Type  : Slow 1200mV 85C Model Setup 'div_50millones:U_div|out1'
-Slack : -1.454
-TNS   : -9.457
+Slack : -3.423
+TNS   : -23.505
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : -0.233
-TNS   : -0.465
+Slack : -0.108
+TNS   : -0.254
 
 Type  : Slow 1200mV 85C Model Hold 'div_50millones:U_div|out1'
-Slack : 0.358
+Slack : 0.359
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : 0.694
+Slack : 0.385
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'mostrar_cambio'
-Slack : 2.389
+Slack : 1.820
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
@@ -47,39 +47,39 @@ Slack : -1.000
 TNS   : -1.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'mostrar_cambio'
-Slack : 0.431
+Slack : 0.393
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'mostrar_cambio'
-Slack : -15.242
-TNS   : -70.496
-
-Type  : Slow 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : -3.471
-TNS   : -3.471
+Slack : -15.411
+TNS   : -69.047
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -3.440
-TNS   : -296.787
+Slack : -4.272
+TNS   : -384.447
+
+Type  : Slow 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -3.261
+TNS   : -3.261
 
 Type  : Slow 1200mV 0C Model Setup 'div_50millones:U_div|out1'
-Slack : -1.211
-TNS   : -7.823
+Slack : -3.020
+TNS   : -20.689
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : -0.250
-TNS   : -0.509
+Slack : -0.133
+TNS   : -0.284
 
 Type  : Slow 1200mV 0C Model Hold 'div_50millones:U_div|out1'
-Slack : 0.313
+Slack : 0.314
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : 0.625
+Slack : 0.341
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'mostrar_cambio'
-Slack : 2.216
+Slack : 1.680
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
@@ -95,44 +95,44 @@ Slack : -1.000
 TNS   : -1.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'mostrar_cambio'
-Slack : 0.451
+Slack : 0.455
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'mostrar_cambio'
-Slack : -9.168
-TNS   : -41.443
-
-Type  : Fast 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : -1.808
-TNS   : -1.808
+Slack : -9.207
+TNS   : -40.420
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -1.769
-TNS   : -129.916
+Slack : -2.273
+TNS   : -185.517
+
+Type  : Fast 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -1.699
+TNS   : -1.699
 
 Type  : Fast 1200mV 0C Model Setup 'div_50millones:U_div|out1'
-Slack : -0.349
-TNS   : -2.094
+Slack : -1.437
+TNS   : -9.837
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : -0.225
-TNS   : -0.531
+Slack : -0.145
+TNS   : -0.411
 
 Type  : Fast 1200mV 0C Model Hold 'div_50millones:U_div|out1'
 Slack : 0.187
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
-Slack : 0.369
+Slack : 0.208
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'mostrar_cambio'
-Slack : 1.312
+Slack : 1.005
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -166.908
+TNS   : -167.229
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'div_50millones:U_div|out1'
 Slack : -1.000
@@ -143,7 +143,7 @@ Slack : -1.000
 TNS   : -1.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'mostrar_cambio'
-Slack : 0.415
+Slack : 0.367
 TNS   : 0.000
 
 ------------------------------------------------------------
