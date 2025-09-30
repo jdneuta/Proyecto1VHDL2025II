@@ -11,11 +11,19 @@ entity top_productos is
         led_compra : out std_logic;                     -- LED confirma compra (1 ciclo)
         stock_leds : out std_logic_vector(2 downto 0);  -- LEDs muestran stock (3=111 ... 0=000)
         disp2      : out std_logic_vector(6 downto 0);  -- display unidades producto
-        disp3      : out std_logic_vector(6 downto 0)   -- display decenas producto
+        disp3      : out std_logic_vector(6 downto 0);  -- display decenas producto
+	alerta_led : out std_logic
     );
 end top_productos;
 
 architecture arch of top_productos is
+    -- COMPONENTE divisor de 2 segundos
+    component div_2seg 
+    port(
+        clk   : in  std_logic;
+        out1  : buffer std_logic
+    );
+    end component;
 
     -- COMPONENTE decodificador 7 segmentos
     component systemd
@@ -41,6 +49,10 @@ architecture arch of top_productos is
     -- señales para detectar flanco de confirmación
     signal prev_conf : std_logic := '0';
     signal confirm_pulse : std_logic := '0';
+    
+    -- señal 2 segundos
+    signal clk_2s : std_logic := '0';
+    signal alerta_sig : std_logic := '0'; --señal interna para la alerta
 
 begin
     --------------------------------------------------------------------
@@ -111,6 +123,30 @@ begin
             when others => stock_leds <= "000";
         end case;
     end process;
+    
+    --------------------------------------------------------------------
+    -- INSTANCIAR 2 SEGUNDOS
+    --------------------------------------------------------------------
+    Udiv: div_2seg
+        port map(
+            clk  => clk,
+            out1 => clk_2s
+        );
+    
+    process(clk_2s, reset)
+    begin
+        if reset = '1' then
+            alerta_sig <= '0';
+        elsif rising_edge(clk_2s) then
+            if stock(producto_sel) = 0 then
+                alerta_sig <= not alerta_sig; -- parpadea cada 2s
+            else
+                alerta_sig <= '0'; -- apagado si hay stock
+            end if;
+        end if;
+    end process;
+
+    alerta_led <= alerta_sig;
 
     --------------------------------------------------------------------
     -- Conversión del número de producto a BCD

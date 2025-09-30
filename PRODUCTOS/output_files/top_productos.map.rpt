@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_productos
-Mon Sep 29 21:17:50 2025
+Mon Sep 29 23:00:59 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -45,16 +45,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Sep 29 21:17:50 2025      ;
+; Analysis & Synthesis Status        ; Successful - Mon Sep 29 23:00:59 2025      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; top_productos                              ;
 ; Top-level Entity Name              ; top_productos                              ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 93                                         ;
-;     Total combinational functions  ; 64                                         ;
-;     Dedicated logic registers      ; 32                                         ;
-; Total registers                    ; 32                                         ;
-; Total pins                         ; 25                                         ;
+; Total logic elements               ; 144                                        ;
+;     Total combinational functions  ; 115                                        ;
+;     Dedicated logic registers      ; 61                                         ;
+; Total registers                    ; 61                                         ;
+; Total pins                         ; 26                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -158,12 +158,11 @@ applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ; < 0.1%      ;
-;     Processors 3-8         ;   0.0%      ;
+;     Processors 2-8         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -172,6 +171,7 @@ applicable agreement for further details.
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                   ; Library ;
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; ../div_2seg/div_2seg.vhd         ; yes             ; User VHDL File               ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/div_2seg/div_2seg.vhd                ;         ;
 ; ../systemd/systemd.vhd           ; yes             ; User VHDL File               ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/systemd/systemd.vhd                  ;         ;
 ; top_productos.vhd                ; yes             ; User VHDL File               ; C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/PRODUCTOS/top_productos.vhd          ;         ;
 ; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_divide.tdf                                                  ;         ;
@@ -192,28 +192,28 @@ applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 93        ;
+; Estimated Total logic elements              ; 144       ;
 ;                                             ;           ;
-; Total combinational functions               ; 64        ;
+; Total combinational functions               ; 115       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 46        ;
-;     -- 3 input functions                    ; 7         ;
-;     -- <=2 input functions                  ; 11        ;
+;     -- 4 input functions                    ; 55        ;
+;     -- 3 input functions                    ; 8         ;
+;     -- <=2 input functions                  ; 52        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 58        ;
-;     -- arithmetic mode                      ; 6         ;
+;     -- normal mode                          ; 83        ;
+;     -- arithmetic mode                      ; 32        ;
 ;                                             ;           ;
-; Total registers                             ; 32        ;
-;     -- Dedicated logic registers            ; 32        ;
+; Total registers                             ; 61        ;
+;     -- Dedicated logic registers            ; 61        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 25        ;
+; I/O pins                                    ; 26        ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 32        ;
-; Total fan-out                               ; 389       ;
-; Average fan-out                             ; 2.66      ;
+; Maximum fan-out                             ; 60        ;
+; Total fan-out                               ; 570       ;
+; Average fan-out                             ; 2.50      ;
 +---------------------------------------------+-----------+
 
 
@@ -222,7 +222,8 @@ applicable agreement for further details.
 +----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                            ; Library Name ;
 +----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------+--------------+
-; |top_productos                         ; 64 (46)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 25   ; 0            ; |top_productos                                                                                                 ; work         ;
+; |top_productos                         ; 115 (48)          ; 61 (33)      ; 0           ; 0            ; 0       ; 0         ; 26   ; 0            ; |top_productos                                                                                                 ; work         ;
+;    |div_2seg:Udiv|                     ; 49 (49)           ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_productos|div_2seg:Udiv                                                                                   ; work         ;
 ;    |lpm_divide:Div0|                   ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_productos|lpm_divide:Div0                                                                                 ; work         ;
 ;       |lpm_divide_6gm:auto_generated|  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_productos|lpm_divide:Div0|lpm_divide_6gm:auto_generated                                                   ; work         ;
 ;          |sign_div_unsign_7kh:divider| ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_productos|lpm_divide:Div0|lpm_divide_6gm:auto_generated|sign_div_unsign_7kh:divider                       ; work         ;
@@ -241,10 +242,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 32    ;
+; Total registers                              ; 61    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 32    ;
+; Number of registers using Asynchronous Clear ; 33    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 30    ;
 ; Number of registers using Preset             ; 0     ;
@@ -350,7 +351,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -360,9 +361,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Sep 29 21:17:46 2025
+    Info: Processing started: Mon Sep 29 23:00:57 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top_productos -c top_productos
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/proyecto1vhdl2025ii/div_2seg/div_2seg.vhd
+    Info (12022): Found design unit 1: div_2seg-arch_div_2seg
+    Info (12023): Found entity 1: div_2seg
 Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/proyecto1vhdl2025ii/bin_bcd/bin_bcd.vhd
     Info (12022): Found design unit 1: bin_bcd-arch_bin_bcd
     Info (12023): Found entity 1: bin_bcd
@@ -373,7 +377,8 @@ Info (12021): Found 2 design units, including 1 entities, in source file top_pro
     Info (12022): Found design unit 1: top_productos-arch
     Info (12023): Found entity 1: top_productos
 Info (12127): Elaborating entity "top_productos" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at top_productos.vhd(33): object "precio" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top_productos.vhd(41): object "precio" assigned a value but never read
+Info (12128): Elaborating entity "div_2seg" for hierarchy "div_2seg:Udiv"
 Info (12128): Elaborating entity "systemd" for hierarchy "systemd:U1"
 Info (278001): Inferred 2 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0"
@@ -411,14 +416,14 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 121 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 173 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
-    Info (21059): Implemented 18 output pins
-    Info (21061): Implemented 96 logic cells
+    Info (21059): Implemented 19 output pins
+    Info (21061): Implemented 147 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4683 megabytes
-    Info: Processing ended: Mon Sep 29 21:17:50 2025
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 4687 megabytes
+    Info: Processing ended: Mon Sep 29 23:00:59 2025
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
