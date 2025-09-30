@@ -9,15 +9,12 @@ entity div_500ms is
 end div_500ms;
 
 architecture arch_div_500ms of div_500ms is
-    -- Para 50 MHz: 50e6 ciclos en 1 s
-    -- Queremos periodo total 0,5 s → toggle cada 0,25 s
-    -- 0,25 s * 50e6 = 12_500_000 ciclos
-    signal count1 : integer range 0 to 12499999 := 0;
+    signal count1 : integer range 0 to 24999999 := 0;
 begin
     process (clk)
     begin
         if rising_edge(clk) then
-            if count1 = 12499999 then
+            if count1 = 24999999 then
                 out1   <= not out1;
                 count1 <= 0;
             else

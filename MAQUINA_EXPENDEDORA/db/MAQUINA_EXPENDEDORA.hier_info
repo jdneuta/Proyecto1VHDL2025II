@@ -1,12 +1,18 @@
 |MAQUINA_EXPENDEDORA
 clk => sumador_saldo:U_saldo.clk
+clk => reset_saldo.CLK
+clk => prev_door.CLK
 clk => mostrar_cambio.CLK
 clk => top_productos:U_prod.clk
 clk => restador:U_rest.clk
 clk => div_50millones:U_div.clk
-reset => sumador_saldo:U_saldo.reset
-reset => mostrar_cambio.ACLR
+clk => div_500ms:U_div500.clk
+clk => div_2seg:U_div2s.clk
+reset => comb.IN1
 reset => top_productos:U_prod.reset
+reset => reset_saldo.ACLR
+reset => prev_door.ACLR
+reset => mostrar_cambio.ACLR
 reset => restador:U_rest.reset
 reset => cont30:U_door.reset
 confirmar => confirmar_valido.IN1
@@ -59,6 +65,11 @@ sel_prod[3] => Mux10.IN16
 sel_prod[3] => top_productos:U_prod.sel_prod[3]
 coin500 => sumador_saldo:U_saldo.sw500
 coin1000 => sumador_saldo:U_saldo.sw1000
+anomalia_sw => anomalia_led.IN1
+anomalia_sw => door_led.OUTPUTSELECT
+anomalia_sw => comb.IN1
+anomalia_sw => reset_saldo.DATAB
+anomalia_sw => confirmar_valido.IN1
 disp0[0] <= systemd:U_d0.D0[0]
 disp0[1] <= systemd:U_d0.D0[1]
 disp0[2] <= systemd:U_d0.D0[2]
@@ -91,8 +102,10 @@ led_compra <= top_productos:U_prod.led_compra
 stock_leds[0] <= top_productos:U_prod.stock_leds[0]
 stock_leds[1] <= top_productos:U_prod.stock_leds[1]
 stock_leds[2] <= top_productos:U_prod.stock_leds[2]
-alerta_led <= top_productos:U_prod.alerta_led
-door_led << cont30:U_door.door
+alerta_led <= alerta_led.DB_MAX_OUTPUT_PORT_TYPE
+door_led <= door_led.DB_MAX_OUTPUT_PORT_TYPE
+entrega_led <= entrega_led.DB_MAX_OUTPUT_PORT_TYPE
+anomalia_led <= anomalia_led.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |MAQUINA_EXPENDEDORA|sumador_saldo:U_saldo
@@ -370,7 +383,6 @@ clk => count1[22].CLK
 clk => count1[23].CLK
 clk => count1[24].CLK
 clk => count1[25].CLK
-clk => count1[26].CLK
 out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -788,5 +800,65 @@ reset => count[4].ACLR
 reset => count[5].ACLR
 start => process_0.IN1
 door <= active.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MAQUINA_EXPENDEDORA|div_500ms:U_div500
+clk => count1[0].CLK
+clk => count1[1].CLK
+clk => count1[2].CLK
+clk => count1[3].CLK
+clk => count1[4].CLK
+clk => count1[5].CLK
+clk => count1[6].CLK
+clk => count1[7].CLK
+clk => count1[8].CLK
+clk => count1[9].CLK
+clk => count1[10].CLK
+clk => count1[11].CLK
+clk => count1[12].CLK
+clk => count1[13].CLK
+clk => count1[14].CLK
+clk => count1[15].CLK
+clk => count1[16].CLK
+clk => count1[17].CLK
+clk => count1[18].CLK
+clk => count1[19].CLK
+clk => count1[20].CLK
+clk => count1[21].CLK
+clk => count1[22].CLK
+clk => count1[23].CLK
+clk => out1~reg0.CLK
+out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MAQUINA_EXPENDEDORA|div_2seg:U_div2s
+clk => out1~reg0.CLK
+clk => count1[0].CLK
+clk => count1[1].CLK
+clk => count1[2].CLK
+clk => count1[3].CLK
+clk => count1[4].CLK
+clk => count1[5].CLK
+clk => count1[6].CLK
+clk => count1[7].CLK
+clk => count1[8].CLK
+clk => count1[9].CLK
+clk => count1[10].CLK
+clk => count1[11].CLK
+clk => count1[12].CLK
+clk => count1[13].CLK
+clk => count1[14].CLK
+clk => count1[15].CLK
+clk => count1[16].CLK
+clk => count1[17].CLK
+clk => count1[18].CLK
+clk => count1[19].CLK
+clk => count1[20].CLK
+clk => count1[21].CLK
+clk => count1[22].CLK
+clk => count1[23].CLK
+clk => count1[24].CLK
+clk => count1[25].CLK
+out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 

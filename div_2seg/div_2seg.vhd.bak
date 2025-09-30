@@ -9,14 +9,14 @@ entity div_2seg is
 end div_2seg;
 
 architecture arch_div_2seg of div_2seg is
-    signal count1 : integer range 0 to 49_999_999 := 0;
+    signal count1 : integer range 0 to 99_999_999 := 0;
 begin
     process(clk)
     begin
         if (clk'event and clk = '1') then
             count1 <= count1 + 1;
 
-            if (count1 = 24_999_999) then   -- medio periodo = 1 s
+            if (count1 = 49_999_999) then   -- medio periodo = 1 s
                 out1   <= not out1;
                 count1 <= 0;
             end if;

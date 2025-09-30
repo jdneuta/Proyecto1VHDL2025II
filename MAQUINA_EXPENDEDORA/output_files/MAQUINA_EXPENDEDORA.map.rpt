@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MAQUINA_EXPENDEDORA
-Tue Sep 30 14:59:37 2025
+Tue Sep 30 17:38:29 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -55,16 +55,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Sep 30 14:59:37 2025      ;
+; Analysis & Synthesis Status        ; Successful - Tue Sep 30 17:38:29 2025      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; MAQUINA_EXPENDEDORA                        ;
 ; Top-level Entity Name              ; maquina_expendedora                        ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 1,711                                      ;
-;     Total combinational functions  ; 1,681                                      ;
-;     Dedicated logic registers      ; 163                                        ;
-; Total registers                    ; 163                                        ;
-; Total pins                         ; 43                                         ;
+; Total logic elements               ; 1,713                                      ;
+;     Total combinational functions  ; 1,682                                      ;
+;     Dedicated logic registers      ; 164                                        ;
+; Total registers                    ; 164                                        ;
+; Total pins                         ; 46                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -182,6 +182,7 @@ applicable agreement for further details.
 +--------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path           ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                  ; Library ;
 +--------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------+---------+
+; ../div_500ms/div_500ms.vhd                 ; yes             ; User VHDL File               ; C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/div_500ms/div_500ms.vhd                        ;         ;
 ; ../cont30/cont30.vhd                       ; yes             ; User VHDL File               ; C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/cont30/cont30.vhd                              ;         ;
 ; ../div_2seg/div_2seg.vhd                   ; yes             ; User VHDL File               ; C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/div_2seg/div_2seg.vhd                          ;         ;
 ; ../RESTADOR/RESTADOR.vhd                   ; yes             ; User VHDL File               ; C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/RESTADOR/RESTADOR.vhd                          ;         ;
@@ -221,28 +222,28 @@ applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 1,711     ;
+; Estimated Total logic elements              ; 1,713     ;
 ;                                             ;           ;
-; Total combinational functions               ; 1681      ;
+; Total combinational functions               ; 1682      ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 511       ;
-;     -- 3 input functions                    ; 452       ;
-;     -- <=2 input functions                  ; 718       ;
+;     -- 4 input functions                    ; 527       ;
+;     -- 3 input functions                    ; 443       ;
+;     -- <=2 input functions                  ; 712       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 1154      ;
-;     -- arithmetic mode                      ; 527       ;
+;     -- normal mode                          ; 1158      ;
+;     -- arithmetic mode                      ; 524       ;
 ;                                             ;           ;
-; Total registers                             ; 163       ;
-;     -- Dedicated logic registers            ; 163       ;
+; Total registers                             ; 164       ;
+;     -- Dedicated logic registers            ; 164       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 43        ;
+; I/O pins                                    ; 46        ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 155       ;
-; Total fan-out                               ; 5392      ;
-; Average fan-out                             ; 2.79      ;
+; Maximum fan-out                             ; 156       ;
+; Total fan-out                               ; 5425      ;
+; Average fan-out                             ; 2.80      ;
 +---------------------------------------------+-----------+
 
 
@@ -251,7 +252,7 @@ applicable agreement for further details.
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                       ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |maquina_expendedora                      ; 1681 (67)         ; 163 (1)      ; 0           ; 0            ; 0       ; 0         ; 43   ; 0            ; |maquina_expendedora                                                                                                                      ; work         ;
+; |maquina_expendedora                      ; 1682 (75)         ; 164 (3)      ; 0           ; 0            ; 0       ; 0         ; 46   ; 0            ; |maquina_expendedora                                                                                                                      ; work         ;
 ;    |RESTADOR:U_rest|                      ; 13 (13)           ; 13 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|RESTADOR:U_rest                                                                                                      ; work         ;
 ;    |bin_bcd:U_bcd|                        ; 1153 (0)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd                                                                                                        ; work         ;
 ;       |lpm_divide:Div0|                   ; 123 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd|lpm_divide:Div0                                                                                        ; work         ;
@@ -278,8 +279,10 @@ applicable agreement for further details.
 ;          |lpm_divide_bbm:auto_generated|  ; 284 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd|lpm_divide:Mod2|lpm_divide_bbm:auto_generated                                                          ; work         ;
 ;             |sign_div_unsign_9nh:divider| ; 284 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                              ; work         ;
 ;                |alt_u_div_t8f:divider|    ; 284 (284)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider        ; work         ;
-;    |cont30:U_door|                        ; 11 (11)           ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|cont30:U_door                                                                                                        ; work         ;
-;    |div_50millones:U_div|                 ; 47 (47)           ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_50millones:U_div                                                                                                 ; work         ;
+;    |cont30:U_door|                        ; 10 (10)           ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|cont30:U_door                                                                                                        ; work         ;
+;    |div_2seg:U_div2s|                     ; 48 (48)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_2seg:U_div2s                                                                                                     ; work         ;
+;    |div_500ms:U_div500|                   ; 43 (43)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_500ms:U_div500                                                                                                   ; work         ;
+;    |div_50millones:U_div|                 ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_50millones:U_div                                                                                                 ; work         ;
 ;    |lpm_divide:Div0|                      ; 139 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|lpm_divide:Div0                                                                                                      ; work         ;
 ;       |lpm_divide_qhm:auto_generated|     ; 139 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|lpm_divide:Div0|lpm_divide_qhm:auto_generated                                                                        ; work         ;
 ;          |sign_div_unsign_rlh:divider|    ; 139 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|lpm_divide:Div0|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider                                            ; work         ;
@@ -289,8 +292,8 @@ applicable agreement for further details.
 ;    |systemd:U_d1|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_d1                                                                                                         ; work         ;
 ;    |systemd:U_d2|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_d2                                                                                                         ; work         ;
 ;    |systemd:U_d3|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_d3                                                                                                         ; work         ;
-;    |top_productos:U_prod|                 ; 117 (50)          ; 61 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod                                                                                                 ; work         ;
-;       |div_2seg:Udiv|                     ; 49 (49)           ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod|div_2seg:Udiv                                                                                   ; work         ;
+;    |top_productos:U_prod|                 ; 66 (47)           ; 34 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod                                                                                                 ; work         ;
+;       |div_2seg:Udiv|                     ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod|div_2seg:Udiv                                                                                   ; work         ;
 ;       |lpm_divide:Div0|                   ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod|lpm_divide:Div0                                                                                 ; work         ;
 ;          |lpm_divide_6gm:auto_generated|  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod|lpm_divide:Div0|lpm_divide_6gm:auto_generated                                                   ; work         ;
 ;             |sign_div_unsign_7kh:divider| ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|top_productos:U_prod|lpm_divide:Div0|lpm_divide_6gm:auto_generated|sign_div_unsign_7kh:divider                       ; work         ;
@@ -321,18 +324,70 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+--------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                               ;
-+---------------------------------------+----------------------------------------------------------+
-; Register name                         ; Reason for Removal                                       ;
-+---------------------------------------+----------------------------------------------------------+
-; sumador_saldo:U_saldo|saldo_reg[1]    ; Merged with sumador_saldo:U_saldo|saldo_reg[0]           ;
-; sumador_saldo:U_saldo|saldo_reg[0]    ; Stuck at GND due to stuck port data_in                   ;
-; RESTADOR:U_rest|cambio_reg[0,1]       ; Stuck at GND due to stuck port data_in                   ;
-; div_50millones:U_div|count1[0]        ; Merged with top_productos:U_prod|div_2seg:Udiv|count1[0] ;
-; div_50millones:U_div|count1[1]        ; Merged with top_productos:U_prod|div_2seg:Udiv|count1[1] ;
-; Total Number of Removed Registers = 6 ;                                                          ;
-+---------------------------------------+----------------------------------------------------------+
++------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                             ;
++-----------------------------------------------+------------------------------------------------+
+; Register name                                 ; Reason for Removal                             ;
++-----------------------------------------------+------------------------------------------------+
+; sumador_saldo:U_saldo|saldo_reg[1]            ; Merged with sumador_saldo:U_saldo|saldo_reg[0] ;
+; div_50millones:U_div|count1[25]               ; Merged with div_2seg:U_div2s|count1[25]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[25] ; Merged with div_2seg:U_div2s|count1[25]        ;
+; div_50millones:U_div|count1[23]               ; Merged with div_2seg:U_div2s|count1[23]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[23] ; Merged with div_2seg:U_div2s|count1[23]        ;
+; div_50millones:U_div|count1[17]               ; Merged with div_2seg:U_div2s|count1[17]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[17] ; Merged with div_2seg:U_div2s|count1[17]        ;
+; div_50millones:U_div|count1[15]               ; Merged with div_2seg:U_div2s|count1[15]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[15] ; Merged with div_2seg:U_div2s|count1[15]        ;
+; div_50millones:U_div|count1[10]               ; Merged with div_2seg:U_div2s|count1[10]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[10] ; Merged with div_2seg:U_div2s|count1[10]        ;
+; div_50millones:U_div|count1[9]                ; Merged with div_2seg:U_div2s|count1[9]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[9]  ; Merged with div_2seg:U_div2s|count1[9]         ;
+; div_50millones:U_div|count1[8]                ; Merged with div_2seg:U_div2s|count1[8]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[8]  ; Merged with div_2seg:U_div2s|count1[8]         ;
+; div_50millones:U_div|count1[7]                ; Merged with div_2seg:U_div2s|count1[7]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[7]  ; Merged with div_2seg:U_div2s|count1[7]         ;
+; div_50millones:U_div|count1[6]                ; Merged with div_2seg:U_div2s|count1[6]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[6]  ; Merged with div_2seg:U_div2s|count1[6]         ;
+; div_50millones:U_div|count1[24]               ; Merged with div_2seg:U_div2s|count1[24]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[24] ; Merged with div_2seg:U_div2s|count1[24]        ;
+; div_50millones:U_div|count1[22]               ; Merged with div_2seg:U_div2s|count1[22]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[22] ; Merged with div_2seg:U_div2s|count1[22]        ;
+; div_50millones:U_div|count1[21]               ; Merged with div_2seg:U_div2s|count1[21]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[21] ; Merged with div_2seg:U_div2s|count1[21]        ;
+; div_50millones:U_div|count1[20]               ; Merged with div_2seg:U_div2s|count1[20]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[20] ; Merged with div_2seg:U_div2s|count1[20]        ;
+; div_50millones:U_div|count1[19]               ; Merged with div_2seg:U_div2s|count1[19]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[19] ; Merged with div_2seg:U_div2s|count1[19]        ;
+; div_50millones:U_div|count1[18]               ; Merged with div_2seg:U_div2s|count1[18]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[18] ; Merged with div_2seg:U_div2s|count1[18]        ;
+; div_50millones:U_div|count1[16]               ; Merged with div_2seg:U_div2s|count1[16]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[16] ; Merged with div_2seg:U_div2s|count1[16]        ;
+; div_50millones:U_div|count1[14]               ; Merged with div_2seg:U_div2s|count1[14]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[14] ; Merged with div_2seg:U_div2s|count1[14]        ;
+; div_50millones:U_div|count1[13]               ; Merged with div_2seg:U_div2s|count1[13]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[13] ; Merged with div_2seg:U_div2s|count1[13]        ;
+; div_50millones:U_div|count1[12]               ; Merged with div_2seg:U_div2s|count1[12]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[12] ; Merged with div_2seg:U_div2s|count1[12]        ;
+; div_50millones:U_div|count1[11]               ; Merged with div_2seg:U_div2s|count1[11]        ;
+; top_productos:U_prod|div_2seg:Udiv|count1[11] ; Merged with div_2seg:U_div2s|count1[11]        ;
+; div_50millones:U_div|count1[5]                ; Merged with div_2seg:U_div2s|count1[5]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[5]  ; Merged with div_2seg:U_div2s|count1[5]         ;
+; div_50millones:U_div|count1[4]                ; Merged with div_2seg:U_div2s|count1[4]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[4]  ; Merged with div_2seg:U_div2s|count1[4]         ;
+; div_50millones:U_div|count1[3]                ; Merged with div_2seg:U_div2s|count1[3]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[3]  ; Merged with div_2seg:U_div2s|count1[3]         ;
+; div_50millones:U_div|count1[2]                ; Merged with div_2seg:U_div2s|count1[2]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[2]  ; Merged with div_2seg:U_div2s|count1[2]         ;
+; div_50millones:U_div|count1[1]                ; Merged with div_2seg:U_div2s|count1[1]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[1]  ; Merged with div_2seg:U_div2s|count1[1]         ;
+; div_50millones:U_div|count1[0]                ; Merged with div_2seg:U_div2s|count1[0]         ;
+; top_productos:U_prod|div_2seg:Udiv|count1[0]  ; Merged with div_2seg:U_div2s|count1[0]         ;
+; sumador_saldo:U_saldo|saldo_reg[0]            ; Stuck at GND due to stuck port data_in         ;
+; RESTADOR:U_rest|cambio_reg[0,1]               ; Stuck at GND due to stuck port data_in         ;
+; div_500ms:U_div500|count1[0]                  ; Merged with div_2seg:U_div2s|count1[0]         ;
+; div_500ms:U_div500|count1[1]                  ; Merged with div_2seg:U_div2s|count1[1]         ;
+; Total Number of Removed Registers = 58        ;                                                ;
++-----------------------------------------------+------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -340,12 +395,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 163   ;
+; Total registers                              ; 164   ;
 ; Number of registers using Synchronous Clear  ; 6     ;
 ; Number of registers using Synchronous Load   ; 40    ;
-; Number of registers using Asynchronous Clear ; 110   ;
+; Number of registers using Asynchronous Clear ; 112   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 100   ;
+; Number of registers using Clock Enable       ; 103   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -394,10 +449,10 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |maquina_expendedora|cont30:U_door|count[4]              ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt500[5]     ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt1000[0]    ;
-; 5:1                ; 11 bits   ; 33 LEs        ; 22 LEs               ; 11 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|saldo_reg[10] ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |maquina_expendedora|cont30:U_door|count[0]              ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt500[7]     ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt1000[13]   ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 22 LEs               ; 11 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|saldo_reg[12] ;
 ; 15:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |maquina_expendedora|top_productos:U_prod|Mux0           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
 
@@ -624,7 +679,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:11     ;
 +----------------+--------------+
 
 
@@ -634,9 +689,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Tue Sep 30 14:59:31 2025
+    Info: Processing started: Tue Sep 30 17:38:14 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MAQUINA_EXPENDEDORA -c MAQUINA_EXPENDEDORA
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/div_500ms/div_500ms.vhd
+    Info (12022): Found design unit 1: div_500ms-arch_div_500ms
+    Info (12023): Found entity 1: div_500ms
 Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/control_puerta/control_puerta.vhd
     Info (12022): Found design unit 1: control_puerta-Behavioral
     Info (12023): Found entity 1: control_puerta
@@ -671,15 +729,15 @@ Info (12021): Found 2 design units, including 1 entities, in source file maquina
     Info (12022): Found design unit 1: maquina_expendedora-arch
     Info (12023): Found entity 1: maquina_expendedora
 Info (12127): Elaborating entity "MAQUINA_EXPENDEDORA" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at MAQUINA_EXPENDEDORA.vhd(245): signal "saldo_dos_dig" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at MAQUINA_EXPENDEDORA.vhd(237): inferring latch(es) for signal or variable "saldo_dos_dig", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "saldo_dos_dig[0]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[1]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[2]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[3]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[4]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[5]" at MAQUINA_EXPENDEDORA.vhd(237)
-Info (10041): Inferred latch for "saldo_dos_dig[6]" at MAQUINA_EXPENDEDORA.vhd(237)
+Warning (10492): VHDL Process Statement warning at MAQUINA_EXPENDEDORA.vhd(234): signal "saldo_dos_dig" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at MAQUINA_EXPENDEDORA.vhd(228): inferring latch(es) for signal or variable "saldo_dos_dig", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "saldo_dos_dig[0]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[1]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[2]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[3]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[4]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[5]" at MAQUINA_EXPENDEDORA.vhd(228)
+Info (10041): Inferred latch for "saldo_dos_dig[6]" at MAQUINA_EXPENDEDORA.vhd(228)
 Info (12128): Elaborating entity "sumador_saldo" for hierarchy "sumador_saldo:U_saldo"
 Info (12128): Elaborating entity "top_productos" for hierarchy "top_productos:U_prod"
 Warning (10036): Verilog HDL or VHDL warning at top_productos.vhd(41): object "precio" assigned a value but never read
@@ -690,6 +748,7 @@ Info (12128): Elaborating entity "bin_bcd" for hierarchy "bin_bcd:U_bcd"
 Warning (10036): Verilog HDL or VHDL warning at bin_bcd.vhd(16): object "value" assigned a value but never read
 Info (12128): Elaborating entity "div_50millones" for hierarchy "div_50millones:U_div"
 Info (12128): Elaborating entity "cont30" for hierarchy "cont30:U_door"
+Info (12128): Elaborating entity "div_500ms" for hierarchy "div_500ms:U_div500"
 Info (278001): Inferred 9 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd|Mod0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd|Mod1"
@@ -795,14 +854,14 @@ Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal 
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1758 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 9 input pins
-    Info (21059): Implemented 34 output pins
-    Info (21061): Implemented 1715 logic cells
+Info (21057): Implemented 1763 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 10 input pins
+    Info (21059): Implemented 36 output pins
+    Info (21061): Implemented 1717 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4744 megabytes
-    Info: Processing ended: Tue Sep 30 14:59:37 2025
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 4739 megabytes
+    Info: Processing ended: Tue Sep 30 17:38:29 2025
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:14
 
 
