@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MAQUINA_EXPENDEDORA
-Sat Sep 27 00:18:13 2025
+Mon Sep 29 23:17:01 2025
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -10,8 +10,7 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Port Connectivity Checks: "RESTADOR:U_rest"
-  6. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -37,10 +36,10 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Sep 27 00:18:13 2025          ;
+; Analysis & Synthesis Status        ; Failed - Mon Sep 29 23:17:01 2025          ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; MAQUINA_EXPENDEDORA                        ;
-; Top-level Entity Name              ; maquina_expendedora                        ;
+; Top-level Entity Name              ; MAQUINA_EXPENDEDORA                        ;
 ; Family                             ; Cyclone III                                ;
 ; Total logic elements               ; N/A until Partition Merge                  ;
 ;     Total combinational functions  ; N/A until Partition Merge                  ;
@@ -146,25 +145,16 @@ applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-8         ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
-
-
-+---------------------------------------------------+
-; Port Connectivity Checks: "RESTADOR:U_rest"       ;
-+-----------------+-------+----------+--------------+
-; Port            ; Type  ; Severity ; Details      ;
-+-----------------+-------+----------+--------------+
-; precio_producto ; Input ; Info     ; Stuck at GND ;
-+-----------------+-------+----------+--------------+
 
 
 +-------------------------------+
@@ -173,28 +163,28 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Sep 27 00:18:12 2025
+    Info: Processing started: Mon Sep 29 23:17:00 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MAQUINA_EXPENDEDORA -c MAQUINA_EXPENDEDORA
-Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/restador/restador.vhd
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/restador/restador.vhd
     Info (12022): Found design unit 1: RESTADOR-Behavioral
     Info (12023): Found entity 1: RESTADOR
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/bin_bcd/bin_bcd.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/bin_bcd/bin_bcd.vhd
     Info (12022): Found design unit 1: bin_bcd-arch_bin_bcd
     Info (12023): Found entity 1: bin_bcd
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/div_50millones/div_50millones.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/div_50millones/div_50millones.vhd
     Info (12022): Found design unit 1: div_50millones-arch_div_50millones
     Info (12023): Found entity 1: div_50millones
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/systemd/systemd.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/systemd/systemd.vhd
     Info (12022): Found design unit 1: systemd-arch_systemd
     Info (12023): Found entity 1: systemd
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/sumador/sumador_saldo/sumador_saldo.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/sumador/sumador_saldo/sumador_saldo.vhd
     Info (12022): Found design unit 1: sumador_saldo-arch_sumador_saldo
     Info (12023): Found entity 1: sumador_saldo
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/productos/top_productos.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/productos/top_productos.vhd
     Info (12022): Found design unit 1: top_productos-arch
     Info (12023): Found entity 1: top_productos
-Info (12021): Found 2 design units, including 1 entities, in source file /users/alexa/onedrive/documentos/vhdl/trabajo_final/sumador/top_ingreso_dinero/top_ingreso_dinero.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /users/user/documents/unicauca/4_semestre/vhdl/proyecto1/proyecto1vhdl2025ii/sumador/top_ingreso_dinero/top_ingreso_dinero.vhd
     Info (12022): Found design unit 1: top_ingreso_dinero-arch_top_ingreso_dinero
     Info (12023): Found entity 1: top_ingreso_dinero
 Info (12021): Found 2 design units, including 1 entities, in source file maquina_expendedora.vhd
@@ -204,56 +194,15 @@ Info (12127): Elaborating entity "MAQUINA_EXPENDEDORA" for the top level hierarc
 Warning (10540): VHDL Signal Declaration warning at MAQUINA_EXPENDEDORA.vhd(84): used explicit default value for signal "precio_int" because signal was never assigned a value
 Info (12128): Elaborating entity "sumador_saldo" for hierarchy "sumador_saldo:U_saldo"
 Info (12128): Elaborating entity "top_productos" for hierarchy "top_productos:U_prod"
-Warning (10036): Verilog HDL or VHDL warning at top_productos.vhd(33): object "precio" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top_productos.vhd(41): object "precio" assigned a value but never read
 Info (12128): Elaborating entity "systemd" for hierarchy "top_productos:U_prod|systemd:U1"
 Info (12128): Elaborating entity "RESTADOR" for hierarchy "RESTADOR:U_rest"
 Info (12128): Elaborating entity "bin_bcd" for hierarchy "bin_bcd:U_bcd"
 Warning (10036): Verilog HDL or VHDL warning at bin_bcd.vhd(16): object "value" assigned a value but never read
-Error (12014): Net "disp2[6]", which fans out to "disp2[6]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[6]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[6]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[5]", which fans out to "disp2[5]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[5]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[5]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[4]", which fans out to "disp2[4]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[4]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[4]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[3]", which fans out to "disp2[3]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[3]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[3]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[2]", which fans out to "disp2[2]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[2]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[2]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[1]", which fans out to "disp2[1]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[1]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[1]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp2[0]", which fans out to "disp2[0]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 16
-    Error (12015): Net is fed by "top_productos:U_prod|disp2[0]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 13
-    Error (12015): Net is fed by "systemd:U_d2|D0[0]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[6]", which fans out to "disp3[6]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[6]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[6]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[5]", which fans out to "disp3[5]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[5]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[5]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[4]", which fans out to "disp3[4]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[4]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[4]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[3]", which fans out to "disp3[3]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[3]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[3]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[2]", which fans out to "disp3[2]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[2]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[2]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[1]", which fans out to "disp3[1]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[1]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[1]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error (12014): Net "disp3[0]", which fans out to "disp3[0]", cannot be assigned more than one value File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd Line: 17
-    Error (12015): Net is fed by "top_productos:U_prod|disp3[0]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/PRODUCTOS/top_productos.vhd Line: 14
-    Error (12015): Net is fed by "systemd:U_d3|D0[0]" File: C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/systemd/systemd.vhd Line: 10
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 42 errors, 3 warnings
-    Error: Peak virtual memory: 4656 megabytes
-    Error: Processing ended: Sat Sep 27 00:18:13 2025
+Error (12006): Node instance "Udiv" instantiates undefined entity "div_2seg" File: C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/PRODUCTOS/top_productos.vhd Line: 130
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 1 error, 3 warnings
+    Error: Peak virtual memory: 4657 megabytes
+    Error: Processing ended: Mon Sep 29 23:17:01 2025
     Error: Elapsed time: 00:00:01
     Error: Total CPU time (on all processors): 00:00:01
 
