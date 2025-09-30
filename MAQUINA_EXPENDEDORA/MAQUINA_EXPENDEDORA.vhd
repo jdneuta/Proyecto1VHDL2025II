@@ -6,180 +6,143 @@ entity maquina_expendedora is
     port(
         clk        : in  std_logic;
         reset      : in  std_logic;
+        monedas    : in  std_logic_vector(3 downto 0); -- switches monedas
+        producto   : in  std_logic_vector(3 downto 0); -- producto
         confirmar  : in  std_logic;
-        sel_prod   : in  std_logic_vector(3 downto 0);
-        coin500    : in  std_logic;
-        coin1000   : in  std_logic;
-        -- displays
-        disp0      : out std_logic_vector(6 downto 0);
-        disp1      : out std_logic_vector(6 downto 0);
-        disp2      : out std_logic_vector(6 downto 0);
-        disp3      : out std_logic_vector(6 downto 0);
-        -- leds
-        led_compra : out std_logic;
-        stock_leds : out std_logic_vector(2 downto 0);
-        alerta_led : out std_logic;
-        door_led   : buffer std_logic
+        anomaly_sw : in  std_logic;
+
+        -- Displays
+        display0   : out std_logic_vector(6 downto 0);
+        display1   : out std_logic_vector(6 downto 0);
+        display2   : out std_logic_vector(6 downto 0);
+        display3   : out std_logic_vector(6 downto 0);
+
+        -- LEDs
+        door_led   : out std_logic;
+        anomaly_led: out std_logic
     );
-end maquina_expendedora;
+end entity;
 
-architecture arch of maquina_expendedora is
-
-    --------------------------------------------------------------------
-    -- Componentes
-    --------------------------------------------------------------------
-    component sumador_saldo
-        port(
-            clk    : in  std_logic;
-            reset  : in  std_logic;
-            sw500  : in  std_logic;
-            sw1000 : in  std_logic;
-            saldo  : out integer range 0 to 9999
-        );
-    end component;
-
-    component top_productos
-        port(
-            clk        : in  std_logic;
-            reset      : in  std_logic;
-            confirmar  : in  std_logic;
-            sel_prod   : in  std_logic_vector(3 downto 0);
-            led_compra : out std_logic;
-            stock_leds : out std_logic_vector(2 downto 0);
-            disp2      : out std_logic_vector(6 downto 0);
-            disp3      : out std_logic_vector(6 downto 0);
-            alerta_led : out std_logic
-        );
-    end component;
-
-    component restador
-        port(
-            clk             : in  std_logic;
-            reset           : in  std_logic;
-            confirmar       : in  std_logic;
-            dinero_ingresado: in integer range 0 to 9999;
-            precio_producto : in integer range 0 to 9999;
-            cambio          : out integer range -9999 to 9999
-        );
-    end component;
-
-    component bin_bcd
-        port(
-            bin : in integer range 0 to 9999;
-            d0  : out std_logic_vector(3 downto 0);
-            d1  : out std_logic_vector(3 downto 0);
-            d2  : out std_logic_vector(3 downto 0);
-            d3  : out std_logic_vector(3 downto 0)
-        );
-    end component;
-
-    component systemd
-        port(
-            A  : in  std_logic_vector(3 downto 0);
-            D0 : out std_logic_vector(6 downto 0)
-        );
-    end component;
-
-    component div_50millones
-        port(
-            clk  : in std_logic;
-            out1 : buffer std_logic
-        );
-    end component;
-
-    component cont30
-        port(
-            clk   : in std_logic;
-            reset : in std_logic;
-            start : in std_logic;
-            door  : out std_logic
-        );
-    end component;
-
-    --------------------------------------------------------------------
-    -- Tabla de precios
-    --------------------------------------------------------------------
-    type arr_precios is array (0 to 15) of integer range 0 to 9500;
-    constant precios : arr_precios := (
-        500,   -- producto 0
-        1000,  -- producto 1
-        1500,  -- producto 2
-        2000,  -- producto 3
-        2500,  -- producto 4
-        3000,  -- producto 5
-        4000,  -- producto 6
-        4500,  -- producto 7
-        5000,  -- producto 8
-        6000,  -- producto 9
-        6500,  -- producto 10
-        7000,  -- producto 11
-        7500,  -- producto 12
-        8000,  -- producto 13
-        9000,  -- producto 14
-        9500   -- producto 15
-    );
+architecture rtl of maquina_expendedora is
 
     --------------------------------------------------------------------
     -- Señales internas
     --------------------------------------------------------------------
-    signal saldo_bin     : integer range 0 to 9999 := 0;
-    signal precio_int    : integer range 0 to 9999 := 0;
+    signal saldo_bin     : integer range 0 to 9999 := 0; -- saldo contado
+    signal saldo_real    : integer range 0 to 9999 := 0; -- saldo actualizado
     signal cambio_int    : integer range -9999 to 9999 := 0;
+    signal precio_int    : integer range 0 to 9999 := 0;
+    signal mostrar_cambio: std_logic := '0';
 
-    signal mostrar_cambio    : std_logic := '0';
-    signal valor_a_mostrar   : integer range 0 to 9999 := 0;
-    signal saldo_dos_dig     : integer range 0 to 99 := 0;
-
-    -- BCD
     signal d0, d1, d2, d3 : std_logic_vector(3 downto 0);
+    signal valor_a_mostrar: integer range 0 to 9999 := 0;
+    signal saldo_dos_dig  : integer range 0 to 99 := 0;
 
-    -- Señales internas para displays
-    signal disp2_top_s  : std_logic_vector(6 downto 0);
-    signal disp3_top_s  : std_logic_vector(6 downto 0);
-    signal disp2_bcd_s  : std_logic_vector(6 downto 0);
-    signal disp3_bcd_s  : std_logic_vector(6 downto 0);
-
-    -- reloj lento
-    signal clk_1Hz : std_logic;
+    -- Control de puerta y anomalía
+    signal door_led_int   : std_logic := '0';
+    signal anomaly_led_int: std_logic := '0';
 
 begin
+
     --------------------------------------------------------------------
-    -- Instancias
+    -- SUMADOR DE MONEDAS (saldo acumulado)
     --------------------------------------------------------------------
-    U_saldo: sumador_saldo
+    sumador_saldo_inst: entity work.sumador_saldo
         port map(
-            clk      => clk,
-            reset    => reset,
-            sw500    => coin500,
-            sw1000   => coin1000,
-            saldo    => saldo_bin
+            clk     => clk,
+            reset   => reset,
+            monedas => monedas,
+            saldo   => saldo_bin
         );
 
-    U_prod: top_productos
+    --------------------------------------------------------------------
+    -- PRECIOS FIJOS PARA LOS PRODUCTOS
+    --------------------------------------------------------------------
+    process(producto)
+    begin
+        case producto is
+            when "0001" => precio_int <= 1500;
+            when "0010" => precio_int <= 2000;
+            when "0011" => precio_int <= 2500;
+            when "0100" => precio_int <= 3000;
+            when "0101" => precio_int <= 3500;
+            when "0110" => precio_int <= 4000;
+            when "0111" => precio_int <= 4500;
+            when "1000" => precio_int <= 5000;
+            when "1001" => precio_int <= 6000;
+            when "1010" => precio_int <= 7000;
+            when "1011" => precio_int <= 8000;
+            when "1100" => precio_int <= 9000;
+            when others => precio_int <= 500;
+        end case;
+    end process;
+
+    --------------------------------------------------------------------
+    -- RESTADOR (cambio)
+    --------------------------------------------------------------------
+    cambio_int <= saldo_bin - precio_int;
+
+    --------------------------------------------------------------------
+    -- CONTROL DE PUERTA Y ANOMALÍA (30 s)
+    --------------------------------------------------------------------
+    door_control_inst: entity work.door_control
         port map(
             clk        => clk,
             reset      => reset,
             confirmar  => confirmar,
-            sel_prod   => sel_prod,
-            led_compra => led_compra,
-            stock_leds => stock_leds,
-            disp2      => disp2_top_s,
-            disp3      => disp3_top_s,
-            alerta_led => alerta_led
+            anomaly_sw => anomaly_sw,
+            door_led   => door_led_int,
+            anomaly_led=> anomaly_led_int
         );
 
-    U_rest: restador
-        port map(
-            clk             => clk,
-            reset           => reset,
-            confirmar       => confirmar,
-            dinero_ingresado=> saldo_bin,
-            precio_producto => precio_int,
-            cambio          => cambio_int
-        );
+    door_led    <= door_led_int;
+    anomaly_led <= anomaly_led_int;
 
-    -- Conversor binario → BCD
-    U_bcd: bin_bcd
+    --------------------------------------------------------------------
+    -- ACTUALIZACIÓN DE SALDO
+    --------------------------------------------------------------------
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            mostrar_cambio <= '0';
+            saldo_real     <= 0;
+        elsif rising_edge(clk) then
+            if confirmar = '1' and anomaly_led_int = '0' then
+                mostrar_cambio <= '1';
+            elsif door_led_int = '0' and mostrar_cambio = '1' then
+                -- Fin de la entrega → actualizar saldo
+                if saldo_bin >= precio_int then
+                    saldo_real <= saldo_bin - precio_int;
+                else
+                    saldo_real <= saldo_bin; -- saldo insuficiente
+                end if;
+                mostrar_cambio <= '0';
+            else
+                -- Si no hay compra en curso, saldo_real sigue a saldo_bin
+                if mostrar_cambio = '0' then
+                    saldo_real <= saldo_bin;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    --------------------------------------------------------------------
+    -- QUÉ MOSTRAR EN LOS DISPLAYS
+    --------------------------------------------------------------------
+    process(mostrar_cambio, saldo_real, cambio_int)
+    begin
+        if mostrar_cambio = '1' then
+            valor_a_mostrar <= abs(cambio_int); -- cambio
+        else
+            saldo_dos_dig   <= saldo_real / 100;
+            valor_a_mostrar <= saldo_dos_dig;   -- saldo (xx)
+        end if;
+    end process;
+
+    --------------------------------------------------------------------
+    -- BIN A BCD
+    --------------------------------------------------------------------
+    bin_bcd_inst: entity work.bin_bcd
         port map(
             bin => valor_a_mostrar,
             d0  => d0,
@@ -188,72 +151,12 @@ begin
             d3  => d3
         );
 
-    -- Decodificadores a 7seg
-    U_d0: systemd port map(A => d0, D0 => disp0);
-    U_d1: systemd port map(A => d1, D0 => disp1);
-    U_d2: systemd port map(A => d2, D0 => disp2_bcd_s);
-    U_d3: systemd port map(A => d3, D0 => disp3_bcd_s);
-
     --------------------------------------------------------------------
-    -- Selección de precio según producto
+    -- DECODIFICADORES A 7 SEGMENTOS
     --------------------------------------------------------------------
-    process(sel_prod)
-    begin
-        precio_int <= precios(to_integer(unsigned(sel_prod)));
-    end process;
+    deco0: entity work.deco7segmentos port map(bin => d0, seg => display0);
+    deco1: entity work.deco7segmentos port map(bin => d1, seg => display1);
+    deco2: entity work.deco7segmentos port map(bin => d2, seg => display2);
+    deco3: entity work.deco7segmentos port map(bin => d3, seg => display3);
 
-    --------------------------------------------------------------------
-    -- Lógica de control
-    --------------------------------------------------------------------
-    process(clk, reset)
-    begin
-        if reset = '1' then
-            mostrar_cambio <= '0';
-        elsif rising_edge(clk) then
-            if confirmar = '1' then
-                mostrar_cambio <= '1';
-            elsif door_led = '0' then
-                mostrar_cambio <= '0';
-            end if;
-        end if;
-    end process;
-
-    process(mostrar_cambio, saldo_bin, cambio_int)
-    begin
-        if mostrar_cambio = '1' then
-            valor_a_mostrar <= abs(cambio_int);
-        else
-            saldo_dos_dig   <= saldo_bin / 100;
-            valor_a_mostrar <= saldo_dos_dig;
-        end if;
-    end process;
-
-    --------------------------------------------------------------------
-    -- Multiplexor de salidas disp2/disp3
-    --------------------------------------------------------------------
-    with mostrar_cambio select
-        disp2 <= disp2_bcd_s when '1',
-                 disp2_top_s when others;
-
-    with mostrar_cambio select
-        disp3 <= disp3_bcd_s when '1',
-                 disp3_top_s when others;
-
-    --------------------------------------------------------------------
-    -- divisor + contador 30s
-    --------------------------------------------------------------------
-    U_div: div_50millones
-        port map(
-            clk  => clk,
-            out1 => clk_1Hz
-        );
-
-    U_door: cont30
-        port map(
-            clk   => clk_1Hz,
-            reset => reset,
-            start => confirmar,
-            door  => door_led
-        );
-
-end arch;
+end architecture;
