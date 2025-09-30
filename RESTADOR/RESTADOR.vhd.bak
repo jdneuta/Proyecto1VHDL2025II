@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity restador is
+    port(
+        clk             : in  std_logic;                     -- reloj
+        reset           : in  std_logic;                     -- reset general
+        confirmar       : in  std_logic;                     -- confirma compra
+        dinero_ingresado: in  integer range 0 to 9999;       -- viene de sumador_saldo
+        precio_producto : in  integer range 0 to 9999;       -- viene de top_productos
+        disp0           : out std_logic_vector(6 downto 0);  -- unidades
+        disp1           : out std_logic_vector(6 downto 0);  -- decenas
+        disp2           : out std_logic_vector(6 downto 0);  -- centenas
+        disp3           : out std_logic_vector(6 downto 0)   -- millares
+    );
+end entity;
+
+architecture rtl of restador is
+
+    signal cambio : integer range 0 to 9999 := 0;
+    signal bcd0, bcd1, bcd2, bcd3 : std_logic_vector(3 downto 0);
+
+    -- Conversión binario → BCD
+    component bin_bcd
+        port(
+            bin : in integer range 0 to 9999;
+            d0  : out std_logic_vector(3 downto 0);
+            d1  : out std_logic_vector(3 downto 0);
+            d2  : out std_logic_vector(3 downto 0);
+            d3  : out std_logic_vector(3 downto 0)
+        );
+    end component;
+
+    -- Decodificador BCD → 7 segmentos
+    component systemd
+        port(
+            A  : in  std_logic_vector(3 downto 0);
+            D0 : out std_logic_vector(6 downto 0)
+        );
+    end component;
+
+begin
+
+    -----------------------------------------------------------------
+    -- Proceso de resta al confirmar
+    -----------------------------------------------------------------
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            cambio <= 0;
+        elsif rising_edge(clk) then
+            if confirmar = '1' then
+                if dinero_ingresado >= precio_producto then
+                    cambio <= dinero_ingresado - precio_producto;
+                else
+                    cambio <= 0;  -- si no alcanza, cambio = 0
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -----------------------------------------------------------------
+    -- Conversión binario → BCD
+    -----------------------------------------------------------------
+    b2bcd: bin_bcd
+        port map(
+            bin => cambio,
+            d0  => bcd0,
+            d1  => bcd1,
+            d2  => bcd2,
+            d3  => bcd3
+        );
+
+    -----------------------------------------------------------------
+    -- BCD → 7 segmentos
+    -----------------------------------------------------------------
+    d0: systemd port map(A => bcd0, D0 => disp0);
+    d1: systemd port map(A => bcd1, D0 => disp1);
+    d2: systemd port map(A => bcd2, D0 => disp2);
+    d3: systemd port map(A => bcd3, D0 => disp3);
+
+end architecture;

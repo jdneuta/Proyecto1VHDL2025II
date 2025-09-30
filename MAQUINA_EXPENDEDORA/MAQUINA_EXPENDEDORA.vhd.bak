@@ -1,0 +1,99 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity maquina_expendedora is
+    port(
+        clk50mhz   : in  std_logic;                     -- reloj principal FPGA
+        reset      : in  std_logic;                     -- reset general
+
+        -- ENTRADAS PARA DINERO
+        sw500      : in  std_logic;                     -- switch moneda 500
+        sw1000     : in  std_logic;                     -- switch moneda 1000
+
+        -- ENTRADAS PARA PRODUCTOS
+        confirmar  : in  std_logic;                     -- botón confirmar compra
+        sel_prod   : in  std_logic_vector(3 downto 0);  -- selección producto
+
+        -- SALIDAS DISPLAYS
+        disp0, disp1, disp2, disp3 : out std_logic_vector(6 downto 0);
+
+        -- SALIDAS LEDS
+        led_compra : out std_logic;                     -- LED confirma compra
+        stock_leds : out std_logic_vector(2 downto 0)   -- LEDs muestran stock
+    );
+end maquina_expendedora;
+
+architecture arch_maquina of maquina_expendedora is
+
+    ------------------------------------------------------------------
+    -- COMPONENTES
+    ------------------------------------------------------------------
+    component top_ingreso_dinero
+        port(
+            clk50mhz : in  std_logic;
+            reset    : in  std_logic;
+            sw500    : in  std_logic;
+            sw1000   : in  std_logic;
+            disp0    : out std_logic_vector(6 downto 0);
+            disp1    : out std_logic_vector(6 downto 0);
+            disp2    : out std_logic_vector(6 downto 0);
+            disp3    : out std_logic_vector(6 downto 0)
+        );
+    end component;
+
+    component top_productos
+        port(
+            clk        : in  std_logic;
+            reset      : in  std_logic;
+            confirmar  : in  std_logic;
+            sel_prod   : in  std_logic_vector(3 downto 0);
+            led_compra : out std_logic;
+            stock_leds : out std_logic_vector(2 downto 0);
+            disp2      : out std_logic_vector(6 downto 0);
+            disp3      : out std_logic_vector(6 downto 0)
+        );
+    end component;
+
+    ------------------------------------------------------------------
+    -- SEÑALES INTERNAS
+    ------------------------------------------------------------------
+    signal disp2_tmp, disp3_tmp : std_logic_vector(6 downto 0);
+
+begin
+    ------------------------------------------------------------------
+    -- INSTANCIA: INGRESO DE DINERO
+    ------------------------------------------------------------------
+    U1: top_ingreso_dinero
+        port map(
+            clk50mhz => clk50mhz,
+            reset    => reset,
+            sw500    => sw500,
+            sw1000   => sw1000,
+            disp0    => disp0,   -- dinero unidades
+            disp1    => disp1,   -- dinero decenas
+            disp2    => open,    -- no usamos aquí
+            disp3    => open     -- no usamos aquí
+        );
+
+    ------------------------------------------------------------------
+    -- INSTANCIA: PRODUCTOS
+    ------------------------------------------------------------------
+    U2: top_productos
+        port map(
+            clk        => clk50mhz,
+            reset      => reset,
+            confirmar  => confirmar,
+            sel_prod   => sel_prod,
+            led_compra => led_compra,
+            stock_leds => stock_leds,
+            disp2      => disp2_tmp,
+            disp3      => disp3_tmp
+        );
+
+    ------------------------------------------------------------------
+    -- ASIGNACIÓN FINAL DE DISPLAYS
+    ------------------------------------------------------------------
+    disp2 <= disp2_tmp;  -- número de producto (unidades)
+    disp3 <= disp3_tmp;  -- número de producto (decenas)
+
+end arch_maquina;

@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk50mhz'
+Slack : -3.445
+TNS   : -141.350
+
+Type  : Slow 1200mV 85C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -2.996
+TNS   : -33.089
+
+Type  : Slow 1200mV 85C Model Hold 'clk50mhz'
+Slack : -0.120
+TNS   : -0.120
+
+Type  : Slow 1200mV 85C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : 0.359
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50mhz'
+Slack : -3.000
+TNS   : -62.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -1.000
+TNS   : -14.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk50mhz'
+Slack : -3.031
+TNS   : -121.365
+
+Type  : Slow 1200mV 0C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -2.551
+TNS   : -28.317
+
+Type  : Slow 1200mV 0C Model Hold 'clk50mhz'
+Slack : -0.149
+TNS   : -0.149
+
+Type  : Slow 1200mV 0C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : 0.313
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50mhz'
+Slack : -3.000
+TNS   : -62.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -1.000
+TNS   : -14.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk50mhz'
+Slack : -1.506
+TNS   : -55.255
+
+Type  : Fast 1200mV 0C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -1.241
+TNS   : -13.366
+
+Type  : Fast 1200mV 0C Model Hold 'clk50mhz'
+Slack : -0.196
+TNS   : -0.196
+
+Type  : Fast 1200mV 0C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50mhz'
+Slack : -3.000
+TNS   : -65.519
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Slack : -1.000
+TNS   : -14.000
+
+------------------------------------------------------------
