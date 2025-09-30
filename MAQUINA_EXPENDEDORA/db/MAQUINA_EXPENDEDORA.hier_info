@@ -3,12 +3,15 @@ clk => sumador_saldo:U_saldo.clk
 clk => mostrar_cambio.CLK
 clk => top_productos:U_prod.clk
 clk => restador:U_rest.clk
+clk => div_50millones:U_div.clk
 reset => sumador_saldo:U_saldo.reset
 reset => mostrar_cambio.ACLR
 reset => top_productos:U_prod.reset
 reset => restador:U_rest.reset
+reset => cont30:U_door.reset
 confirmar => top_productos:U_prod.confirmar
 confirmar => restador:U_rest.confirmar
+confirmar => cont30:U_door.start
 confirmar => mostrar_cambio.ENA
 sel_prod[0] => top_productos:U_prod.sel_prod[0]
 sel_prod[1] => top_productos:U_prod.sel_prod[1]
@@ -30,24 +33,26 @@ disp1[3] <= systemd:U_d1.D0[3]
 disp1[4] <= systemd:U_d1.D0[4]
 disp1[5] <= systemd:U_d1.D0[5]
 disp1[6] <= systemd:U_d1.D0[6]
-disp2[0] <= disp2[0].DB_MAX_OUTPUT_PORT_TYPE
-disp2[1] <= disp2[1].DB_MAX_OUTPUT_PORT_TYPE
-disp2[2] <= disp2[2].DB_MAX_OUTPUT_PORT_TYPE
-disp2[3] <= disp2[3].DB_MAX_OUTPUT_PORT_TYPE
-disp2[4] <= disp2[4].DB_MAX_OUTPUT_PORT_TYPE
-disp2[5] <= disp2[5].DB_MAX_OUTPUT_PORT_TYPE
-disp2[6] <= disp2[6].DB_MAX_OUTPUT_PORT_TYPE
-disp3[0] <= disp3[0].DB_MAX_OUTPUT_PORT_TYPE
-disp3[1] <= disp3[1].DB_MAX_OUTPUT_PORT_TYPE
-disp3[2] <= disp3[2].DB_MAX_OUTPUT_PORT_TYPE
-disp3[3] <= disp3[3].DB_MAX_OUTPUT_PORT_TYPE
-disp3[4] <= disp3[4].DB_MAX_OUTPUT_PORT_TYPE
-disp3[5] <= disp3[5].DB_MAX_OUTPUT_PORT_TYPE
-disp3[6] <= disp3[6].DB_MAX_OUTPUT_PORT_TYPE
+disp2[0] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[1] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[2] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[3] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[4] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[5] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp2[6] <= disp2.DB_MAX_OUTPUT_PORT_TYPE
+disp3[0] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[1] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[2] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[3] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[4] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[5] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
+disp3[6] <= disp3.DB_MAX_OUTPUT_PORT_TYPE
 led_compra <= top_productos:U_prod.led_compra
 stock_leds[0] <= top_productos:U_prod.stock_leds[0]
 stock_leds[1] <= top_productos:U_prod.stock_leds[1]
 stock_leds[2] <= top_productos:U_prod.stock_leds[2]
+alerta_led <= top_productos:U_prod.alerta_led
+door_led <= cont30:U_door.door
 
 
 |MAQUINA_EXPENDEDORA|sumador_saldo:U_saldo
@@ -104,6 +109,7 @@ saldo[13] <= saldo_reg[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |MAQUINA_EXPENDEDORA|top_productos:U_prod
+clk => div_2seg:Udiv.clk
 clk => confirm_pulse.CLK
 clk => prev_conf.CLK
 clk => stock[14][0].CLK
@@ -136,6 +142,7 @@ clk => stock[1][0].CLK
 clk => stock[1][1].CLK
 clk => stock[0][0].CLK
 clk => stock[0][1].CLK
+reset => alerta_sig.ACLR
 reset => confirm_pulse.ACLR
 reset => prev_conf.ACLR
 reset => stock[14][0].PRESET
@@ -208,6 +215,39 @@ disp3[3] <= systemd:U2.D0[3]
 disp3[4] <= systemd:U2.D0[4]
 disp3[5] <= systemd:U2.D0[5]
 disp3[6] <= systemd:U2.D0[6]
+alerta_led <= alerta_sig.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MAQUINA_EXPENDEDORA|top_productos:U_prod|div_2seg:Udiv
+clk => out1~reg0.CLK
+clk => count1[0].CLK
+clk => count1[1].CLK
+clk => count1[2].CLK
+clk => count1[3].CLK
+clk => count1[4].CLK
+clk => count1[5].CLK
+clk => count1[6].CLK
+clk => count1[7].CLK
+clk => count1[8].CLK
+clk => count1[9].CLK
+clk => count1[10].CLK
+clk => count1[11].CLK
+clk => count1[12].CLK
+clk => count1[13].CLK
+clk => count1[14].CLK
+clk => count1[15].CLK
+clk => count1[16].CLK
+clk => count1[17].CLK
+clk => count1[18].CLK
+clk => count1[19].CLK
+clk => count1[20].CLK
+clk => count1[21].CLK
+clk => count1[22].CLK
+clk => count1[23].CLK
+clk => count1[24].CLK
+clk => count1[25].CLK
+clk => count1[26].CLK
+out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |MAQUINA_EXPENDEDORA|top_productos:U_prod|systemd:U1
@@ -574,5 +614,55 @@ D0[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
 D0[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
 D0[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 D0[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MAQUINA_EXPENDEDORA|div_50millones:U_div
+clk => out1~reg0.CLK
+clk => count1[0].CLK
+clk => count1[1].CLK
+clk => count1[2].CLK
+clk => count1[3].CLK
+clk => count1[4].CLK
+clk => count1[5].CLK
+clk => count1[6].CLK
+clk => count1[7].CLK
+clk => count1[8].CLK
+clk => count1[9].CLK
+clk => count1[10].CLK
+clk => count1[11].CLK
+clk => count1[12].CLK
+clk => count1[13].CLK
+clk => count1[14].CLK
+clk => count1[15].CLK
+clk => count1[16].CLK
+clk => count1[17].CLK
+clk => count1[18].CLK
+clk => count1[19].CLK
+clk => count1[20].CLK
+clk => count1[21].CLK
+clk => count1[22].CLK
+clk => count1[23].CLK
+clk => count1[24].CLK
+clk => count1[25].CLK
+out1 <= out1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MAQUINA_EXPENDEDORA|cont30:U_door
+clk => active.CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+reset => active.ACLR
+reset => count[0].ACLR
+reset => count[1].ACLR
+reset => count[2].ACLR
+reset => count[3].ACLR
+reset => count[4].ACLR
+reset => count[5].ACLR
+start => process_0.IN1
+door <= active.DB_MAX_OUTPUT_PORT_TYPE
 
 

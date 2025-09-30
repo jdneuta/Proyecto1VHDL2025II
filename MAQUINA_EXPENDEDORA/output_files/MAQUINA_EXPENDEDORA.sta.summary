@@ -2,76 +2,112 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'clk50mhz'
-Slack : -3.445
-TNS   : -141.350
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -3.387
+TNS   : -222.644
 
-Type  : Slow 1200mV 85C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
-Slack : -2.996
-TNS   : -33.089
+Type  : Slow 1200mV 85C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -3.053
+TNS   : -3.053
 
-Type  : Slow 1200mV 85C Model Hold 'clk50mhz'
-Slack : -0.120
-TNS   : -0.120
+Type  : Slow 1200mV 85C Model Setup 'div_50millones:U_div|out1'
+Slack : -1.428
+TNS   : -9.586
 
-Type  : Slow 1200mV 85C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
-Slack : 0.359
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : -0.209
+TNS   : -0.307
+
+Type  : Slow 1200mV 85C Model Hold 'div_50millones:U_div|out1'
+Slack : 0.358
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50mhz'
+Type  : Slow 1200mV 85C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : 0.786
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -62.000
+TNS   : -115.000
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'div_50millones:U_div|out1'
 Slack : -1.000
-TNS   : -14.000
+TNS   : -7.000
 
-Type  : Slow 1200mV 0C Model Setup 'clk50mhz'
-Slack : -3.031
-TNS   : -121.365
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -1.000
+TNS   : -1.000
 
-Type  : Slow 1200mV 0C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
-Slack : -2.551
-TNS   : -28.317
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -2.947
+TNS   : -189.656
 
-Type  : Slow 1200mV 0C Model Hold 'clk50mhz'
-Slack : -0.149
-TNS   : -0.149
+Type  : Slow 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -2.704
+TNS   : -2.704
 
-Type  : Slow 1200mV 0C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Type  : Slow 1200mV 0C Model Setup 'div_50millones:U_div|out1'
+Slack : -1.198
+TNS   : -8.027
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : -0.230
+TNS   : -0.368
+
+Type  : Slow 1200mV 0C Model Hold 'div_50millones:U_div|out1'
 Slack : 0.313
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50mhz'
+Type  : Slow 1200mV 0C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : 0.705
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -62.000
+TNS   : -115.000
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'div_50millones:U_div|out1'
 Slack : -1.000
-TNS   : -14.000
+TNS   : -7.000
 
-Type  : Fast 1200mV 0C Model Setup 'clk50mhz'
-Slack : -1.506
-TNS   : -55.255
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -1.000
+TNS   : -1.000
 
-Type  : Fast 1200mV 0C Model Setup 'top_ingreso_dinero:U1|div_50millones:U1|out1'
-Slack : -1.241
-TNS   : -13.366
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -1.503
+TNS   : -80.503
 
-Type  : Fast 1200mV 0C Model Hold 'clk50mhz'
-Slack : -0.196
-TNS   : -0.196
+Type  : Fast 1200mV 0C Model Setup 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -1.328
+TNS   : -1.328
 
-Type  : Fast 1200mV 0C Model Hold 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Type  : Fast 1200mV 0C Model Setup 'div_50millones:U_div|out1'
+Slack : -0.333
+TNS   : -2.099
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : -0.241
+TNS   : -0.415
+
+Type  : Fast 1200mV 0C Model Hold 'div_50millones:U_div|out1'
 Slack : 0.187
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50mhz'
-Slack : -3.000
-TNS   : -65.519
+Type  : Fast 1200mV 0C Model Hold 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : 0.419
+TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'top_ingreso_dinero:U1|div_50millones:U1|out1'
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -121.517
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'div_50millones:U_div|out1'
 Slack : -1.000
-TNS   : -14.000
+TNS   : -7.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'top_productos:U_prod|div_2seg:Udiv|out1'
+Slack : -1.000
+TNS   : -1.000
 
 ------------------------------------------------------------

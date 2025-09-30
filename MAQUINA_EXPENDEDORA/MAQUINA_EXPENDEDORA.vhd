@@ -17,7 +17,9 @@ entity maquina_expendedora is
         disp3      : out std_logic_vector(6 downto 0);
         -- leds
         led_compra : out std_logic;
-        stock_leds : out std_logic_vector(2 downto 0)
+        stock_leds : out std_logic_vector(2 downto 0);
+        alerta_led : out std_logic;
+        door_led   : out std_logic      -- NUEVO: LED de la puerta
     );
 end maquina_expendedora;
 
@@ -28,11 +30,11 @@ architecture arch of maquina_expendedora is
     --------------------------------------------------------------------
     component sumador_saldo
         port(
-            clk      : in  std_logic;
-            reset    : in  std_logic;
+            clk    : in  std_logic;
+            reset  : in  std_logic;
             sw500  : in  std_logic;
             sw1000 : in  std_logic;
-            saldo    : out integer range 0 to 9999
+            saldo  : out integer range 0 to 9999
         );
     end component;
 
@@ -45,7 +47,8 @@ architecture arch of maquina_expendedora is
             led_compra : out std_logic;
             stock_leds : out std_logic_vector(2 downto 0);
             disp2      : out std_logic_vector(6 downto 0);
-            disp3      : out std_logic_vector(6 downto 0)
+            disp3      : out std_logic_vector(6 downto 0);
+            alerta_led : out std_logic
         );
     end component;
 
@@ -77,6 +80,24 @@ architecture arch of maquina_expendedora is
         );
     end component;
 
+    -- NUEVO: divisor a 1Hz
+    component div_50millones
+        port(
+            clk  : in std_logic;
+            out1 : buffer std_logic
+        );
+    end component;
+
+    -- NUEVO: contador de 30s para puerta
+    component cont30
+        port(
+            clk   : in std_logic;
+            reset : in std_logic;
+            start : in std_logic;
+            door  : out std_logic
+        );
+    end component;
+
     --------------------------------------------------------------------
     -- Señales internas
     --------------------------------------------------------------------
@@ -91,6 +112,15 @@ architecture arch of maquina_expendedora is
     -- BCD
     signal d0, d1, d2, d3 : std_logic_vector(3 downto 0);
 
+    -- Señales internas para displays
+    signal disp2_top_s  : std_logic_vector(6 downto 0);
+    signal disp3_top_s  : std_logic_vector(6 downto 0);
+    signal disp2_bcd_s  : std_logic_vector(6 downto 0);
+    signal disp3_bcd_s  : std_logic_vector(6 downto 0);
+
+    -- NUEVO
+    signal clk_1Hz : std_logic;
+
 begin
     --------------------------------------------------------------------
     -- Instancias
@@ -100,7 +130,7 @@ begin
             clk      => clk,
             reset    => reset,
             sw500    => coin500,
-            sw1000  =>  coin1000,
+            sw1000   => coin1000,
             saldo    => saldo_bin
         );
 
@@ -112,8 +142,9 @@ begin
             sel_prod   => sel_prod,
             led_compra => led_compra,
             stock_leds => stock_leds,
-            disp2      => disp2,
-            disp3      => disp3
+            disp2      => disp2_top_s,
+            disp3      => disp3_top_s,
+            alerta_led => alerta_led
         );
 
     U_rest: restador
@@ -136,11 +167,11 @@ begin
             d3  => d3
         );
 
-    -- Displays
+    -- Decodificadores a señales internas
     U_d0: systemd port map(A => d0, D0 => disp0);
     U_d1: systemd port map(A => d1, D0 => disp1);
-    U_d2: systemd port map(A => d2, D0 => disp2);
-    U_d3: systemd port map(A => d3, D0 => disp3);
+    U_d2: systemd port map(A => d2, D0 => disp2_bcd_s);
+    U_d3: systemd port map(A => d3, D0 => disp3_bcd_s);
 
     --------------------------------------------------------------------
     -- Lógica de control: decidir qué mostrar
@@ -151,7 +182,7 @@ begin
             mostrar_cambio <= '0';
         elsif rising_edge(clk) then
             if confirmar = '1' then
-                mostrar_cambio <= '1'; -- después de compra, mostrar cambio
+                mostrar_cambio <= '1';
             end if;
         end if;
     end process;
@@ -159,10 +190,38 @@ begin
     process(mostrar_cambio, saldo_bin, cambio_int)
     begin
         if mostrar_cambio = '1' then
-            valor_a_mostrar <= abs(cambio_int); -- mostrar cambio
+            valor_a_mostrar <= abs(cambio_int);
         else
-            valor_a_mostrar <= saldo_bin;       -- mostrar saldo
+            valor_a_mostrar <= saldo_bin;
         end if;
     end process;
+
+    --------------------------------------------------------------------
+    -- Multiplexor de salidas disp2/disp3
+    --------------------------------------------------------------------
+    with mostrar_cambio select
+        disp2 <= disp2_bcd_s when '1',
+                 disp2_top_s when others;
+
+    with mostrar_cambio select
+        disp3 <= disp3_bcd_s when '1',
+                 disp3_top_s when others;
+
+    --------------------------------------------------------------------
+    -- NUEVO: divisor + contador 30s
+    --------------------------------------------------------------------
+    U_div: div_50millones
+        port map(
+            clk  => clk,
+            out1 => clk_1Hz
+        );
+
+    U_door: cont30
+        port map(
+            clk   => clk_1Hz,
+            reset => reset,
+            start => confirmar,
+            door  => door_led
+        );
 
 end arch;
