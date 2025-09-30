@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C16F484) Path("C:/Users/User/Documents/Unicauca/4_Semestre/VHDL/Proyecto1/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/output_files/") File("MAQUINA_EXPENDEDORA.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C16F484) Path("C:/Users/alexa/OneDrive/Documentos/VHDL/TRABAJO_FINAL/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/output_files/") File("MAQUINA_EXPENDEDORA.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
