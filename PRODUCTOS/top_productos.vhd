@@ -12,7 +12,10 @@ entity top_productos is
         stock_leds : out std_logic_vector(2 downto 0);  -- LEDs muestran stock (3=111 ... 0=000)
         disp2      : out std_logic_vector(6 downto 0);  -- display unidades producto
         disp3      : out std_logic_vector(6 downto 0);  -- display decenas producto
-	alerta_led : out std_logic
+        alerta_led : buffer std_logic;
+        -- NUEVAS SALIDAS
+        precio_out : out integer range 0 to 9500;       -- precio del producto seleccionado
+        stock_out  : out integer range 0 to 3           -- stock actual del producto seleccionado
     );
 end top_productos;
 
@@ -33,7 +36,7 @@ architecture arch of top_productos is
         );
     end component;
 
-    -- stock de 15 productos
+    -- stock de 15 productos (0..14), 3 unidades cada uno inicialmente
     type stock_array is array (0 to 14) of integer range 0 to 3;
     signal stock : stock_array := (others => 3);
 
@@ -96,10 +99,15 @@ begin
             confirm_pulse <= '0';
         elsif rising_edge(clk) then
             if (confirmar = '1' and prev_conf = '0') then
-                if stock(producto_sel) > 0 then
-                    stock(producto_sel) <= stock(producto_sel) - 1;
-                    confirm_pulse <= '1';
+                if producto_sel >= 0 and producto_sel <= 14 then
+                    if stock(producto_sel) > 0 then
+                        stock(producto_sel) <= stock(producto_sel) - 1;
+                        confirm_pulse <= '1';
+                    else
+                        confirm_pulse <= '0';
+                    end if;
                 else
+                    -- selección inválida (ej. 15) -> no confirmar
                     confirm_pulse <= '0';
                 end if;
             else
@@ -116,12 +124,16 @@ begin
     --------------------------------------------------------------------
     process(stock, producto_sel)
     begin
-        case stock(producto_sel) is
-            when 3 => stock_leds <= "111";
-            when 2 => stock_leds <= "110";
-            when 1 => stock_leds <= "100";
-            when others => stock_leds <= "000";
-        end case;
+        if producto_sel >= 0 and producto_sel <= 14 then
+            case stock(producto_sel) is
+                when 3 => stock_leds <= "111";
+                when 2 => stock_leds <= "110";
+                when 1 => stock_leds <= "100";
+                when others => stock_leds <= "000";
+            end case;
+        else
+            stock_leds <= "000";
+        end if;
     end process;
     
     --------------------------------------------------------------------
@@ -138,10 +150,14 @@ begin
         if reset = '1' then
             alerta_sig <= '0';
         elsif rising_edge(clk_2s) then
-            if stock(producto_sel) = 0 then
-                alerta_sig <= not alerta_sig; -- parpadea cada 2s
+            if producto_sel >= 0 and producto_sel <= 14 then
+                if stock(producto_sel) = 0 then
+                    alerta_sig <= not alerta_sig; -- parpadea cada 2s
+                else
+                    alerta_sig <= '0'; -- apagado si hay stock
+                end if;
             else
-                alerta_sig <= '0'; -- apagado si hay stock
+                alerta_sig <= '0';
             end if;
         end if;
     end process;
@@ -159,5 +175,12 @@ begin
     --------------------------------------------------------------------
     U1: systemd port map(A => dig_unid, D0 => disp2); -- unidades
     U2: systemd port map(A => dig_dec,  D0 => disp3); -- decenas
+
+    --------------------------------------------------------------------
+    -- SALIDAS NUEVAS: precio_out y stock_out
+    --------------------------------------------------------------------
+    precio_out <= precio;
+    -- Si la selección está dentro del rango 0..14, devolvemos el stock; si no, 0
+    stock_out  <= stock(producto_sel) when (producto_sel >= 0 and producto_sel <= 14) else 0;
 
 end arch;
