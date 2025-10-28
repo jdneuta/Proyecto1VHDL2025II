@@ -98,11 +98,6 @@ set_location_assignment PIN_D19 -to disp3[5]
 set_location_assignment PIN_G15 -to disp3[6]
 set_location_assignment PIN_E1 -to door_led
 set_location_assignment PIN_F2 -to alerta_led
-set_location_assignment PIN_J7 -to anomalia
-set_location_assignment PIN_H1 -to led_anom
-set_location_assignment PIN_C1 -to led_entrega
-set_location_assignment PIN_G4 -to sw500
-set_location_assignment PIN_H6 -to sw1000
 set_global_assignment -name VHDL_FILE ../rom_productos/rom_productos.vhd
 set_global_assignment -name VHDL_FILE ../ram_stock/ram_stock.vhd
 set_global_assignment -name VHDL_FILE ../fsm_maquina_expendedora/fsm_maquina_expendedora.vhd
@@ -118,4 +113,9 @@ set_global_assignment -name VHDL_FILE ../SUMADOR/sumador_saldo/sumador_saldo.vhd
 set_global_assignment -name VHDL_FILE ../PRODUCTOS/top_productos.vhd
 set_global_assignment -name VHDL_FILE ../SUMADOR/top_ingreso_dinero/top_ingreso_dinero.vhd
 set_global_assignment -name VHDL_FILE MAQUINA_EXPENDEDORA.vhd
+set_location_assignment PIN_C1 -to entrega_led
+set_location_assignment PIN_G4 -to coin500
+set_location_assignment PIN_H6 -to coin1000
+set_location_assignment PIN_J7 -to anomalia_sw
+set_location_assignment PIN_H1 -to anomalia_led
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

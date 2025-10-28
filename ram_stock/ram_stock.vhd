@@ -4,32 +4,39 @@ use ieee.numeric_std.all;
 
 entity ram_stock is
     port(
-        clk      : in  std_logic;
-        we       : in  std_logic;
-        address  : in  std_logic_vector(3 downto 0);  -- 16 productos
-        data_in  : in  std_logic_vector(2 downto 0);  -- solo 3 bits (0–7 unidades)
-        data_out : out std_logic_vector(2 downto 0)
+        clk   : in  std_logic;
+        we    : in  std_logic;  -- Write enable
+        reset : in  std_logic;  -- Reset global para stock inicial
+        addr  : in  std_logic_vector(3 downto 0);  -- Dirección (0-15 para 16 productos)
+        din   : in  std_logic_vector(1 downto 0);  -- Dato a escribir (0-3)
+        dout  : out std_logic_vector(1 downto 0)  -- Dato leído
     );
 end ram_stock;
 
-architecture Behavioral of ram_stock is
-    type ram_type is array (0 to 15) of std_logic_vector(2 downto 0);
+architecture behavioral of ram_stock is
+    type ram_type is array (0 to 15) of std_logic_vector(1 downto 0);
     signal ram : ram_type := (
-        0  => "011",  -- producto 0 (stock 3)
-        6  => "011",  -- producto 6 (stock 3)
-        others => "000"  -- los demás sin stock
-    );
+        "11", "00", "00", "11",  -- 0000: 3, 0001: 0, 0010: 0, 0011: 3
+        "00", "00", "00", "00",  -- 0100-0111: 0
+        "00", "00", "00", "00",  -- 1000-1011: 0
+        "00", "00", "00", "00"   -- 1100-1111: 0
+    );  -- Inicializar stock: solo 0000 y 0011 con 3, demás con 0
 begin
-    process(clk)
+    process(clk, reset)
     begin
-        if rising_edge(clk) then
+        if reset = '1' then
+            ram <= (
+                "11", "00", "00", "11",  -- Reset a inicial
+                "00", "00", "00", "00",
+                "00", "00", "00", "00",
+                "00", "00", "00", "00"
+            );
+        elsif rising_edge(clk) then
             if we = '1' then
-                ram(to_integer(unsigned(address))) <= data_in;
+                ram(to_integer(unsigned(addr))) <= din;
             end if;
         end if;
     end process;
-
-    -- cambio de nombres para no remapear los displays
-    data_out <= ram(to_integer(unsigned(address)));
-
-end Behavioral;
+    
+    dout <= ram(to_integer(unsigned(addr)));
+end behavioral;

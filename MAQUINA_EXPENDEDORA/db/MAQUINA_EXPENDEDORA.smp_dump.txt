@@ -1,10 +1,8 @@
 
-State Machine - |MAQUINA_EXPENDEDORA|fsm_maquina_expendedora:U4_fsm|current_state
-Name current_state.HAY_ANOMALIA current_state.CAMBIO current_state.ENTREGA current_state.SIN_STOCK current_state.VALIDACION current_state.MONEDAS current_state.ESPERA 
-current_state.ESPERA 0 0 0 0 0 0 0 
-current_state.MONEDAS 0 0 0 0 0 1 1 
-current_state.VALIDACION 0 0 0 0 1 0 1 
-current_state.SIN_STOCK 0 0 0 1 0 0 1 
-current_state.ENTREGA 0 0 1 0 0 0 1 
-current_state.CAMBIO 0 1 0 0 0 0 1 
-current_state.HAY_ANOMALIA 1 0 0 0 0 0 1 
+State Machine - |maquina_expendedora|fsm_maquina_expendedora:U_fsm|state
+Name state.ANOMALY state.DISPENSING state.WAITING_PAYMENT state.WAITING_SELECTION state.IDLE 
+state.IDLE 0 0 0 0 0 
+state.WAITING_SELECTION 0 0 0 1 1 
+state.WAITING_PAYMENT 0 0 1 0 1 
+state.DISPENSING 0 1 0 0 1 
+state.ANOMALY 1 0 0 0 1 

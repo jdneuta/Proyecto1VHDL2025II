@@ -13,7 +13,7 @@ entity sumador_saldo is
 end entity;
 
 architecture Behavioral of sumador_saldo is
-    constant DEBOUNCE_CYCLES : integer := 1000000; -- ~20 ms @ 50 MHz (ajusta si tu reloj no es 50MHz)
+    constant DEBOUNCE_CYCLES : integer := 5000; -- ~0.1 ms @ 50 MHz (reducido para FPGA; ajusta si hay rebotes)
 
     signal saldo_reg   : integer range 0 to 9500 := 0;
     signal prev500     : std_logic := '0';

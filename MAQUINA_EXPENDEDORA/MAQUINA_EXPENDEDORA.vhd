@@ -2,39 +2,36 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity MAQUINA_EXPENDEDORA is
+entity maquina_expendedora is
     port(
-        clk        : in  std_logic;
-        reset      : in  std_logic;
-        sw500      : in  std_logic;
-        sw1000     : in  std_logic;
-        confirmar  : in  std_logic;
-        sel_prod   : in  std_logic_vector(3 downto 0); -- selección producto
+        clk         : in  std_logic;
+        reset       : in  std_logic;
+        confirmar   : in  std_logic;
+        sel_prod    : in  std_logic_vector(3 downto 0);
+        coin500     : in  std_logic;
+        coin1000    : in  std_logic;
+        anomalia_sw : in  std_logic;
 
-        -- Señales físicas de la máquina
-        puerta_fin : in  std_logic;   -- sensor: producto entregado
-        anomalia   : in  std_logic;   -- sensor: falla
+        -- displays
+        disp0       : out std_logic_vector(6 downto 0);
+        disp1       : out std_logic_vector(6 downto 0);
+        disp2       : out std_logic_vector(6 downto 0);
+        disp3       : out std_logic_vector(6 downto 0);
 
-        -- Displays
-        disp0 : out std_logic_vector(6 downto 0);
-        disp1 : out std_logic_vector(6 downto 0);
-        disp2 : out std_logic_vector(6 downto 0);
-        disp3 : out std_logic_vector(6 downto 0);
-
-        -- LEDs indicadores
-        led_entrega : out std_logic;
-        led_anom    : out std_logic;
+        -- leds
+        led_compra  : out std_logic;
         stock_leds  : out std_logic_vector(2 downto 0);
-        alerta_led  : buffer std_logic;
-        led_estado  : out std_logic_vector(2 downto 0)
+        alerta_led  : out std_logic;
+        door_led    : out std_logic;
+        entrega_led : out std_logic;
+        anomalia_led: out std_logic
     );
-end MAQUINA_EXPENDEDORA;
+end maquina_expendedora;
 
-architecture Behavioral of MAQUINA_EXPENDEDORA is
-
-    ------------------------------------------------------------------
-    -- COMPONENTES
-    ------------------------------------------------------------------
+architecture arch of maquina_expendedora is
+    --------------------------------------------------------------------
+    -- Componentes
+    --------------------------------------------------------------------
     component sumador_saldo
         port(
             clk    : in  std_logic;
@@ -45,196 +42,240 @@ architecture Behavioral of MAQUINA_EXPENDEDORA is
         );
     end component;
 
-    component RESTADOR
+    component restador
         port(
-            clk              : in  std_logic;
-            reset            : in  std_logic;
-            confirmar        : in  std_logic;
-            dinero_ingresado : in  integer range 0 to 9999;
-            precio_producto  : in  integer range 0 to 9999;
-            cambio           : out integer range -9999 to 9999
+            clk             : in  std_logic;
+            reset           : in  std_logic;
+            confirmar       : in  std_logic;
+            dinero_ingresado: in integer range 0 to 9999;
+            precio_producto : in integer range 0 to 9999;
+            cambio          : out integer range -9999 to 9999
         );
     end component;
 
-    component top_productos
+    component bin_bcd
         port(
-            clk        : in  std_logic;
-            reset      : in  std_logic;
-            confirmar  : in  std_logic;
-            sel_prod   : in  std_logic_vector(3 downto 0);
-            led_compra : out std_logic;
-            disp2      : out std_logic_vector(6 downto 0);
-            disp3      : out std_logic_vector(6 downto 0);
-            precio_out : out integer range 0 to 9500
-        );
-    end component;
-
-    component fsm_maquina_expendedora
-        port(
-            clk               : in  std_logic;
-            reset             : in  std_logic;
-            confirmar         : in  std_logic;
-            hay_moneda        : in  std_logic;
-            saldo_ok          : in  std_logic;
-            stock_ok          : in  std_logic;
-            anomalia          : in  std_logic;
-            puerta_fin        : in  std_logic;
-            led_entrega       : out std_logic;
-            led_anom          : out std_logic;
-            habilitar_resta   : out std_logic;
-            habilitar_entrega : out std_logic;
-            estado_out        : out std_logic_vector(2 downto 0)
-        );
-    end component;
-
-    component rom_productos
-        port(
-            clk     : in  std_logic;
-            address : in  std_logic_vector(3 downto 0);
-            precio  : out integer range 0 to 9500
-        );
-    end component;
-
-    component ram_stock
-        port(
-            clk      : in  std_logic;
-            address  : in  std_logic_vector(3 downto 0);
-            data_in  : in  std_logic_vector(2 downto 0);
-            data_out : out std_logic_vector(2 downto 0)
+            bin : in integer range 0 to 9999;
+            d0  : out std_logic_vector(3 downto 0);
+            d1  : out std_logic_vector(3 downto 0);
+            d2  : out std_logic_vector(3 downto 0);
+            d3  : out std_logic_vector(3 downto 0)
         );
     end component;
 
     component systemd
         port(
-            A   : in  std_logic_vector(3 downto 0);
-            D0  : out std_logic_vector(6 downto 0)
+            A  : in  std_logic_vector(3 downto 0);
+            D0 : out std_logic_vector(6 downto 0)
         );
     end component;
 
-    ------------------------------------------------------------------
-    -- SEÑALES INTERNAS
-    ------------------------------------------------------------------
-    signal saldo_sig        : integer range 0 to 9500 := 0;
-    signal cambio_sig       : integer range -9999 to 9999 := 0;
-    signal precio_sig       : integer range 0 to 9500 := 0;
+    component div_50millones
+        port(
+            clk  : in  std_logic;
+            out1 : buffer std_logic
+        );
+    end component;
 
-    signal hay_moneda_sig   : std_logic := '0';
-    signal saldo_ok_sig     : std_logic := '0';
-    signal stock_ok_sig     : std_logic := '0';
+    component cont30
+        port(
+            clk   : in  std_logic;
+            reset : in  std_logic;
+            start : in  std_logic;
+            door  : out std_logic
+        );
+    end component;
 
-    signal led_compra_sig   : std_logic := '0';
-    signal habilitar_resta_sig   : std_logic := '0';
-    signal habilitar_entrega_sig : std_logic := '0';
+    component div_500ms
+        port(
+            clk  : in  std_logic;
+            out1 : buffer std_logic
+        );
+    end component;
 
-    -- señales BCD para displays
-    signal miles, centenas, decenas, unidades : std_logic_vector(3 downto 0);
+    component div_2seg
+        port(
+            clk  : in  std_logic;
+            out1 : buffer std_logic
+        );
+    end component;
 
-    -- RAM stock interna
-    signal stock_ram : std_logic_vector(2 downto 0);
+    component fsm_maquina_expendedora
+        port(
+            clk           : in  std_logic;
+            reset         : in  std_logic;
+            sel_prod      : in  std_logic_vector(3 downto 0);
+            coin500       : in  std_logic;
+            coin1000      : in  std_logic;
+            confirmar     : in  std_logic;
+            anomalia_sw   : in  std_logic;
+            stock_data    : in  std_logic_vector(1 downto 0);
+            precio_data   : in  integer range 0 to 9500;
+            saldo         : in  integer range 0 to 9500;
+            cambio        : in  integer range -9999 to 9999;
+            clk_2s        : in  std_logic;
+            ram_we        : out std_logic;
+            ram_addr      : out std_logic_vector(3 downto 0);
+            ram_din       : out std_logic_vector(1 downto 0);
+            reset_saldo   : out std_logic;
+            reset_stock   : out std_logic;
+            mostrar_cambio: out std_logic;
+                        valor_saldo   : out integer range 0 to 99;
+            valor_producto: out integer range 0 to 15;
+            led_compra    : out std_logic;
+            stock_leds    : out std_logic_vector(2 downto 0);
+            alerta_led    : out std_logic;
+            door_led      : out std_logic;
+            entrega_led   : out std_logic;
+            anomalia_led  : out std_logic;
+            buzzer        : out std_logic
+        );
+    end component;
+
+    component ram_stock
+        port(
+            clk   : in  std_logic;
+            we    : in  std_logic;
+            reset : in  std_logic;
+            addr  : in  std_logic_vector(3 downto 0);
+            din   : in  std_logic_vector(1 downto 0);
+            dout  : out std_logic_vector(1 downto 0)
+        );
+    end component;
+
+    component rom_productos
+        port(
+            addr : in  std_logic_vector(3 downto 0);
+            dout : out integer range 0 to 9500
+        );
+    end component;
+
+    --------------------------------------------------------------------
+    -- Señales internas
+    --------------------------------------------------------------------
+    signal saldo_bin     : integer range 0 to 9500 := 0;
+    signal cambio_int    : integer range -9999 to 9999 := 0;
+    signal precio_int    : integer range 0 to 9500 := 0;
+    signal stock_data    : std_logic_vector(1 downto 0);
+    signal d0, d1, d2, d3 : std_logic_vector(3 downto 0);
+    signal clk_1Hz        : std_logic;
+    signal clk_500ms      : std_logic;
+    signal clk_2s         : std_logic;
+    signal ram_we         : std_logic;
+    signal ram_addr       : std_logic_vector(3 downto 0);
+    signal ram_din        : std_logic_vector(1 downto 0);
+    signal reset_saldo_int: std_logic;
+    signal reset_stock_int: std_logic;
+    signal mostrar_cambio : std_logic;
+    signal valor_saldo    : integer range 0 to 99;
+    signal valor_producto : integer range 0 to 15;
+    signal buzzer         : std_logic;  -- Señal sonora (puedes conectarla a un buzzer físico si es necesario)
 
 begin
-    ------------------------------------------------------------------
-    -- INSTANCIA: SUMADOR DE SALDO
-    ------------------------------------------------------------------
-    U1_sumador: sumador_saldo
+    --------------------------------------------------------------------
+    -- Instancias
+    --------------------------------------------------------------------
+    U_saldo: sumador_saldo
         port map(
             clk    => clk,
-            reset  => reset,
-            sw500  => sw500,
-            sw1000 => sw1000,
-            saldo  => saldo_sig
+            reset  => reset_saldo_int,
+            sw500  => coin500,
+            sw1000 => coin1000,
+            saldo  => saldo_bin
         );
 
-    -- Detecta si hay al menos una moneda ingresada
-    hay_moneda_sig <= '1' when saldo_sig > 0 else '0';
-
-    ------------------------------------------------------------------
-    -- INSTANCIA: PRODUCTOS
-    ------------------------------------------------------------------
-    U2_productos: top_productos
+    U_rest: restador
         port map(
-            clk        => clk,
-            reset      => reset,
-            confirmar  => confirmar,
-            sel_prod   => sel_prod,
-            led_compra => led_compra_sig,
-            disp2      => disp2,
-            disp3      => disp3,
-            precio_out => precio_sig
+            clk             => clk,
+            reset           => reset,
+            confirmar       => confirmar,
+            dinero_ingresado=> saldo_bin,
+            precio_producto => precio_int,
+            cambio          => cambio_int
         );
 
-    ------------------------------------------------------------------
-    -- INSTANCIA: RESTADOR
-    ------------------------------------------------------------------
-    U3_restador: RESTADOR
+    -- BCD para saldo (disp0/disp1)
+    U_bcd_saldo: bin_bcd
         port map(
-            clk              => clk,
-            reset            => reset,
-            confirmar        => habilitar_resta_sig,
-            dinero_ingresado => saldo_sig,
-            precio_producto  => precio_sig,
-            cambio           => cambio_sig
+            bin => valor_saldo,
+            d0  => d0,
+            d1  => d1,
+            d2  => open,  -- No usado para saldo
+            d3  => open   -- No usado para saldo
         );
 
-    -- Saldo suficiente si cambio >= 0
-    saldo_ok_sig <= '1' when cambio_sig >= 0 else '0';
-
-    ------------------------------------------------------------------
-    -- INSTANCIA: RAM STOCK
-    ------------------------------------------------------------------
-    ram_inst: ram_stock
+    -- BCD para producto o cambio (disp2/disp3)
+    U_bcd_prod: bin_bcd
         port map(
-            clk      => clk,
-            address  => sel_prod,
-            data_in  => (others => '0'),  -- no escribimos en este ejemplo
-            data_out => stock_ram
+            bin => valor_producto,
+            d0  => d2,
+            d1  => d3,
+            d2  => open,  -- No usado
+            d3  => open   -- No usado
         );
 
-    -- Stock disponible para FSM y LEDs
-    stock_ok_sig <= '1' when stock_ram > "000" else '0';
-    stock_leds   <= stock_ram;
-    alerta_led   <= '1' when stock_ram = "000" else '0';
+    U_d0: systemd port map(A => d0, D0 => disp0);
+    U_d1: systemd port map(A => d1, D0 => disp1);
+    U_d2: systemd port map(A => d2, D0 => disp2);
+    U_d3: systemd port map(A => d3, D0 => disp3);
 
-    ------------------------------------------------------------------
-    -- INSTANCIA: FSM PRINCIPAL
-    ------------------------------------------------------------------
-    U4_fsm: fsm_maquina_expendedora
+    U_div: div_50millones port map(clk => clk, out1 => clk_1Hz);
+    U_div500: div_500ms port map(clk => clk, out1 => clk_500ms);
+    U_div2s: div_2seg port map(clk => clk, out1 => clk_2s);
+
+    U_cont30: cont30
         port map(
-            clk               => clk,
-            reset             => reset,
-            confirmar         => confirmar,
-            hay_moneda        => hay_moneda_sig,
-            saldo_ok          => saldo_ok_sig,
-            stock_ok          => stock_ok_sig,
-            anomalia          => anomalia,
-            puerta_fin        => puerta_fin,
-            led_entrega       => led_entrega,
-            led_anom          => led_anom,
-            habilitar_resta   => habilitar_resta_sig,
-            habilitar_entrega => habilitar_entrega_sig,
-            estado_out        => led_estado
+            clk   => clk_1Hz,
+            reset => reset,
+            start => (confirmar and not anomalia_sw),  -- Integrar con FSM si es necesario
+            door  => open  -- Usado internamente en FSM
         );
 
-    ------------------------------------------------------------------
-    -- CÁLCULO BCD DEL SALDO
-    ------------------------------------------------------------------
-    process(saldo_sig)
-        variable temp : integer := 0;
-    begin
-        temp := saldo_sig;
-        miles    <= std_logic_vector(to_unsigned(temp / 1000,4));
-        temp     := temp mod 1000;
-        centenas <= std_logic_vector(to_unsigned(temp / 100,4));
-        temp     := temp mod 100;
-        decenas  <= std_logic_vector(to_unsigned(temp / 10,4));
-        unidades <= std_logic_vector(to_unsigned(temp mod 10,4));
-    end process;
+    U_fsm: fsm_maquina_expendedora
+        port map(
+            clk           => clk,
+            reset         => reset,
+            sel_prod      => sel_prod,
+            coin500       => coin500,
+            coin1000      => coin1000,
+            confirmar     => confirmar,
+            anomalia_sw   => anomalia_sw,
+            stock_data    => stock_data,
+            precio_data   => precio_int,
+            saldo         => saldo_bin,
+            cambio        => cambio_int,
+            clk_2s        => clk_2s,
+            ram_we        => ram_we,
+            ram_addr      => ram_addr,
+            ram_din       => ram_din,
+            reset_saldo   => reset_saldo_int,
+            reset_stock   => reset_stock_int,
+            mostrar_cambio=> mostrar_cambio,
+            valor_saldo   => valor_saldo,
+            valor_producto=> valor_producto,
+            led_compra    => led_compra,
+            stock_leds    => stock_leds,
+            alerta_led    => alerta_led,
+            door_led      => door_led,
+            entrega_led   => entrega_led,
+            anomalia_led  => anomalia_led,
+            buzzer        => buzzer
+        );
 
-    ------------------------------------------------------------------
-    -- INSTANCIA: DISPLAYS
-    ------------------------------------------------------------------
-    -- saldo (últimos dos displays)
-    U_disp0: systemd port map(A => centenas, D0 => disp0); -- centenas en disp0
-    U_disp1: systemd port map(A => miles,    D0 => disp1); -- miles en disp1
+    U_ram: ram_stock
+        port map(
+            clk   => clk,
+            we    => ram_we,
+            reset => reset_stock_int,
+            addr  => ram_addr,
+            din   => ram_din,
+            dout  => stock_data
+        );
 
-end Behavioral;
+    U_rom: rom_productos
+        port map(
+            addr => sel_prod,
+            dout => precio_int
+        );
+
+end arch;
