@@ -1,8 +1,6 @@
 
-State Machine - |maquina_expendedora|fsm_maquina_expendedora:U_fsm|state
-Name state.ANOMALY state.DISPENSING state.WAITING_PAYMENT state.WAITING_SELECTION state.IDLE 
-state.IDLE 0 0 0 0 0 
-state.WAITING_SELECTION 0 0 0 1 1 
-state.WAITING_PAYMENT 0 0 1 0 1 
-state.DISPENSING 0 1 0 0 1 
-state.ANOMALY 1 0 0 0 1 
+State Machine - |maquina_expendedora|fsm_maquina_expendedora:UFSM|state
+Name state.ANOMALY state.DISPENSING state.WAITING_SELECTION 
+state.WAITING_SELECTION 0 0 0 
+state.DISPENSING 0 1 1 
+state.ANOMALY 1 0 1 

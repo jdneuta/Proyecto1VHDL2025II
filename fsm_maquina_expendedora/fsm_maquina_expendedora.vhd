@@ -4,203 +4,277 @@ use ieee.numeric_std.all;
 
 entity fsm_maquina_expendedora is
     port(
-        clk         : in  std_logic;
-        reset       : in  std_logic;
-        sel_prod    : in  std_logic_vector(3 downto 0);  -- Selección de producto (0-15)
-        coin500     : in  std_logic;
-        coin1000    : in  std_logic;
-        confirmar   : in  std_logic;
-        anomalia_sw : in  std_logic;
-        stock_data  : in  std_logic_vector(1 downto 0);  -- Stock leído de RAM (0-3)
-        precio_data : in  integer range 0 to 9500;       -- Precio leído de ROM
-        saldo       : in  integer range 0 to 9500;       -- Saldo actual
-        cambio      : in  integer range -9999 to 9999;   -- Cambio calculado
-        clk_2s      : in  std_logic;                     -- Reloj para alerta (de div_2seg)
-        
+        clk            : in  std_logic;
+        reset          : in  std_logic;
+        -- Entradas
+        sel_prod       : in  std_logic_vector(3 downto 0);
+        coin500        : in  std_logic;
+        coin1000       : in  std_logic;
+        confirmar      : in  std_logic;
+        anomalia_sw    : in  std_logic;
+        stock_data     : in  std_logic_vector(1 downto 0);
+        precio_data    : in  integer range 0 to 9500;
+        saldo          : in  integer range 0 to 9500;
+        cambio         : in  integer range -9999 to 9999;
+        clk_2s         : in  std_logic;
+        clk_500ms      : in  std_logic;
+        entrega_done   : in  std_logic;
+
+        -- Control de memoria
+        ram_we         : out std_logic;
+        ram_addr       : out std_logic_vector(3 downto 0);
+        ram_din        : out std_logic_vector(1 downto 0);
+        ram_saldo_we   : out std_logic;
+        ram_saldo_addr : out std_logic_vector(0 downto 0);
+        ram_saldo_din  : out integer range 0 to 9500;
+
         -- Salidas de control
-        ram_we      : out std_logic;                     -- Write enable para RAM stock
-        ram_addr    : out std_logic_vector(3 downto 0); -- Dirección para RAM (producto seleccionado)
-        ram_din     : out std_logic_vector(1 downto 0); -- Dato a escribir en RAM (nuevo stock)
-        reset_saldo : out std_logic;                     -- Reset de saldo
-        reset_stock : out std_logic;                     -- Reset de stock a inicial
-        mostrar_cambio : out std_logic;                  -- Mostrar cambio en displays
-        valor_saldo   : out integer range 0 to 99;       -- Saldo en centenas para disp0/disp1
-        valor_producto: out integer range 0 to 15;       -- Producto para disp2/disp3
-        led_compra  : out std_logic;                     -- LED de compra
-        stock_leds  : out std_logic_vector(2 downto 0);  -- LEDs de stock
-        alerta_led  : out std_logic;                     -- LED de alerta stock
-        door_led    : out std_logic;                     -- LED de puerta
-        entrega_led : out std_logic;                     -- LED de entrega (parpadeo)
-        anomalia_led: out std_logic;                     -- LED de anomalía
-        buzzer      : out std_logic                      -- Señal sonora (alta en anomalía o entrega)
+        reset_stock    : out std_logic;
+        mostrar_cambio : out std_logic;
+        valor_saldo    : out integer range 0 to 99;
+        valor_producto : out integer range 0 to 15;
+        valor_display_full : out integer range 0 to 9999;
+        led_compra     : out std_logic;
+        stock_leds     : out std_logic_vector(2 downto 0);
+        alerta_led     : out std_logic;
+        door_led       : out std_logic;
+        entrega_led    : out std_logic;
+        anomalia_led   : out std_logic;
+        buzzer         : out std_logic;
+        debug_venta    : out std_logic;
+        start_entrega  : out std_logic
     );
 end fsm_maquina_expendedora;
 
 architecture behavioral of fsm_maquina_expendedora is
-    type state_type is (IDLE, WAITING_SELECTION, WAITING_PAYMENT, DISPENSING, ANOMALY);
-    signal state, next_state : state_type := IDLE;
-    
-    signal producto_sel : integer range 0 to 15 := 0;
-    signal stock_actual : integer range 0 to 3 := 0;
-    signal precio_actual : integer range 0 to 9500 := 0;
-    signal saldo_suficiente : std_logic := '0';
-    signal entrega_activa : std_logic := '0';
-    signal clk_500ms : std_logic := '0';  -- Para parpadeo (de div_500ms)
-    
-    -- Señales internas para control
-    signal prev_confirmar : std_logic := '0';
-    signal confirm_pulse : std_logic := '0';
-    signal venta_completada : std_logic := '0';  -- Para reset saldo y decremento
+
+    type state_type is (WAITING_SELECTION, DISPENSING, ANOMALY);
+    signal state : state_type := WAITING_SELECTION;
+
+    signal producto_sel      : integer range 0 to 15 := 0;
+    signal stock_actual      : integer range 0 to 3 := 0;
+    signal precio_actual     : integer range 0 to 9500 := 0;
+    signal saldo_suficiente  : std_logic := '0';
+
+    -- Latch de confirmación
+    signal prev_confirmar    : std_logic := '0';
+    signal confirm_latched   : std_logic := '0';
+
+    -- Pulsos de monedas
+    signal prev_coin500      : std_logic := '0';
+    signal prev_coin1000     : std_logic := '0';
+    signal coin_p500         : std_logic := '0';
+    signal coin_p1000        : std_logic := '0';
+
+    -- Señales registradas
+    signal r_ram_we          : std_logic := '0';
+    signal r_ram_addr        : std_logic_vector(3 downto 0) := (others=>'0');
+    signal r_ram_din         : std_logic_vector(1 downto 0) := (others=>'0');
+    signal r_ram_saldo_we    : std_logic := '0';
+    signal r_ram_saldo_addr  : std_logic_vector(0 downto 0) := "0";
+    signal r_ram_saldo_din   : integer range 0 to 9500 := 0;
+    signal r_reset_stock     : std_logic := '0';
+    signal r_mostrar_cambio  : std_logic := '0';
+    signal r_valor_saldo     : integer range 0 to 99 := 0;
+    signal r_valor_producto  : integer range 0 to 15 := 0;
+    signal r_valor_full      : integer range 0 to 9999 := 0;
+    signal r_led_compra      : std_logic := '0';
+    signal r_stock_leds      : std_logic_vector(2 downto 0) := "111";
+    signal r_alerta_led      : std_logic := '0';
+    signal r_door_led        : std_logic := '0';
+    signal r_entrega_led     : std_logic := '0';
+    signal r_anomalia_led    : std_logic := '0';
+    signal r_buzzer          : std_logic := '0';
+    signal r_debug_venta     : std_logic := '0';
+    signal r_start_entrega   : std_logic := '0';
+
+    signal write_done_this_confirm : std_logic := '0';
+
 begin
-    producto_sel <= to_integer(unsigned(sel_prod));
-    stock_actual <= to_integer(unsigned(stock_data));
-    precio_actual <= precio_data;
+    --------------------------------------------------------------------
+    -- Conversiones básicas
+    --------------------------------------------------------------------
+    producto_sel     <= to_integer(unsigned(sel_prod));
+    stock_actual     <= to_integer(unsigned(stock_data));
+    precio_actual    <= precio_data;
     saldo_suficiente <= '1' when saldo >= precio_actual else '0';
-    
-    -- Detección de pulso mejorada para FPGA
+    r_ram_addr       <= sel_prod;
+
+    --------------------------------------------------------------------
+    -- Detección de flancos: confirmación y monedas
+    --------------------------------------------------------------------
     process(clk, reset)
     begin
         if reset = '1' then
-            prev_confirmar <= '0';
-            confirm_pulse <= '0';
-            venta_completada <= '0';
+            prev_confirmar  <= '0';
+            confirm_latched <= '0';
+            prev_coin500    <= '0';
+            prev_coin1000   <= '0';
+            coin_p500       <= '0';
+            coin_p1000      <= '0';
         elsif rising_edge(clk) then
-            if confirmar = '1' and prev_confirmar = '0' then
-                confirm_pulse <= '1';
-            elsif confirm_pulse = '1' then
-                confirm_pulse <= '0';  -- Reset pulso inmediatamente después de detectar
+            coin_p500  <= '0';
+            coin_p1000 <= '0';
+            if (confirmar = '1' and prev_confirmar = '0') then
+                confirm_latched <= '1';
+            else
+                confirm_latched <= '0';
             end if;
             prev_confirmar <= confirmar;
-            -- Marcar venta completada al terminar entrega
-            if state = DISPENSING and entrega_activa = '0' then
-                venta_completada <= '1';
-            else
-                venta_completada <= '0';
+
+            if (coin500 = '1' and prev_coin500 = '0') then
+                coin_p500 <= '1';
             end if;
+            if (coin1000 = '1' and prev_coin1000 = '0') then
+                coin_p1000 <= '1';
+            end if;
+            prev_coin500  <= coin500;
+            prev_coin1000 <= coin1000;
         end if;
     end process;
-    
-    -- Lógica de próximo estado
-    process(state, sel_prod, coin500, coin1000, confirm_pulse, anomalia_sw, stock_actual, saldo_suficiente, entrega_activa)
-    begin
-        next_state <= state;
-        case state is
-            when IDLE =>
-                if sel_prod /= "0000" then  -- Selección activa
-                    next_state <= WAITING_SELECTION;
-                end if;
-            when WAITING_SELECTION =>
-                if confirm_pulse = '1' and stock_actual > 0 and saldo_suficiente = '1' and entrega_activa = '0' then
-                    next_state <= WAITING_PAYMENT;
-                elsif anomalia_sw = '1' then
-                    next_state <= ANOMALY;
-                end if;
-            when WAITING_PAYMENT =>
-                if confirm_pulse = '1' then
-                    next_state <= DISPENSING;  -- Compra confirmada: mostrar cambio y puerta inmediatamente
-                elsif anomalia_sw = '1' then
-                    next_state <= ANOMALY;
-                end if;
-            when DISPENSING =>
-                if entrega_activa = '0' then  -- Entrega terminada
-                    next_state <= IDLE;
-                elsif anomalia_sw = '1' then
-                    next_state <= ANOMALY;
-                end if;
-            when ANOMALY =>
-                if anomalia_sw = '0' then
-                    next_state <= IDLE;
-                end if;
-        end case;
-    end process;
-    
-    -- Registro de estado
+
+    --------------------------------------------------------------------
+    -- Proceso síncrono principal (estado + salidas)
+    --------------------------------------------------------------------
     process(clk, reset)
+        variable nuevo_stock : integer range 0 to 3;
     begin
         if reset = '1' then
-            state <= IDLE;
+            state <= WAITING_SELECTION;
+            r_ram_we <= '0'; r_ram_saldo_we <= '0';
+            r_reset_stock <= '0';
+            r_mostrar_cambio <= '0';
+            r_valor_saldo <= 0; r_valor_producto <= 0;
+            r_valor_full <= 0; r_led_compra <= '0';
+            r_stock_leds <= "111"; r_alerta_led <= '0';
+            r_door_led <= '0'; r_entrega_led <= '0';
+            r_anomalia_led <= '0'; r_buzzer <= '0';
+            r_debug_venta <= '0'; r_start_entrega <= '0';
+            write_done_this_confirm <= '0';
+
         elsif rising_edge(clk) then
-            state <= next_state;
-        end if;
-    end process;
-    
-    -- Lógica de salidas
-    process(state, clk, reset, stock_actual, cambio, saldo, producto_sel, anomalia_sw, entrega_activa, clk_500ms, clk_2s, venta_completada, confirm_pulse)
-    begin
-        -- Valores por defecto
-        ram_we <= '0';
-        ram_addr <= sel_prod;
-        ram_din <= std_logic_vector(to_unsigned(stock_actual, 2));
-        reset_saldo <= '0';
-        reset_stock <= '0';
-        mostrar_cambio <= '0';
-        valor_saldo <= saldo / 100;  -- Siempre mostrar saldo en centenas
-        valor_producto <= producto_sel;  -- Siempre mostrar producto seleccionado
-        led_compra <= '0';
-        stock_leds <= "000";
-        alerta_led <= '0';
-        door_led <= '0';
-        entrega_led <= '0';
-        anomalia_led <= '0';
-        buzzer <= '0';
-        
-        if reset = '1' then
-            -- Reset global: todo a cero
-            reset_saldo <= '1';
-            reset_stock <= '1';
-            valor_saldo <= 0;
-            valor_producto <= 0;
-        else
+
+            ----------------------------------------------------------------
+            -- Defaults en cada ciclo
+            ----------------------------------------------------------------
+            r_ram_we          <= '0';
+            r_ram_saldo_we    <= '0';
+            r_reset_stock     <= '0';
+            r_led_compra      <= '0';
+            r_buzzer          <= '0';
+            r_start_entrega   <= '0';
+            r_alerta_led      <= '0';
+            r_mostrar_cambio  <= '0';
+            r_door_led        <= '0';
+            r_entrega_led     <= '0';
+            r_anomalia_led    <= '0';
+
+            -- Mostrar saldo y producto siempre
+            r_valor_saldo    <= saldo / 100;
+            r_valor_producto <= producto_sel;
+
+            case stock_actual is
+                when 3 => r_stock_leds <= "111";
+                when 2 => r_stock_leds <= "110";
+                when 1 => r_stock_leds <= "100";
+                when others => r_stock_leds <= "000";
+            end case;
+
+            ----------------------------------------------------------------
+            -- FSM SINCRÓNICA
+            ----------------------------------------------------------------
             case state is
-                when IDLE =>
-                    -- Luces apagadas, máquina inactiva
-                    valor_saldo <= 0;
-                    valor_producto <= 0;
+                ----------------------------------------------------------------
                 when WAITING_SELECTION =>
-                    -- LEDs de stock
-                    case stock_actual is
-                        when 3 => stock_leds <= "111";
-                        when 2 => stock_leds <= "110";
-                        when 1 => stock_leds <= "100";
-                        when others => stock_leds <= "000";
-                    end case;
-                    -- Alerta si no hay stock
+                    -- alerta si no hay stock
                     if stock_actual = 0 then
-                        alerta_led <= clk_2s;
+                        r_alerta_led <= clk_2s;
                     end if;
-                when WAITING_PAYMENT =>
-                    if confirm_pulse = '1' then
-                        led_compra <= '1';
-                        -- Restar stock en RAM inmediatamente
-                        ram_we <= '1';
-                        ram_din <= std_logic_vector(to_unsigned(stock_actual - 1, 2));
-                        -- Mostrar cambio inmediatamente y encender puerta
-                        mostrar_cambio <= '1';
-                        valor_saldo <= abs(cambio) / 100;  -- Cambio en centenas para disp0/disp1
-                        valor_producto <= abs(cambio) mod 100;  -- Cambio en unidades para disp2/disp3
-                        door_led <= '1';
-                        buzzer <= '1';  -- Señal sonora
+
+                    -- sumar monedas
+                    if coin_p500 = '1' then
+                        r_ram_saldo_we  <= '1';
+                        r_ram_saldo_din <= saldo + 500;
+                    elsif coin_p1000 = '1' then
+                        r_ram_saldo_we  <= '1';
+                        r_ram_saldo_din <= saldo + 1000;
                     end if;
+
+                    -- Compra válida → pasa a DISPENSING
+                    if (confirm_latched = '1' and anomalia_sw = '0' and stock_actual > 0 and saldo_suficiente = '1') then
+                        -- Actualiza stock
+                        if write_done_this_confirm = '0' then
+                            nuevo_stock := stock_actual - 1;
+                            r_ram_we    <= '1';
+                            r_ram_din   <= std_logic_vector(to_unsigned(nuevo_stock, 2));
+                            write_done_this_confirm <= '1';
+                        end if;
+                        r_led_compra     <= '1';
+                        r_door_led       <= '1';
+                        r_entrega_led    <= clk_500ms;
+                        r_buzzer         <= '1';
+                        r_mostrar_cambio <= '1';
+                        if cambio < 0 then
+                            r_valor_full <= -cambio;
+                        else
+                            r_valor_full <= cambio;
+                        end if;
+                        r_start_entrega <= '1';
+                        state <= DISPENSING;
+                    else
+                        write_done_this_confirm <= '0';
+                    end if;
+
+                ----------------------------------------------------------------
                 when DISPENSING =>
-                    -- Mantener cambio mostrado y puerta encendida durante entrega
-                    mostrar_cambio <= '1';
-                    valor_saldo <= abs(cambio) / 100;
-                    valor_producto <= abs(cambio) mod 100;
-                    door_led <= '1';
-                    entrega_led <= clk_500ms;  -- Parpadeo durante entrega
-                    buzzer <= '1';
-                    entrega_activa <= '1';  -- Simular entrega (integrar con cont30)
-                    if venta_completada = '1' then
-                        reset_saldo <= '1';  -- Reset saldo a 0 al terminar
+                    r_door_led       <= '1';
+                    r_entrega_led    <= clk_500ms;
+                    r_mostrar_cambio <= '1';
+                    if cambio < 0 then
+                        r_valor_full <= -cambio;
+                    else
+                        r_valor_full <= cambio;
                     end if;
+                    -- si termina entrega → reset saldo y volver
+                    if entrega_done = '1' then
+                        r_ram_saldo_we  <= '1';
+                        r_ram_saldo_din <= 0;
+                        write_done_this_confirm <= '0';
+                        state <= WAITING_SELECTION;
+                    end if;
+
+                ----------------------------------------------------------------
                 when ANOMALY =>
-                    door_led <= '0';  -- Cerrar puerta
-                    anomalia_led <= '1';
-                    buzzer <= '1';  -- Alarma sonora
+                    r_anomalia_led <= '1';
+                    if anomalia_sw = '0' then
+                        state <= WAITING_SELECTION;
+                    end if;
             end case;
         end if;
     end process;
-    
-    -- Integración de relojes para parpadeo (asumir instancias externas)
-    -- clk_500ms debe provenir de div_500ms en el top-level
+
+    --------------------------------------------------------------------
+    -- Asignación de salidas
+    --------------------------------------------------------------------
+    ram_we            <= r_ram_we;
+    ram_addr          <= r_ram_addr;
+    ram_din           <= r_ram_din;
+    ram_saldo_we      <= r_ram_saldo_we;
+    ram_saldo_addr    <= r_ram_saldo_addr;
+    ram_saldo_din     <= r_ram_saldo_din;
+    reset_stock       <= r_reset_stock;
+    mostrar_cambio    <= r_mostrar_cambio;
+    valor_saldo       <= r_valor_saldo;
+    valor_producto    <= r_valor_producto;
+    valor_display_full<= r_valor_full;
+    led_compra        <= r_led_compra;
+    stock_leds        <= r_stock_leds;
+    alerta_led        <= r_alerta_led;
+    door_led          <= r_door_led;
+    entrega_led       <= r_entrega_led;
+    anomalia_led      <= r_anomalia_led;
+    buzzer            <= r_buzzer;
+    debug_venta       <= r_debug_venta;
+    start_entrega     <= r_start_entrega;
+
 end behavioral;

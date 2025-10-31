@@ -1,16 +1,20 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="MAQUINA_EXPENDEDORA">
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_saldo|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_saldo|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|fsm_maquina_expendedora:U_fsm|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_shm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|fsm_maquina_expendedora:U_fsm|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_fbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_prod|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_prod|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_saldo|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_saldo|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|fsm_maquina_expendedora:U_fsm|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_qhm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_prod|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd_prod|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_qhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_qhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_nhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_bbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_4jm.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

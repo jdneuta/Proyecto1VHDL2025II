@@ -23,7 +23,7 @@ begin
             cambio_reg <= 0;
         elsif rising_edge(clk) then
             if confirmar = '1' then
-                cambio_reg <= dinero_ingresado - precio_producto;
+                cambio_reg <= dinero_ingresado - precio_producto;  -- Calcular cambio al confirmar
             end if;
         end if;
     end process;
