@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MAQUINA_EXPENDEDORA
-Wed Oct 29 17:54:55 2025
+Thu Oct 30 23:55:30 2025
 Quartus II 32-bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -19,26 +19,34 @@ Quartus II 32-bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
  11. General Register Statistics
  12. Inverted Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod0
- 15. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod1
- 16. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod2
- 17. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod0
- 18. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod1
- 19. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod2
- 20. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Div2
- 21. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div2
- 22. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod0
- 23. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod1
- 24. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod2
- 25. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div1
- 26. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Div2
- 27. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div0
- 28. Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div0
- 29. Port Connectivity Checks: "fsm_maquina_expendedora:UFSM"
- 30. Port Connectivity Checks: "bin_bcd:U_bcd2"
- 31. Port Connectivity Checks: "bin_bcd:U_bcd1"
- 32. Elapsed Time Per Partition
- 33. Analysis & Synthesis Messages
+ 14. Parameter Settings for User Entity Instance: servo_giro180:U_SERVO1
+ 15. Parameter Settings for User Entity Instance: servo_giro180:U_SERVO2
+ 16. Parameter Settings for User Entity Instance: servos_monedas:U_SERVOS_MONEDAS
+ 17. Parameter Settings for User Entity Instance: servo_puerta:U_SERVO_PUERTA
+ 18. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod0
+ 19. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod1
+ 20. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Mod2
+ 21. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod0
+ 22. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod1
+ 23. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Mod2
+ 24. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd1|lpm_divide:Div2
+ 25. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div2
+ 26. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod0
+ 27. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod1
+ 28. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Mod2
+ 29. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div1
+ 30. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd2|lpm_divide:Div2
+ 31. Parameter Settings for Inferred Entity Instance: bin_bcd:U_bcd3|lpm_divide:Div0
+ 32. Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div0
+ 33. Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div1
+ 34. Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Mod0
+ 35. Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div2
+ 36. Port Connectivity Checks: "cont30:U_RESET_AUTO"
+ 37. Port Connectivity Checks: "fsm_maquina_expendedora:UFSM"
+ 38. Port Connectivity Checks: "bin_bcd:U_bcd2"
+ 39. Port Connectivity Checks: "bin_bcd:U_bcd1"
+ 40. Elapsed Time Per Partition
+ 41. Analysis & Synthesis Messages
 
 
 
@@ -64,16 +72,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Oct 29 17:54:55 2025      ;
+; Analysis & Synthesis Status        ; Successful - Thu Oct 30 23:55:30 2025      ;
 ; Quartus II 32-bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; MAQUINA_EXPENDEDORA                        ;
 ; Top-level Entity Name              ; maquina_expendedora                        ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 2,167                                      ;
-;     Total combinational functions  ; 2,114                                      ;
-;     Dedicated logic registers      ; 193                                        ;
-; Total registers                    ; 193                                        ;
-; Total pins                         ; 46                                         ;
+; Total logic elements               ; 3,531                                      ;
+;     Total combinational functions  ; 3,491                                      ;
+;     Dedicated logic registers      ; 540                                        ;
+; Total registers                    ; 540                                        ;
+; Total pins                         ; 54                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -191,7 +199,11 @@ applicable agreement for further details.
 +--------------------------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path                       ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                            ; Library ;
 +--------------------------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
-; ../ram_saldo/ram_saldo.vhd                             ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/ram_saldo/ram_saldo.vhd                               ;         ;
+; ../servos_monedas/servos_monedas.vhd                   ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/servos_monedas/servos_monedas.vhd                     ;         ;
+; ../servo_puerta/servo_puerta.vhd                       ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/servo_puerta/servo_puerta.vhd                         ;         ;
+; ../servo_giro180/servo_giro180.vhd                     ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/servo_giro180/servo_giro180.vhd                       ;         ;
+; ../SensorInfrarojo/SensorInfrarojo.vhd                 ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/SensorInfrarojo/SensorInfrarojo.vhd                   ;         ;
+; ../BUZZER/BUZZER.vhd                                   ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/BUZZER/BUZZER.vhd                                     ;         ;
 ; ../rom_productos/rom_productos.vhd                     ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/rom_productos/rom_productos.vhd                       ;         ;
 ; ../ram_stock/ram_stock.vhd                             ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/ram_stock/ram_stock.vhd                               ;         ;
 ; ../fsm_maquina_expendedora/fsm_maquina_expendedora.vhd ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/fsm_maquina_expendedora/fsm_maquina_expendedora.vhd   ;         ;
@@ -202,6 +214,7 @@ applicable agreement for further details.
 ; ../bin_bcd/bin_bcd.vhd                                 ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/bin_bcd/bin_bcd.vhd                                   ;         ;
 ; ../div_50millones/div_50millones.vhd                   ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/div_50millones/div_50millones.vhd                     ;         ;
 ; ../systemd/systemd.vhd                                 ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/systemd/systemd.vhd                                   ;         ;
+; ../SUMADOR/sumador_saldo/sumador_saldo.vhd             ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/SUMADOR/sumador_saldo/sumador_saldo.vhd               ;         ;
 ; MAQUINA_EXPENDEDORA.vhd                                ; yes             ; User VHDL File               ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/MAQUINA_EXPENDEDORA.vhd           ;         ;
 ; lpm_divide.tdf                                         ; yes             ; Megafunction                 ; c:/users/alessandro/downloads/programacion/quartuss/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
 ; abs_divider.inc                                        ; yes             ; Megafunction                 ; c:/users/alessandro/downloads/programacion/quartuss/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
@@ -221,6 +234,19 @@ applicable agreement for further details.
 ; db/lpm_divide_4jm.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_divide_4jm.tdf             ;         ;
 ; db/sign_div_unsign_5nh.tdf                             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/sign_div_unsign_5nh.tdf        ;         ;
 ; db/alt_u_div_l8f.tdf                                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/alt_u_div_l8f.tdf              ;         ;
+; db/lpm_divide_u0p.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_divide_u0p.tdf             ;         ;
+; db/abs_divider_2dg.tdf                                 ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/abs_divider_2dg.tdf            ;         ;
+; db/alt_u_div_p8f.tdf                                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/alt_u_div_p8f.tdf              ;         ;
+; db/lpm_abs_6v9.tdf                                     ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_abs_6v9.tdf                ;         ;
+; db/lpm_abs_av9.tdf                                     ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_abs_av9.tdf                ;         ;
+; db/lpm_divide_5po.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_divide_5po.tdf             ;         ;
+; db/abs_divider_6dg.tdf                                 ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/abs_divider_6dg.tdf            ;         ;
+; db/alt_u_div_19f.tdf                                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/alt_u_div_19f.tdf              ;         ;
+; db/lpm_divide_v0p.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_divide_v0p.tdf             ;         ;
+; db/abs_divider_3dg.tdf                                 ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/abs_divider_3dg.tdf            ;         ;
+; db/alt_u_div_q8f.tdf                                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/alt_u_div_q8f.tdf              ;         ;
+; db/lpm_abs_5v9.tdf                                     ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_abs_5v9.tdf                ;         ;
+; db/lpm_abs_bv9.tdf                                     ; yes             ; Auto-Generated Megafunction  ; C:/Users/Alessandro/Downloads/Proyecto1VHDL2025II/MAQUINA_EXPENDEDORA/db/lpm_abs_bv9.tdf                ;         ;
 +--------------------------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -229,28 +255,28 @@ applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 2,167     ;
+; Estimated Total logic elements              ; 3,531     ;
 ;                                             ;           ;
-; Total combinational functions               ; 2114      ;
+; Total combinational functions               ; 3491      ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 569       ;
-;     -- 3 input functions                    ; 557       ;
-;     -- <=2 input functions                  ; 988       ;
+;     -- 4 input functions                    ; 994       ;
+;     -- 3 input functions                    ; 849       ;
+;     -- <=2 input functions                  ; 1648      ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 1456      ;
-;     -- arithmetic mode                      ; 658       ;
+;     -- normal mode                          ; 2312      ;
+;     -- arithmetic mode                      ; 1179      ;
 ;                                             ;           ;
-; Total registers                             ; 193       ;
-;     -- Dedicated logic registers            ; 193       ;
+; Total registers                             ; 540       ;
+;     -- Dedicated logic registers            ; 540       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 46        ;
+; I/O pins                                    ; 54        ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 188       ;
-; Total fan-out                               ; 6384      ;
-; Average fan-out                             ; 2.65      ;
+; Maximum fan-out                             ; 530       ;
+; Total fan-out                               ; 11488     ;
+; Average fan-out                             ; 2.77      ;
 +---------------------------------------------+-----------+
 
 
@@ -259,8 +285,9 @@ applicable agreement for further details.
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                               ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |maquina_expendedora                      ; 2114 (30)         ; 193 (2)      ; 0           ; 0            ; 0       ; 0         ; 46   ; 0            ; |maquina_expendedora                                                                                                                              ; work         ;
-;    |RESTADOR:URES|                        ; 13 (13)           ; 14 (14)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|RESTADOR:URES                                                                                                                ; work         ;
+; |maquina_expendedora                      ; 3491 (29)         ; 540 (2)      ; 0           ; 0            ; 0       ; 0         ; 54   ; 0            ; |maquina_expendedora                                                                                                                              ; work         ;
+;    |BUZZER:U_BUZZER|                      ; 23 (23)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|BUZZER:U_BUZZER                                                                                                              ; work         ;
+;    |RESTADOR:URES|                        ; 13 (13)           ; 13 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|RESTADOR:URES                                                                                                                ; work         ;
 ;    |bin_bcd:U_bcd1|                       ; 450 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd1                                                                                                               ; work         ;
 ;       |lpm_divide:Div2|                   ; 140 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Div2                                                                                               ; work         ;
 ;          |lpm_divide_nhm:auto_generated|  ; 140 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd1|lpm_divide:Div2|lpm_divide_nhm:auto_generated                                                                 ; work         ;
@@ -283,7 +310,7 @@ applicable agreement for further details.
 ;          |lpm_divide_bbm:auto_generated|  ; 14 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod2|lpm_divide_bbm:auto_generated                                                                 ; work         ;
 ;             |sign_div_unsign_9nh:divider| ; 14 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
 ;                |alt_u_div_t8f:divider|    ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd2|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
-;    |bin_bcd:U_bcd3|                       ; 1149 (0)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3                                                                                                               ; work         ;
+;    |bin_bcd:U_bcd3|                       ; 1124 (0)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3                                                                                                               ; work         ;
 ;       |lpm_divide:Div0|                   ; 123 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div0                                                                                               ; work         ;
 ;          |lpm_divide_4jm:auto_generated|  ; 123 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div0|lpm_divide_4jm:auto_generated                                                                 ; work         ;
 ;             |sign_div_unsign_5nh:divider| ; 123 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div0|lpm_divide_4jm:auto_generated|sign_div_unsign_5nh:divider                                     ; work         ;
@@ -292,34 +319,54 @@ applicable agreement for further details.
 ;          |lpm_divide_qhm:auto_generated|  ; 164 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div1|lpm_divide_qhm:auto_generated                                                                 ; work         ;
 ;             |sign_div_unsign_rlh:divider| ; 164 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div1|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider                                     ; work         ;
 ;                |alt_u_div_16f:divider|    ; 164 (164)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div1|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_16f:divider               ; work         ;
-;       |lpm_divide:Div2|                   ; 144 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2                                                                                               ; work         ;
-;          |lpm_divide_nhm:auto_generated|  ; 144 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated                                                                 ; work         ;
-;             |sign_div_unsign_olh:divider| ; 144 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated|sign_div_unsign_olh:divider                                     ; work         ;
-;                |alt_u_div_r5f:divider|    ; 144 (144)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated|sign_div_unsign_olh:divider|alt_u_div_r5f:divider               ; work         ;
-;       |lpm_divide:Mod0|                   ; 178 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0                                                                                               ; work         ;
-;          |lpm_divide_bbm:auto_generated|  ; 178 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated                                                                 ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 178 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
-;                |alt_u_div_t8f:divider|    ; 178 (178)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
-;       |lpm_divide:Mod1|                   ; 260 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1                                                                                               ; work         ;
-;          |lpm_divide_bbm:auto_generated|  ; 260 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated                                                                 ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 260 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
-;                |alt_u_div_t8f:divider|    ; 260 (260)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
-;       |lpm_divide:Mod2|                   ; 280 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2                                                                                               ; work         ;
-;          |lpm_divide_bbm:auto_generated|  ; 280 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated                                                                 ; work         ;
-;             |sign_div_unsign_9nh:divider| ; 280 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
-;                |alt_u_div_t8f:divider|    ; 280 (280)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
+;       |lpm_divide:Div2|                   ; 140 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2                                                                                               ; work         ;
+;          |lpm_divide_nhm:auto_generated|  ; 140 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated                                                                 ; work         ;
+;             |sign_div_unsign_olh:divider| ; 140 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated|sign_div_unsign_olh:divider                                     ; work         ;
+;                |alt_u_div_r5f:divider|    ; 140 (140)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Div2|lpm_divide_nhm:auto_generated|sign_div_unsign_olh:divider|alt_u_div_r5f:divider               ; work         ;
+;       |lpm_divide:Mod0|                   ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0                                                                                               ; work         ;
+;          |lpm_divide_bbm:auto_generated|  ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated                                                                 ; work         ;
+;             |sign_div_unsign_9nh:divider| ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
+;                |alt_u_div_t8f:divider|    ; 171 (171)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod0|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
+;       |lpm_divide:Mod1|                   ; 251 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1                                                                                               ; work         ;
+;          |lpm_divide_bbm:auto_generated|  ; 251 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated                                                                 ; work         ;
+;             |sign_div_unsign_9nh:divider| ; 251 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
+;                |alt_u_div_t8f:divider|    ; 251 (251)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
+;       |lpm_divide:Mod2|                   ; 275 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2                                                                                               ; work         ;
+;          |lpm_divide_bbm:auto_generated|  ; 275 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated                                                                 ; work         ;
+;             |sign_div_unsign_9nh:divider| ; 275 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider                                     ; work         ;
+;                |alt_u_div_t8f:divider|    ; 275 (275)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|bin_bcd:U_bcd3|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider               ; work         ;
+;    |cont30:U_RESET_AUTO|                  ; 7 (7)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|cont30:U_RESET_AUTO                                                                                                          ; work         ;
 ;    |cont30:Ucont|                         ; 7 (7)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|cont30:Ucont                                                                                                                 ; work         ;
 ;    |div_2seg:U3|                          ; 48 (48)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_2seg:U3                                                                                                                  ; work         ;
 ;    |div_500ms:U2|                         ; 43 (43)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_500ms:U2                                                                                                                 ; work         ;
 ;    |div_50millones:U1|                    ; 44 (44)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|div_50millones:U1                                                                                                            ; work         ;
-;    |fsm_maquina_expendedora:UFSM|         ; 226 (94)          ; 60 (60)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM                                                                                                 ; work         ;
-;       |lpm_divide:Div0|                   ; 132 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0                                                                                 ; work         ;
-;          |lpm_divide_qhm:auto_generated|  ; 132 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated                                                   ; work         ;
-;             |sign_div_unsign_rlh:divider| ; 132 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider                       ; work         ;
-;                |alt_u_div_16f:divider|    ; 132 (132)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_16f:divider ; work         ;
-;    |ram_saldo:URAMs|                      ; 0 (0)             ; 13 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|ram_saldo:URAMs                                                                                                              ; work         ;
+;    |fsm_maquina_expendedora:UFSM|         ; 954 (163)         ; 83 (83)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM                                                                                                 ; work         ;
+;       |lpm_divide:Div0|                   ; 150 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0                                                                                 ; work         ;
+;          |lpm_divide_qhm:auto_generated|  ; 150 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_rlh:divider| ; 150 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider                       ; work         ;
+;                |alt_u_div_16f:divider|    ; 150 (150)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div0|lpm_divide_qhm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_16f:divider ; work         ;
+;       |lpm_divide:Div1|                   ; 179 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div1                                                                                 ; work         ;
+;          |lpm_divide_u0p:auto_generated|  ; 179 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div1|lpm_divide_u0p:auto_generated                                                   ; work         ;
+;             |abs_divider_2dg:divider|     ; 179 (4)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div1|lpm_divide_u0p:auto_generated|abs_divider_2dg:divider                           ; work         ;
+;                |alt_u_div_p8f:divider|    ; 166 (166)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div1|lpm_divide_u0p:auto_generated|abs_divider_2dg:divider|alt_u_div_p8f:divider     ; work         ;
+;                |lpm_abs_av9:my_abs_num|   ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div1|lpm_divide_u0p:auto_generated|abs_divider_2dg:divider|lpm_abs_av9:my_abs_num    ; work         ;
+;       |lpm_divide:Div2|                   ; 221 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div2                                                                                 ; work         ;
+;          |lpm_divide_v0p:auto_generated|  ; 221 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div2|lpm_divide_v0p:auto_generated                                                   ; work         ;
+;             |abs_divider_3dg:divider|     ; 221 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div2|lpm_divide_v0p:auto_generated|abs_divider_3dg:divider                           ; work         ;
+;                |alt_u_div_q8f:divider|    ; 201 (201)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div2|lpm_divide_v0p:auto_generated|abs_divider_3dg:divider|alt_u_div_q8f:divider     ; work         ;
+;                |lpm_abs_bv9:my_abs_num|   ; 20 (20)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Div2|lpm_divide_v0p:auto_generated|abs_divider_3dg:divider|lpm_abs_bv9:my_abs_num    ; work         ;
+;       |lpm_divide:Mod0|                   ; 241 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Mod0                                                                                 ; work         ;
+;          |lpm_divide_5po:auto_generated|  ; 241 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Mod0|lpm_divide_5po:auto_generated                                                   ; work         ;
+;             |abs_divider_6dg:divider|     ; 241 (26)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Mod0|lpm_divide_5po:auto_generated|abs_divider_6dg:divider                           ; work         ;
+;                |alt_u_div_19f:divider|    ; 203 (203)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Mod0|lpm_divide_5po:auto_generated|abs_divider_6dg:divider|alt_u_div_19f:divider     ; work         ;
+;                |lpm_abs_av9:my_abs_num|   ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|lpm_divide:Mod0|lpm_divide_5po:auto_generated|abs_divider_6dg:divider|lpm_abs_av9:my_abs_num    ; work         ;
 ;    |ram_stock:URAM|                       ; 48 (48)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|ram_stock:URAM                                                                                                               ; work         ;
 ;    |rom_productos:UROM|                   ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|rom_productos:UROM                                                                                                           ; work         ;
+;    |servo_giro180:U_SERVO1|               ; 115 (115)         ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|servo_giro180:U_SERVO1                                                                                                       ; work         ;
+;    |servo_giro180:U_SERVO2|               ; 84 (84)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|servo_giro180:U_SERVO2                                                                                                       ; work         ;
+;    |servo_puerta:U_SERVO_PUERTA|          ; 124 (124)         ; 62 (62)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|servo_puerta:U_SERVO_PUERTA                                                                                                  ; work         ;
+;    |servos_monedas:U_SERVOS_MONEDAS|      ; 171 (171)         ; 74 (74)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|servos_monedas:U_SERVOS_MONEDAS                                                                                              ; work         ;
+;    |sumador_saldo:U_saldo|                ; 151 (151)         ; 86 (86)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|sumador_saldo:U_saldo                                                                                                        ; work         ;
 ;    |systemd:U_D0|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_D0                                                                                                                 ; work         ;
 ;    |systemd:U_D1|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_D1                                                                                                                 ; work         ;
 ;    |systemd:U_D2|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |maquina_expendedora|systemd:U_D2                                                                                                                 ; work         ;
@@ -340,40 +387,120 @@ Encoding Type:  One-Hot
 +-------------------------+---------------+------------------+-------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                            ;
-+-------------------------------------------------+-------------------------------------------------------------+
-; Register name                                   ; Reason for Removal                                          ;
-+-------------------------------------------------+-------------------------------------------------------------+
-; fsm_maquina_expendedora:UFSM|r_reset_stock      ; Stuck at GND due to stuck port data_in                      ;
-; ram_saldo:URAMs|saldo_reg[1]                    ; Merged with ram_saldo:URAMs|saldo_reg[0]                    ;
-; fsm_maquina_expendedora:UFSM|r_ram_saldo_din[1] ; Merged with fsm_maquina_expendedora:UFSM|r_ram_saldo_din[0] ;
-; RESTADOR:URES|cambio_reg[1]                     ; Merged with RESTADOR:URES|cambio_reg[0]                     ;
-; fsm_maquina_expendedora:UFSM|state.ANOMALY      ; Stuck at GND due to stuck port data_in                      ;
-; fsm_maquina_expendedora:UFSM|r_anomalia_led     ; Stuck at GND due to stuck port data_in                      ;
-; div_50millones:U1|counter[0]                    ; Merged with div_2seg:U3|count1[0]                           ;
-; div_500ms:U2|count1[0]                          ; Merged with div_2seg:U3|count1[0]                           ;
-; div_500ms:U2|count1[1]                          ; Merged with div_2seg:U3|count1[1]                           ;
-; div_50millones:U1|counter[1]                    ; Merged with div_2seg:U3|count1[1]                           ;
-; div_50millones:U1|counter[2]                    ; Merged with div_500ms:U2|count1[2]                          ;
-; div_500ms:U2|count1[2]                          ; Merged with div_2seg:U3|count1[2]                           ;
-; div_50millones:U1|counter[3]                    ; Merged with div_500ms:U2|count1[3]                          ;
-; div_500ms:U2|count1[3]                          ; Merged with div_2seg:U3|count1[3]                           ;
-; div_50millones:U1|counter[4]                    ; Merged with div_500ms:U2|count1[4]                          ;
-; div_500ms:U2|count1[4]                          ; Merged with div_2seg:U3|count1[4]                           ;
-; div_50millones:U1|counter[5]                    ; Merged with div_2seg:U3|count1[5]                           ;
-; Total Number of Removed Registers = 17          ;                                                             ;
-+-------------------------------------------------+-------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                     ;
++----------------------------------------------------------+-------------------------------------------------------------+
+; Register name                                            ; Reason for Removal                                          ;
++----------------------------------------------------------+-------------------------------------------------------------+
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[0..2,11,12]       ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[0..2]        ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[4,6]         ; Stuck at VCC due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[11,12]       ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[0..2]        ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[5,7]         ; Stuck at VCC due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[8]           ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[10]          ; Stuck at VCC due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[11,12,14]    ; Stuck at GND due to stuck port data_in                      ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[16]          ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[0..2]                  ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[5,7]                   ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[8]                     ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[10]                    ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[11,12,14]              ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO2|duty_cycle[16]                    ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[0..2]                  ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[5,7]                   ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[8]                     ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[10]                    ; Stuck at VCC due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[11,12,14]              ; Stuck at GND due to stuck port data_in                      ;
+; servo_giro180:U_SERVO1|duty_cycle[16]                    ; Stuck at VCC due to stuck port data_in                      ;
+; fsm_maquina_expendedora:UFSM|r_reset_stock               ; Stuck at GND due to stuck port data_in                      ;
+; fsm_maquina_expendedora:UFSM|r_mostrar_cambio            ; Merged with fsm_maquina_expendedora:UFSM|r_door_led         ;
+; sumador_saldo:U_saldo|saldo_reg[1]                       ; Merged with sumador_saldo:U_saldo|saldo_reg[0]              ;
+; servo_giro180:U_SERVO2|counter[19]                       ; Merged with servo_giro180:U_SERVO1|counter[19]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[19]              ; Merged with servo_giro180:U_SERVO1|counter[19]              ;
+; servo_giro180:U_SERVO2|counter[18]                       ; Merged with servo_giro180:U_SERVO1|counter[18]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[18]              ; Merged with servo_giro180:U_SERVO1|counter[18]              ;
+; servo_giro180:U_SERVO2|counter[17]                       ; Merged with servo_giro180:U_SERVO1|counter[17]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[17]              ; Merged with servo_giro180:U_SERVO1|counter[17]              ;
+; servo_giro180:U_SERVO2|counter[16]                       ; Merged with servo_giro180:U_SERVO1|counter[16]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[16]              ; Merged with servo_giro180:U_SERVO1|counter[16]              ;
+; servo_giro180:U_SERVO2|counter[15]                       ; Merged with servo_giro180:U_SERVO1|counter[15]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[15]              ; Merged with servo_giro180:U_SERVO1|counter[15]              ;
+; servo_giro180:U_SERVO2|counter[14]                       ; Merged with servo_giro180:U_SERVO1|counter[14]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[14]              ; Merged with servo_giro180:U_SERVO1|counter[14]              ;
+; servo_giro180:U_SERVO2|counter[13]                       ; Merged with servo_giro180:U_SERVO1|counter[13]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[13]              ; Merged with servo_giro180:U_SERVO1|counter[13]              ;
+; servo_giro180:U_SERVO2|counter[12]                       ; Merged with servo_giro180:U_SERVO1|counter[12]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[12]              ; Merged with servo_giro180:U_SERVO1|counter[12]              ;
+; servo_giro180:U_SERVO2|counter[11]                       ; Merged with servo_giro180:U_SERVO1|counter[11]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[11]              ; Merged with servo_giro180:U_SERVO1|counter[11]              ;
+; servo_giro180:U_SERVO2|counter[10]                       ; Merged with servo_giro180:U_SERVO1|counter[10]              ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[10]              ; Merged with servo_giro180:U_SERVO1|counter[10]              ;
+; servo_giro180:U_SERVO2|counter[9]                        ; Merged with servo_giro180:U_SERVO1|counter[9]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[9]               ; Merged with servo_giro180:U_SERVO1|counter[9]               ;
+; servo_giro180:U_SERVO2|counter[8]                        ; Merged with servo_giro180:U_SERVO1|counter[8]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[8]               ; Merged with servo_giro180:U_SERVO1|counter[8]               ;
+; servo_giro180:U_SERVO2|counter[7]                        ; Merged with servo_giro180:U_SERVO1|counter[7]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[7]               ; Merged with servo_giro180:U_SERVO1|counter[7]               ;
+; servo_giro180:U_SERVO2|counter[6]                        ; Merged with servo_giro180:U_SERVO1|counter[6]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[6]               ; Merged with servo_giro180:U_SERVO1|counter[6]               ;
+; servo_giro180:U_SERVO2|counter[5]                        ; Merged with servo_giro180:U_SERVO1|counter[5]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[5]               ; Merged with servo_giro180:U_SERVO1|counter[5]               ;
+; servo_giro180:U_SERVO2|counter[4]                        ; Merged with servo_giro180:U_SERVO1|counter[4]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[4]               ; Merged with servo_giro180:U_SERVO1|counter[4]               ;
+; servo_giro180:U_SERVO2|counter[3]                        ; Merged with servo_giro180:U_SERVO1|counter[3]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[3]               ; Merged with servo_giro180:U_SERVO1|counter[3]               ;
+; servo_giro180:U_SERVO2|counter[2]                        ; Merged with servo_giro180:U_SERVO1|counter[2]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[2]               ; Merged with servo_giro180:U_SERVO1|counter[2]               ;
+; servo_giro180:U_SERVO2|counter[1]                        ; Merged with servo_giro180:U_SERVO1|counter[1]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[1]               ; Merged with servo_giro180:U_SERVO1|counter[1]               ;
+; servo_giro180:U_SERVO2|counter[0]                        ; Merged with servo_giro180:U_SERVO1|counter[0]               ;
+; servos_monedas:U_SERVOS_MONEDAS|counter[0]               ; Merged with servo_giro180:U_SERVO1|counter[0]               ;
+; servo_giro180:U_SERVO1|duty_cycle[9]                     ; Merged with servo_giro180:U_SERVO1|duty_cycle[15]           ;
+; servo_giro180:U_SERVO1|duty_cycle[3,4,6]                 ; Merged with servo_giro180:U_SERVO1|duty_cycle[13]           ;
+; servo_giro180:U_SERVO2|duty_cycle[9]                     ; Merged with servo_giro180:U_SERVO2|duty_cycle[15]           ;
+; servo_giro180:U_SERVO2|duty_cycle[3,4,6]                 ; Merged with servo_giro180:U_SERVO2|duty_cycle[13]           ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[9]           ; Merged with servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[15] ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[3,4,6]       ; Merged with servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[13] ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[3,5,7,13,16] ; Merged with servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[10] ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[8,9,15]      ; Merged with servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[14] ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[5,7,16]           ; Merged with servo_puerta:U_SERVO_PUERTA|duty_cycle[10]      ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[9]                ; Merged with servo_puerta:U_SERVO_PUERTA|duty_cycle[15]      ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[8]                ; Merged with servo_puerta:U_SERVO_PUERTA|duty_cycle[14]      ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[3]                ; Merged with servo_puerta:U_SERVO_PUERTA|duty_cycle[13]      ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[6]                ; Merged with servo_puerta:U_SERVO_PUERTA|duty_cycle[4]       ;
+; sumador_saldo:U_saldo|saldo_reg[0]                       ; Stuck at GND due to stuck port data_in                      ;
+; RESTADOR:URES|cambio_reg[0,1]                            ; Stuck at GND due to stuck port data_in                      ;
+; fsm_maquina_expendedora:UFSM|r_valor_full[0,1]           ; Stuck at GND due to stuck port data_in                      ;
+; fsm_maquina_expendedora:UFSM|state.ANOMALY               ; Stuck at GND due to stuck port data_in                      ;
+; fsm_maquina_expendedora:UFSM|r_anomalia_led              ; Stuck at GND due to stuck port data_in                      ;
+; div_50millones:U1|counter[0]                             ; Merged with div_2seg:U3|count1[0]                           ;
+; div_500ms:U2|count1[0]                                   ; Merged with div_2seg:U3|count1[0]                           ;
+; div_500ms:U2|count1[1]                                   ; Merged with div_2seg:U3|count1[1]                           ;
+; div_50millones:U1|counter[1]                             ; Merged with div_2seg:U3|count1[1]                           ;
+; div_50millones:U1|counter[2]                             ; Merged with div_500ms:U2|count1[2]                          ;
+; div_500ms:U2|count1[2]                                   ; Merged with div_2seg:U3|count1[2]                           ;
+; div_50millones:U1|counter[3]                             ; Merged with div_500ms:U2|count1[3]                          ;
+; div_500ms:U2|count1[3]                                   ; Merged with div_2seg:U3|count1[3]                           ;
+; div_50millones:U1|counter[4]                             ; Merged with div_500ms:U2|count1[4]                          ;
+; div_500ms:U2|count1[4]                                   ; Merged with div_2seg:U3|count1[4]                           ;
+; div_50millones:U1|counter[5]                             ; Merged with div_2seg:U3|count1[5]                           ;
+; Total Number of Removed Registers = 133                  ;                                                             ;
++----------------------------------------------------------+-------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                          ;
-+--------------------------------------------+---------------------------+---------------------------------------------+
-; Register name                              ; Reason for Removal        ; Registers Removed due to This Register      ;
-+--------------------------------------------+---------------------------+---------------------------------------------+
-; fsm_maquina_expendedora:UFSM|state.ANOMALY ; Stuck at GND              ; fsm_maquina_expendedora:UFSM|r_anomalia_led ;
-;                                            ; due to stuck port data_in ;                                             ;
-+--------------------------------------------+---------------------------+---------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                        ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
+; Register name                              ; Reason for Removal        ; Registers Removed due to This Register                    ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
+; sumador_saldo:U_saldo|saldo_reg[0]         ; Stuck at GND              ; RESTADOR:URES|cambio_reg[0], RESTADOR:URES|cambio_reg[1], ;
+;                                            ; due to stuck port data_in ; fsm_maquina_expendedora:UFSM|r_valor_full[1],             ;
+;                                            ;                           ; fsm_maquina_expendedora:UFSM|r_valor_full[0]              ;
+; fsm_maquina_expendedora:UFSM|state.ANOMALY ; Stuck at GND              ; fsm_maquina_expendedora:UFSM|r_anomalia_led               ;
+;                                            ; due to stuck port data_in ;                                                           ;
++--------------------------------------------+---------------------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -381,44 +508,124 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 193   ;
-; Number of registers using Synchronous Clear  ; 12    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 79    ;
+; Total registers                              ; 540   ;
+; Number of registers using Synchronous Clear  ; 78    ;
+; Number of registers using Synchronous Load   ; 78    ;
+; Number of registers using Asynchronous Clear ; 204   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 89    ;
+; Number of registers using Clock Enable       ; 316   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------------+
-; Inverted Register Statistics                           ;
-+----------------------------------------------+---------+
-; Inverted Register                            ; Fan out ;
-+----------------------------------------------+---------+
-; fsm_maquina_expendedora:UFSM|r_stock_leds[0] ; 1       ;
-; fsm_maquina_expendedora:UFSM|r_stock_leds[1] ; 1       ;
-; fsm_maquina_expendedora:UFSM|r_stock_leds[2] ; 1       ;
-; ram_stock:URAM|ram[0][0]                     ; 1       ;
-; ram_stock:URAM|ram[3][0]                     ; 1       ;
-; ram_stock:URAM|ram[3][1]                     ; 1       ;
-; ram_stock:URAM|ram[0][1]                     ; 1       ;
-; Total number of inverted registers = 7       ;         ;
-+----------------------------------------------+---------+
++-----------------------------------------------------------+
+; Inverted Register Statistics                              ;
++-------------------------------------------------+---------+
+; Inverted Register                               ; Fan out ;
++-------------------------------------------------+---------+
+; fsm_maquina_expendedora:UFSM|r_stock_leds[0]    ; 1       ;
+; fsm_maquina_expendedora:UFSM|r_stock_leds[1]    ; 1       ;
+; fsm_maquina_expendedora:UFSM|r_stock_leds[2]    ; 1       ;
+; ram_stock:URAM|ram[0][0]                        ; 1       ;
+; ram_stock:URAM|ram[3][0]                        ; 1       ;
+; ram_stock:URAM|ram[3][1]                        ; 1       ;
+; ram_stock:URAM|ram[0][1]                        ; 1       ;
+; servo_giro180:U_SERVO1|duty_cycle[13]           ; 2       ;
+; servo_giro180:U_SERVO2|duty_cycle[13]           ; 2       ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle1[13] ; 2       ;
+; servos_monedas:U_SERVOS_MONEDAS|duty_cycle2[10] ; 4       ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[13]      ; 3       ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[4]       ; 2       ;
+; servo_puerta:U_SERVO_PUERTA|duty_cycle[10]      ; 4       ;
+; Total number of inverted registers = 14         ;         ;
++-------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |maquina_expendedora|cont30:Ucont|done_int                           ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |maquina_expendedora|cont30:Ucont|count[0]                           ;
-; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|r_valor_full[2]    ;
-; 6:1                ; 12 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|r_ram_saldo_din[7] ;
-; 16:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |maquina_expendedora|ram_stock:URAM|Mux1                             ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|Selector32         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |maquina_expendedora|BUZZER:U_BUZZER|CONTADOR_NOTA[1]                  ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|servo_giro180:U_SERVO1|counter[0]                 ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |maquina_expendedora|servo_puerta:U_SERVO_PUERTA|counter[10]           ;
+; 4:1                ; 23 bits   ; 46 LEs        ; 23 LEs               ; 23 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt500[14]                  ;
+; 4:1                ; 23 bits   ; 46 LEs        ; 23 LEs               ; 23 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|cnt1000[8]                  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |maquina_expendedora|cont30:U_RESET_AUTO|done_int                      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |maquina_expendedora|cont30:U_RESET_AUTO|count[0]                      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |maquina_expendedora|cont30:Ucont|counting                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |maquina_expendedora|cont30:Ucont|count[0]                             ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |maquina_expendedora|servo_giro180:U_SERVO1|turn_counter[7]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |maquina_expendedora|servo_giro180:U_SERVO2|turn_counter[28]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |maquina_expendedora|servos_monedas:U_SERVOS_MONEDAS|turn_counter1[6]  ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |maquina_expendedora|servos_monedas:U_SERVOS_MONEDAS|turn_counter2[26] ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 22 LEs               ; 11 LEs                 ; Yes        ; |maquina_expendedora|sumador_saldo:U_saldo|saldo_reg[12]               ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|r_valor_full[2]      ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |maquina_expendedora|servo_puerta:U_SERVO_PUERTA|turn_counter[3]       ;
+; 9:1                ; 32 bits   ; 192 LEs       ; 64 LEs               ; 128 LEs                ; Yes        ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|change_timer[23]     ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 4 LEs                ; 20 LEs                 ; Yes        ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|giro_counter[2]      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |maquina_expendedora|servo_puerta:U_SERVO_PUERTA|duty_cycle[4]         ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |maquina_expendedora|ram_stock:URAM|Mux1                               ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; No         ; |maquina_expendedora|fsm_maquina_expendedora:UFSM|Selector71           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: servo_giro180:U_SERVO1 ;
++----------------+----------+-----------------------------------------+
+; Parameter Name ; Value    ; Type                                    ;
++----------------+----------+-----------------------------------------+
+; clk_hz         ; 50000000 ; Signed Integer                          ;
+; pulse_hz       ; 50       ; Signed Integer                          ;
+; stop_pulse_us  ; 1500     ; Signed Integer                          ;
+; full_speed_us  ; 2000     ; Signed Integer                          ;
+; turn_time_ms   ; 1000     ; Signed Integer                          ;
++----------------+----------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: servo_giro180:U_SERVO2 ;
++----------------+----------+-----------------------------------------+
+; Parameter Name ; Value    ; Type                                    ;
++----------------+----------+-----------------------------------------+
+; clk_hz         ; 50000000 ; Signed Integer                          ;
+; pulse_hz       ; 50       ; Signed Integer                          ;
+; stop_pulse_us  ; 1500     ; Signed Integer                          ;
+; full_speed_us  ; 2000     ; Signed Integer                          ;
+; turn_time_ms   ; 1000     ; Signed Integer                          ;
++----------------+----------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: servos_monedas:U_SERVOS_MONEDAS ;
++----------------+----------+--------------------------------------------------+
+; Parameter Name ; Value    ; Type                                             ;
++----------------+----------+--------------------------------------------------+
+; clk_hz         ; 50000000 ; Signed Integer                                   ;
+; pulse_hz       ; 50       ; Signed Integer                                   ;
+; stop_pulse_us  ; 1500     ; Signed Integer                                   ;
+; full_speed_us  ; 2000     ; Signed Integer                                   ;
+; min_speed_us   ; 1000     ; Signed Integer                                   ;
+; turn_time_ms   ; 1050     ; Signed Integer                                   ;
++----------------+----------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: servo_puerta:U_SERVO_PUERTA ;
++----------------+----------+----------------------------------------------+
+; Parameter Name ; Value    ; Type                                         ;
++----------------+----------+----------------------------------------------+
+; clk_hz         ; 50000000 ; Signed Integer                               ;
+; pulse_hz       ; 50       ; Signed Integer                               ;
+; stop_pulse_us  ; 1500     ; Signed Integer                               ;
+; cw_pulse_us    ; 1000     ; Signed Integer                               ;
+; ccw_pulse_us   ; 2000     ; Signed Integer                               ;
+; turn_time_ms   ; 800      ; Signed Integer                               ;
++----------------+----------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +---------------------------------------------------------------------------------+
@@ -766,14 +973,97 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fsm_maquina_expendedora:UFSM"                                                              ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; buzzer      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; debug_venta ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div1 ;
++------------------------+----------------+-----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                ;
++------------------------+----------------+-----------------------------------------------------+
+; LPM_WIDTHN             ; 15             ; Untyped                                             ;
+; LPM_WIDTHD             ; 11             ; Untyped                                             ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_PIPELINE           ; 0              ; Untyped                                             ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                             ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                             ;
+; CBXI_PARAMETER         ; lpm_divide_u0p ; Untyped                                             ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                             ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                             ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                      ;
++------------------------+----------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Mod0 ;
++------------------------+----------------+-----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                ;
++------------------------+----------------+-----------------------------------------------------+
+; LPM_WIDTHN             ; 15             ; Untyped                                             ;
+; LPM_WIDTHD             ; 15             ; Untyped                                             ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_PIPELINE           ; 0              ; Untyped                                             ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                             ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                             ;
+; CBXI_PARAMETER         ; lpm_divide_5po ; Untyped                                             ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                             ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                             ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                      ;
++------------------------+----------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: fsm_maquina_expendedora:UFSM|lpm_divide:Div2 ;
++------------------------+----------------+-----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                ;
++------------------------+----------------+-----------------------------------------------------+
+; LPM_WIDTHN             ; 16             ; Untyped                                             ;
+; LPM_WIDTHD             ; 10             ; Untyped                                             ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                             ;
+; LPM_PIPELINE           ; 0              ; Untyped                                             ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                             ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                             ;
+; CBXI_PARAMETER         ; lpm_divide_v0p ; Untyped                                             ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                             ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                             ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                      ;
++------------------------+----------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "cont30:U_RESET_AUTO" ;
++-------+-------+----------+----------------------+
+; Port  ; Type  ; Severity ; Details              ;
++-------+-------+----------+----------------------+
+; reset ; Input ; Info     ; Stuck at GND         ;
++-------+-------+----------+----------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fsm_maquina_expendedora:UFSM"                                                                 ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; coin500        ; Input  ; Info     ; Stuck at GND                                                                        ;
+; coin1000       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ram_saldo_we   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ram_saldo_addr ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ram_saldo_din  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; buzzer         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; debug_venta    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -803,7 +1093,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:05     ;
+; Top            ; 00:00:12     ;
 +----------------+--------------+
 
 
@@ -813,9 +1103,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Wed Oct 29 17:54:48 2025
+    Info: Processing started: Thu Oct 30 23:55:14 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MAQUINA_EXPENDEDORA -c MAQUINA_EXPENDEDORA
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/servos_monedas/servos_monedas.vhd
+    Info (12022): Found design unit 1: servos_monedas-arch
+    Info (12023): Found entity 1: servos_monedas
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/servo_puerta/servo_puerta.vhd
+    Info (12022): Found design unit 1: servo_puerta-arch
+    Info (12023): Found entity 1: servo_puerta
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/servo_giro180/servo_giro180.vhd
+    Info (12022): Found design unit 1: servo_giro180-arch
+    Info (12023): Found entity 1: servo_giro180
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/sensorinfrarojo/sensorinfrarojo.vhd
+    Info (12022): Found design unit 1: SensorInfrarojo-architecture_IR
+    Info (12023): Found entity 1: SensorInfrarojo
+Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/buzzer/buzzer.vhd
+    Info (12022): Found design unit 1: BUZZER-SenalBuzzer
+    Info (12023): Found entity 1: BUZZER
 Info (12021): Found 2 design units, including 1 entities, in source file /users/alessandro/downloads/proyecto1vhdl2025ii/ram_saldo/ram_saldo.vhd
     Info (12022): Found design unit 1: ram_saldo-behavioral
     Info (12023): Found entity 1: ram_saldo
@@ -862,9 +1167,16 @@ Info (12021): Found 2 design units, including 1 entities, in source file /users/
     Info (12022): Found design unit 1: top_ingreso_dinero-arch_top_ingreso_dinero
     Info (12023): Found entity 1: top_ingreso_dinero
 Info (12021): Found 2 design units, including 1 entities, in source file maquina_expendedora.vhd
-    Info (12022): Found design unit 1: maquina_expendedora-arch
+    Info (12022): Found design unit 1: maquina_expendedora-arch_maquina_expendedora
     Info (12023): Found entity 1: maquina_expendedora
 Info (12127): Elaborating entity "MAQUINA_EXPENDEDORA" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at MAQUINA_EXPENDEDORA.vhd(205): object "ram_saldo_we" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at MAQUINA_EXPENDEDORA.vhd(208): object "ram_saldo_addr" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at MAQUINA_EXPENDEDORA.vhd(209): object "ram_saldo_din" assigned a value but never read
+Warning (10540): VHDL Signal Declaration warning at MAQUINA_EXPENDEDORA.vhd(224): used explicit default value for signal "coin500_dummy" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at MAQUINA_EXPENDEDORA.vhd(225): used explicit default value for signal "coin1000_dummy" because signal was never assigned a value
+Warning (10036): Verilog HDL or VHDL warning at MAQUINA_EXPENDEDORA.vhd(231): object "activar_servo1" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at MAQUINA_EXPENDEDORA.vhd(232): object "activar_servo2" assigned a value but never read
 Info (12128): Elaborating entity "bin_bcd" for hierarchy "bin_bcd:U_bcd1"
 Warning (10036): Verilog HDL or VHDL warning at bin_bcd.vhd(16): object "value" assigned a value but never read
 Info (12128): Elaborating entity "systemd" for hierarchy "systemd:U_D0"
@@ -873,14 +1185,19 @@ Info (12128): Elaborating entity "div_500ms" for hierarchy "div_500ms:U2"
 Info (12128): Elaborating entity "div_2seg" for hierarchy "div_2seg:U3"
 Info (12128): Elaborating entity "cont30" for hierarchy "cont30:Ucont"
 Info (12128): Elaborating entity "fsm_maquina_expendedora" for hierarchy "fsm_maquina_expendedora:UFSM"
-Warning (10540): VHDL Signal Declaration warning at fsm_maquina_expendedora.vhd(74): used explicit default value for signal "r_ram_saldo_addr" because signal was never assigned a value
-Warning (10631): VHDL Process Statement warning at fsm_maquina_expendedora.vhd(139): inferring latch(es) for signal or variable "r_debug_venta", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "r_debug_venta" at fsm_maquina_expendedora.vhd(139)
+Warning (10540): VHDL Signal Declaration warning at fsm_maquina_expendedora.vhd(78): used explicit default value for signal "r_ram_saldo_addr" because signal was never assigned a value
+Warning (10631): VHDL Process Statement warning at fsm_maquina_expendedora.vhd(153): inferring latch(es) for signal or variable "r_debug_venta", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "r_debug_venta" at fsm_maquina_expendedora.vhd(153)
 Info (12128): Elaborating entity "ram_stock" for hierarchy "ram_stock:URAM"
-Info (12128): Elaborating entity "ram_saldo" for hierarchy "ram_saldo:URAMs"
 Info (12128): Elaborating entity "rom_productos" for hierarchy "rom_productos:UROM"
 Info (12128): Elaborating entity "RESTADOR" for hierarchy "RESTADOR:URES"
-Info (278001): Inferred 15 megafunctions from design logic
+Info (12128): Elaborating entity "sumador_saldo" for hierarchy "sumador_saldo:U_saldo"
+Info (12128): Elaborating entity "SensorInfrarojo" for hierarchy "SensorInfrarojo:U_sensor500"
+Info (12128): Elaborating entity "servo_giro180" for hierarchy "servo_giro180:U_SERVO1"
+Info (12128): Elaborating entity "BUZZER" for hierarchy "BUZZER:U_BUZZER"
+Info (12128): Elaborating entity "servos_monedas" for hierarchy "servos_monedas:U_SERVOS_MONEDAS"
+Info (12128): Elaborating entity "servo_puerta" for hierarchy "servo_puerta:U_SERVO_PUERTA"
+Info (278001): Inferred 18 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd1|Mod0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd1|Mod1"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd1|Mod2"
@@ -896,6 +1213,9 @@ Info (278001): Inferred 15 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd2|Div2"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "bin_bcd:U_bcd3|Div0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "fsm_maquina_expendedora:UFSM|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "fsm_maquina_expendedora:UFSM|Div1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "fsm_maquina_expendedora:UFSM|Mod0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "fsm_maquina_expendedora:UFSM|Div2"
 Info (12130): Elaborated megafunction instantiation "bin_bcd:U_bcd1|lpm_divide:Mod0"
 Info (12133): Instantiated megafunction "bin_bcd:U_bcd1|lpm_divide:Mod0" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHN" = "14"
@@ -978,13 +1298,62 @@ Info (12133): Instantiated megafunction "fsm_maquina_expendedora:UFSM|lpm_divide
     Info (12134): Parameter "LPM_WIDTHD" = "7"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12130): Elaborated megafunction instantiation "fsm_maquina_expendedora:UFSM|lpm_divide:Div1"
+Info (12133): Instantiated megafunction "fsm_maquina_expendedora:UFSM|lpm_divide:Div1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "15"
+    Info (12134): Parameter "LPM_WIDTHD" = "11"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_u0p.tdf
+    Info (12023): Found entity 1: lpm_divide_u0p
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_2dg.tdf
+    Info (12023): Found entity 1: abs_divider_2dg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_p8f.tdf
+    Info (12023): Found entity 1: alt_u_div_p8f
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_6v9.tdf
+    Info (12023): Found entity 1: lpm_abs_6v9
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_av9.tdf
+    Info (12023): Found entity 1: lpm_abs_av9
+Info (12130): Elaborated megafunction instantiation "fsm_maquina_expendedora:UFSM|lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "fsm_maquina_expendedora:UFSM|lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "15"
+    Info (12134): Parameter "LPM_WIDTHD" = "15"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_5po.tdf
+    Info (12023): Found entity 1: lpm_divide_5po
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_6dg.tdf
+    Info (12023): Found entity 1: abs_divider_6dg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_19f.tdf
+    Info (12023): Found entity 1: alt_u_div_19f
+Info (12130): Elaborated megafunction instantiation "fsm_maquina_expendedora:UFSM|lpm_divide:Div2"
+Info (12133): Instantiated megafunction "fsm_maquina_expendedora:UFSM|lpm_divide:Div2" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "16"
+    Info (12134): Parameter "LPM_WIDTHD" = "10"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_v0p.tdf
+    Info (12023): Found entity 1: lpm_divide_v0p
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_3dg.tdf
+    Info (12023): Found entity 1: abs_divider_3dg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_q8f.tdf
+    Info (12023): Found entity 1: alt_u_div_q8f
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_5v9.tdf
+    Info (12023): Found entity 1: lpm_abs_5v9
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_bv9.tdf
+    Info (12023): Found entity 1: lpm_abs_bv9
+Info (13014): Ignored 39 buffer(s)
+    Info (13016): Ignored 39 CARRY_SUM buffer(s)
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "anomalia_led" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (17016): Found the following redundant logic cells in design
-    Info (17048): Logic cell "bin_bcd:U_bcd1|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_13_result_int[0]~26"
+    Info (17048): Logic cell "bin_bcd:U_bcd1|lpm_divide:Mod1|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_13_result_int[0]~0"
     Info (17048): Logic cell "bin_bcd:U_bcd1|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_3_result_int[0]~8"
     Info (17048): Logic cell "bin_bcd:U_bcd1|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_4_result_int[0]~10"
     Info (17048): Logic cell "bin_bcd:U_bcd1|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_5_result_int[0]~12"
@@ -997,14 +1366,17 @@ Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "bin_bcd:U_bcd2|lpm_divide:Mod2|lpm_divide_bbm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_t8f:divider|add_sub_13_result_int[0]~0"
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2229 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 2183 logic cells
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 458 megabytes
-    Info: Processing ended: Wed Oct 29 17:54:55 2025
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:08
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "coin500"
+    Warning (15610): No output dependent on input pin "coin1000"
+Info (21057): Implemented 3613 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 12 input pins
+    Info (21059): Implemented 42 output pins
+    Info (21061): Implemented 3559 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 15 warnings
+    Info: Peak virtual memory: 474 megabytes
+    Info: Processing ended: Thu Oct 30 23:55:30 2025
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:15
 
 

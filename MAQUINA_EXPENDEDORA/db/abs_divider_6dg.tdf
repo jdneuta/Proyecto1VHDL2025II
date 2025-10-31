@@ -1,5 +1,5 @@
 --abs_divider DEN_REPRESENTATION="SIGNED" LPM_PIPELINE=0 MAXIMIZE_SPEED=5 NUM_REPRESENTATION="SIGNED" SKIP_BITS=0 WIDTH_D=15 WIDTH_N=15 denominator numerator quotient remainder
---VERSION_BEGIN 13.1 cbx_cycloneii 2013:10:23:18:05:48:SJ cbx_lpm_abs 2013:10:23:18:05:48:SJ cbx_lpm_add_sub 2013:10:23:18:05:48:SJ cbx_lpm_divide 2013:10:23:18:05:48:SJ cbx_mgl 2013:10:23:18:06:54:SJ cbx_stratix 2013:10:23:18:05:48:SJ cbx_stratixii 2013:10:23:18:05:48:SJ cbx_util_mgl 2013:10:23:18:05:48:SJ  VERSION_END
+--VERSION_BEGIN 13.1 cbx_cycloneii 2013:10:24:09:15:20:SJ cbx_lpm_abs 2013:10:24:09:15:20:SJ cbx_lpm_add_sub 2013:10:24:09:15:20:SJ cbx_lpm_divide 2013:10:24:09:15:20:SJ cbx_mgl 2013:10:24:09:16:30:SJ cbx_stratix 2013:10:24:09:15:20:SJ cbx_stratixii 2013:10:24:09:15:20:SJ cbx_util_mgl 2013:10:24:09:15:20:SJ  VERSION_END
 
 
 -- Copyright (C) 1991-2013 Altera Corporation
@@ -20,9 +20,9 @@
 FUNCTION alt_u_div_19f (denominator[14..0], numerator[14..0])
 RETURNS ( quotient[14..0], remainder[14..0]);
 FUNCTION lpm_abs_av9 (data[14..0])
-RETURNS ( overflow, result[14..0]);
+RETURNS ( result[14..0]);
 
---synthesis_resources = lut 190 
+--synthesis_resources = lut 160 
 SUBDESIGN abs_divider_6dg
 ( 
 	denominator[14..0]	:	input;

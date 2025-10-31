@@ -3,75 +3,99 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -15.707
-TNS   : -487.139
+Slack : -45.848
+TNS   : -2214.320
 
 Type  : Slow 1200mV 85C Model Setup 'div_50millones:U1|clk_out'
-Slack : -0.915
-TNS   : -3.472
+Slack : -0.985
+TNS   : -7.185
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : 0.022
+Slack : 0.037
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'div_50millones:U1|clk_out'
-Slack : 0.358
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'clk'
+Slack : -2.252
+TNS   : -137.839
+
+Type  : Slow 1200mV 85C Model Removal 'clk'
+Slack : 1.839
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -191.000
+TNS   : -533.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'div_50millones:U1|clk_out'
 Slack : -1.000
-TNS   : -5.000
+TNS   : -10.000
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -13.842
-TNS   : -417.327
+Slack : -40.887
+TNS   : -1941.349
 
 Type  : Slow 1200mV 0C Model Setup 'div_50millones:U1|clk_out'
-Slack : -0.723
-TNS   : -2.633
+Slack : -0.783
+TNS   : -5.348
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : 0.010
+Slack : 0.009
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'div_50millones:U1|clk_out'
-Slack : 0.312
+Slack : 0.313
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'clk'
+Slack : -1.857
+TNS   : -110.401
+
+Type  : Slow 1200mV 0C Model Removal 'clk'
+Slack : 1.621
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -191.000
+TNS   : -533.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'div_50millones:U1|clk_out'
 Slack : -1.000
-TNS   : -5.000
+TNS   : -10.000
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -8.325
-TNS   : -199.773
+Slack : -25.536
+TNS   : -1031.081
 
 Type  : Fast 1200mV 0C Model Setup 'div_50millones:U1|clk_out'
-Slack : -0.066
-TNS   : -0.132
+Slack : -0.109
+TNS   : -0.440
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : -0.115
-TNS   : -0.115
+Slack : -0.096
+TNS   : -0.096
 
 Type  : Fast 1200mV 0C Model Hold 'div_50millones:U1|clk_out'
-Slack : 0.188
+Slack : 0.167
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'clk'
+Slack : -0.917
+TNS   : -46.760
+
+Type  : Fast 1200mV 0C Model Removal 'clk'
+Slack : 0.993
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -201.497
+TNS   : -564.848
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'div_50millones:U1|clk_out'
 Slack : -1.000
-TNS   : -5.000
+TNS   : -10.000
 
 ------------------------------------------------------------

@@ -1,5 +1,5 @@
 --lpm_abs CARRY_CHAIN="MANUAL" DEVICE_FAMILY="Cyclone III" IGNORE_CARRY_BUFFERS="OFF" LPM_WIDTH=15 data result
---VERSION_BEGIN 13.1 cbx_cycloneii 2013:10:23:18:05:48:SJ cbx_lpm_abs 2013:10:23:18:05:48:SJ cbx_lpm_add_sub 2013:10:23:18:05:48:SJ cbx_mgl 2013:10:23:18:06:54:SJ cbx_stratix 2013:10:23:18:05:48:SJ cbx_stratixii 2013:10:23:18:05:48:SJ cbx_util_mgl 2013:10:23:18:05:48:SJ  VERSION_END
+--VERSION_BEGIN 13.1 cbx_cycloneii 2013:10:24:09:15:20:SJ cbx_lpm_abs 2013:10:24:09:15:20:SJ cbx_lpm_add_sub 2013:10:24:09:15:20:SJ cbx_mgl 2013:10:24:09:16:30:SJ cbx_stratix 2013:10:24:09:15:20:SJ cbx_stratixii 2013:10:24:09:15:20:SJ cbx_util_mgl 2013:10:24:09:15:20:SJ  VERSION_END
 
 
 -- Copyright (C) 1991-2013 Altera Corporation
@@ -28,14 +28,14 @@ SUBDESIGN lpm_abs_av9
 	result[14..0]	:	output;
 ) 
 VARIABLE 
-	cs1a[14..0] : carry_sum;
+	cs2a[14..0] : carry_sum;
 	result_tmp[14..0]	: WIRE;
 
 BEGIN 
-	cs1a[].cin = ( ((data[14..14] $ data[14..1]) & cs1a[13..0].cout), ((! data[0..0]) & data[14..14]));
-	cs1a[].sin = ( ((data[14..14] $ data[14..1]) $ cs1a[13..0].cout), data[0..0]);
+	cs2a[].cin = ( ((data[14..14] $ data[14..1]) & cs2a[13..0].cout), ((! data[0..0]) & data[14..14]));
+	cs2a[].sin = ( ((data[14..14] $ data[14..1]) $ cs2a[13..0].cout), data[0..0]);
 	overflow = (result_tmp[14..14] & data[14..14]);
 	result[] = result_tmp[];
-	result_tmp[] = ( cs1a[14..1].sout, data[0..0]);
+	result_tmp[] = ( cs2a[14..1].sout, data[0..0]);
 END;
 --VALID FILE

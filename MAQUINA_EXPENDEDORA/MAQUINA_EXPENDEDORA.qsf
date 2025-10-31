@@ -103,6 +103,17 @@ set_location_assignment PIN_G4 -to coin500
 set_location_assignment PIN_H6 -to coin1000
 set_location_assignment PIN_J7 -to anomalia_sw
 set_location_assignment PIN_H1 -to anomalia_led
+set_location_assignment PIN_AB16 -to sensorin500
+set_location_assignment PIN_AA16 -to sensorin1000
+set_location_assignment PIN_AA13 -to servo_pwm_1
+set_location_assignment PIN_AB14 -to servo_pwm_2
+set_location_assignment PIN_AA10 -to buzzer_out
+set_location_assignment PIN_AB15 -to servo_puerta_pwm
+set_global_assignment -name VHDL_FILE ../servos_monedas/servos_monedas.vhd
+set_global_assignment -name VHDL_FILE ../servo_puerta/servo_puerta.vhd
+set_global_assignment -name VHDL_FILE ../servo_giro180/servo_giro180.vhd
+set_global_assignment -name VHDL_FILE ../SensorInfrarojo/SensorInfrarojo.vhd
+set_global_assignment -name VHDL_FILE ../BUZZER/BUZZER.vhd
 set_global_assignment -name VHDL_FILE ../ram_saldo/ram_saldo.vhd
 set_global_assignment -name VHDL_FILE ../rom_productos/rom_productos.vhd
 set_global_assignment -name VHDL_FILE ../ram_stock/ram_stock.vhd
@@ -119,4 +130,6 @@ set_global_assignment -name VHDL_FILE ../SUMADOR/sumador_saldo/sumador_saldo.vhd
 set_global_assignment -name VHDL_FILE ../PRODUCTOS/top_productos.vhd
 set_global_assignment -name VHDL_FILE ../SUMADOR/top_ingreso_dinero/top_ingreso_dinero.vhd
 set_global_assignment -name VHDL_FILE MAQUINA_EXPENDEDORA.vhd
+set_location_assignment PIN_AA8 -to servo_pwm_500
+set_location_assignment PIN_AA5 -to servo_pwm_1000
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
