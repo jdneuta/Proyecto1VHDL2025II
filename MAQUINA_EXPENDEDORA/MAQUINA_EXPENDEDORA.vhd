@@ -47,9 +47,8 @@ entity maquina_expendedora is
 end maquina_expendedora;
 
 architecture arch_maquina_expendedora of maquina_expendedora is
-    --------------------------------------------------------------------
+
     -- Componentes 
-    --------------------------------------------------------------------
     component restador
         port(clk,reset,confirmar:in std_logic;
              dinero_ingresado,precio_producto:in integer range 0 to 9999;
@@ -105,7 +104,7 @@ architecture arch_maquina_expendedora of maquina_expendedora is
             led_compra:out std_logic;
             stock_leds:out std_logic_vector(2 downto 0);
             alerta_led,door_led,entrega_led,anomalia_led,buzzer,debug_venta,start_entrega:out std_logic;
-            servo1000_sw, servo500_sw : out std_logic  -- Nuevas señales para activar servos de monedas
+            servo1000_sw, servo500_sw : out std_logic  
         );
     end component;
 
@@ -169,7 +168,7 @@ architecture arch_maquina_expendedora of maquina_expendedora is
         );
     end component;
 
-    -- Nuevo componente para servos de monedas
+    --Componente para servos de monedas
     component servos_monedas
         generic (
             clk_hz : integer := 50000000;
@@ -189,9 +188,9 @@ architecture arch_maquina_expendedora of maquina_expendedora is
         );
     end component;
 
-    --------------------------------------------------------------------
+    
     -- Señales internas
-    --------------------------------------------------------------------
+    
     signal saldo_bin     : integer range 0 to 9500 := 0;
     signal cambio_int    : integer range -9999 to 9999 := 0;
     signal precio_int    : integer range 0 to 9500 := 0;
@@ -220,7 +219,7 @@ architecture arch_maquina_expendedora of maquina_expendedora is
     -- Entrega y sincronización
     signal entrega_done_raw, entrega_done_sync1, entrega_done_sync2, entrega_done_main : std_logic;
     
-    -- Señales dummy para monedas (ya no usadas, conectadas a '0')
+    -- Señales dummy para monedas 
     signal coin500_dummy : std_logic := '0';
     signal coin1000_dummy: std_logic := '0';
     
@@ -238,16 +237,15 @@ architecture arch_maquina_expendedora of maquina_expendedora is
     
     signal reset_auto : std_logic := '0';
     
-    -- Nuevas señales para servos de monedas
+    -- Señales para servos de monedas
     signal servo1000_sw : std_logic;
     signal servo500_sw  : std_logic;
     signal pwm_servo1000_sig : std_logic;
     signal pwm_servo500_sig  : std_logic;
     
 begin
-    --------------------------------------------------------------------
+    
     -- Conversión binario a BCD y control de displays
-    --------------------------------------------------------------------
 	 
     U_bcd1: bin_bcd port map(bin=>valor_saldo,d0=>d0,d1=>d1,d2=>open,d3=>open);
     U_bcd2: bin_bcd port map(bin=>valor_producto,d0=>d2,d1=>d3,d2=>open,d3=>open);
@@ -262,15 +260,15 @@ begin
             dd0<=d0; dd1<=d1; dd2<=d2; dd3<=d3;
         end if;
     end process;
-	--Mapeo a displays 
+	-- Mapeo a displays 
     U_D0: systemd port map(A=>dd0,D0=>disp0);
     U_D1: systemd port map(A=>dd1,D0=>disp1);
     U_D2: systemd port map(A=>dd2,D0=>disp2);
     U_D3: systemd port map(A=>dd3,D0=>disp3);
 
-    --------------------------------------------------------------------
+    
     -- Divisores de frecuencia
-    --------------------------------------------------------------------
+    
     U1: div_50millones port map(clk=>clk,out1=>clk_1Hz);
     U2: div_500ms      port map(clk=>clk,out1=>clk_500ms);
     U3: div_2seg       port map(clk=>clk,out1=>clk_2s);
@@ -297,7 +295,7 @@ begin
             activar_servo1 <= '0';
             activar_servo2 <= '0';
         elsif rising_edge(clk) then
-            -- Detectar flanco de start_entrega (ya sincronizado)
+            -- Detectar flanco de entrega 
             if start_entrega = '1' then
                 if sel_prod = "0000" then
                     activar_servo1 <= '1';
@@ -311,9 +309,7 @@ begin
         end if;
     end process;
     
-    --------------------------------------------------------------------
     -- FSM principal de la maquina 
-    --------------------------------------------------------------------
     UFSM: fsm_maquina_expendedora
         port map(
             clk=>clk,
@@ -354,29 +350,29 @@ begin
             servo500_sw=>servo500_sw
         );
 
-    --------------------------------------------------------------------
+    
     -- Memorias y cálculo de camnbio 
-    --------------------------------------------------------------------
+    
     URAM: ram_stock port map(clk=>clk,we=>ram_we,reset=>reset_stock_i,addr=>ram_addr,din=>ram_din,dout=>stock_data);
     UROM: rom_productos port map(addr=>sel_prod,dout=>precio_int);
     URES: restador port map(clk=>clk,reset=>reset,confirmar=>confirmar,
                             dinero_ingresado=>saldo_bin,precio_producto=>precio_int,cambio=>cambio_int);
                             
-    --------------------------------------------------------------------
+    
     -- Sumador de saldo con sensores de monedas
-    --------------------------------------------------------------------
+  
     U_saldo: sumador_saldo
         port map(
             clk    => clk,
-            reset  => reset,  -- O (reset or reset_saldo) si quieres resetear al finalizar entrega
+            reset  => reset,  
             sw500  => sensor500_out,
             sw1000 => sensor1000_out,
             saldo  => saldo_bin
         );                            
                             
-    --------------------------------------------------------------------
+    
     -- Sensores infrarrojos
-    --------------------------------------------------------------------
+    
     U_sensor500: SensorInfrarojo
         port map(
             sensorin  => sensorin500,
@@ -423,9 +419,8 @@ begin
     servo_sel1 <= start_entrega when sel_prod = "0000" else '0';
     servo_sel2 <= start_entrega when sel_prod = "0011" else '0';
     
-    --------------------------------------------------------------------
     -- Buzzer: suena mientras se entrega el producto
-    --------------------------------------------------------------------
+    
     U_BUZZER: BUZZER
         port map (
             CLK     => clk,
@@ -437,9 +432,7 @@ begin
     -- conectar señal interna al puerto de salida
     buzzer_out <= buzzer_sig;
 
-    --------------------------------------------------------------------
     -- Servos para monedas de cambio
-    --------------------------------------------------------------------
     U_SERVOS_MONEDAS: servos_monedas
         generic map (
             clk_hz => 50000000,
